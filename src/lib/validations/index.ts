@@ -6,7 +6,7 @@ export const signUpSchema = z.object({
   email: z.string().email('Invalid email address'),
   password: z.string().min(8, 'Password must be at least 8 characters'),
   fullName: z.string().min(2, 'Name must be at least 2 characters').optional(),
-  role: z.nativeEnum(UserRole).default(UserRole.CANDIDATE),
+  role: z.enum(['CANDIDATE', 'EMPLOYER', 'ADMIN']).default('CANDIDATE'),
 })
 
 export const signInSchema = z.object({
@@ -35,7 +35,7 @@ export const createJobSchema = z.object({
   benefits: z.string().max(5000).optional(),
   location: z.string().min(2, 'Location is required'),
   isRemote: z.boolean().default(false),
-  jobType: z.array(z.nativeEnum(JobType)).min(1, 'Select at least one job type'),
+  jobType: z.array(z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT', 'INTERNSHIP', 'REMOTE', 'HYBRID'])).min(1, 'Select at least one job type'),
   experienceLevel: z.enum(['JUNIOR', 'MID', 'SENIOR', 'LEAD', 'EXECUTIVE']).optional(),
   salaryMin: z.number().positive().optional(),
   salaryMax: z.number().positive().optional(),
@@ -50,7 +50,7 @@ export const updateJobSchema = createJobSchema.partial()
 export const jobSearchSchema = z.object({
   q: z.string().optional(),
   location: z.string().optional(),
-  type: z.array(z.nativeEnum(JobType)).optional(),
+  type: z.array(z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT', 'INTERNSHIP', 'REMOTE', 'HYBRID'])).optional(),
   experience: z.array(z.string()).optional(),
   salaryMin: z.number().positive().optional(),
   salaryMax: z.number().positive().optional(),
@@ -87,7 +87,7 @@ export const candidateProfileSchema = z.object({
     endDate: z.string().optional(),
   })).default([]),
   preferredLocations: z.array(z.string()).default([]),
-  preferredJobTypes: z.array(z.nativeEnum(JobType)).default([]),
+  preferredJobTypes: z.array(z.enum(['FULL_TIME', 'PART_TIME', 'CONTRACT', 'INTERNSHIP', 'REMOTE', 'HYBRID'])).default([]),
   salaryMin: z.number().positive().optional(),
   salaryMax: z.number().positive().optional(),
   currency: z.string().length(3).default('USD'),
@@ -98,7 +98,7 @@ export const applyToJobSchema = z.object({
   jobId: z.string().cuid(),
   coverLetter: z.string().max(5000).optional(),
   resumeUrl: z.string().url().optional(),
-  screeningAnswers: z.record(z.string()).optional(),
+  screeningAnswers: z.record(z.string(), z.string()).optional(),
 })
 
 // Employer schemas
@@ -107,7 +107,7 @@ export const companySchema = z.object({
   slug: z.string().min(2).max(50).regex(/^[a-z0-9-]+$/),
   description: z.string().max(5000).optional(),
   website: z.string().url().optional().or(z.literal('')),
-  size: z.nativeEnum(CompanySize).optional(),
+  size: z.enum(['STARTUP_1_10', 'SMALL_11_50', 'MEDIUM_51_200', 'LARGE_201_500', 'ENTERPRISE_500_PLUS']).optional(),
   industry: z.string().max(100).optional(),
   location: z.string().max(100).optional(),
   foundedYear: z.number().int().min(1800).max(new Date().getFullYear()).optional(),
@@ -116,13 +116,13 @@ export const companySchema = z.object({
 })
 
 export const updateApplicationStatusSchema = z.object({
-  status: z.nativeEnum(ApplicationStatus),
+  status: z.enum(['APPLIED', 'SCREENING', 'INTERVIEW', 'OFFER', 'HIRED', 'REJECTED', 'WITHDRAWN']),
   note: z.string().optional(),
 })
 
 // Admin schemas
 export const updateUserSchema = z.object({
-  role: z.nativeEnum(UserRole).optional(),
+  role: z.enum(['CANDIDATE', 'EMPLOYER', 'ADMIN']).optional(),
   isActive: z.boolean().optional(),
 })
 

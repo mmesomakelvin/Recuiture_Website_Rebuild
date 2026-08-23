@@ -7,7 +7,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 enum UserRole {
@@ -66,8 +65,10 @@ model User {
   applications     Application[]
   savedJobs        SavedJob[]
   notifications    Notification[]
-  company          Company?        @relation("CompanyOwner")
-  managedCompany   Company?        @relation("CompanyManager")
+  ownedCompany     Company?    @relation("CompanyOwner")
+  ownedCompanyId   String?     @unique @map("owned_company_id")
+  managedCompanies Company[]   @relation("CompanyManager")
+  postedJobs       Job[]       @relation("JobPostedBy")
 
   @@map("users")
 }
@@ -106,7 +107,7 @@ model EmployerProfile {
   userId      String   @unique @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   companyId   String?  @unique @map("company_id")
-  company     Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  company     Company? @relation("EmployerCompany", fields: [companyId], references: [id], onDelete: SetNull)
   title       String?
   department  String?
   phone       String?
@@ -131,9 +132,10 @@ model Company {
   linkedinUrl     String?      @map("linkedin_url")
   twitterUrl      String?      @map("twitter_url")
   isVerified      Boolean      @default(false) @map("is_verified")
-  ownerId         String       @map("owner_id")
+  ownerId         String       @unique @map("owner_id")
   owner           User         @relation("CompanyOwner", fields: [ownerId], references: [id])
   managers        User[]       @relation("CompanyManager")
+  employerProfiles EmployerProfile[] @relation("EmployerCompany")
   jobs            Job[]
   createdAt       DateTime     @default(now()) @map("created_at")
   updatedAt       DateTime     @updatedAt @map("updated_at")
@@ -160,7 +162,7 @@ model Job {
   companyId       String      @map("company_id")
   company         Company     @relation(fields: [companyId], references: [id], onDelete: Cascade)
   postedById      String      @map("posted_by_id")
-  postedBy        User        @relation(fields: [postedById], references: [id])
+  postedBy        User        @relation("JobPostedBy", fields: [postedById], references: [id])
   publishedAt     DateTime?   @map("published_at")
   expiresAt       DateTime?   @map("expires_at")
   viewsCount      Int         @default(0) @map("views_count")
