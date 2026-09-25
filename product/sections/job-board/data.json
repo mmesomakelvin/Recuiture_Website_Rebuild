@@ -1,0 +1,494 @@
+{
+  "_meta": {
+    "models": {
+      "jobs": "Live job openings shown on the board. Each job belongs to a company, has a monthly naira salary range or is marked confidential, and may carry EduBridge badges.",
+      "company": "The hiring organisation embedded in each job: name, industry, size, location and a short about text shown in the job detail.",
+      "screeningQuestions": "Optional questions an employer adds to a job. Candidates answer them in step 3 of the apply flow.",
+      "currentUser": "The signed-in candidate viewing the board, with their saved CV and the jobs they have saved or already applied to. Null when a guest is browsing.",
+      "filterOptions": "The choices available in each filter on the board: locations, job types, work modes, experience levels and monthly salary bands."
+    },
+    "relationships": [
+      "Each job belongs to one company, and a company can have several jobs on the board",
+      "Each job has zero or more screening questions",
+      "The current user has saved some jobs (savedJobIds) and applied to others (appliedJobIds), both referencing job ids",
+      "The current user's saved CV is the default choice in the apply flow"
+    ]
+  },
+  "jobs": [
+    {
+      "id": "job-001",
+      "slug": "data-analyst-paystream",
+      "title": "Data Analyst",
+      "company": {
+        "id": "co-paystream",
+        "name": "Paystream Technologies",
+        "logoUrl": null,
+        "industry": "Fintech",
+        "size": "51 to 200 employees",
+        "location": "Lagos",
+        "isVerified": true,
+        "about": "Paystream builds payment infrastructure for small and growing businesses across West Africa, processing millions of transactions every month."
+      },
+      "location": { "city": "Lekki", "state": "Lagos" },
+      "workMode": "hybrid",
+      "jobType": "full-time",
+      "experienceLevel": "entry",
+      "salary": { "min": 350000, "max": 500000, "isConfidential": false },
+      "postedAt": "2026-09-24T09:00:00Z",
+      "deadline": "2026-10-15",
+      "applicantCount": 38,
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": false,
+      "summary": "Turn transaction data into clear reports that help our merchant success team make better decisions.",
+      "description": "You will join a small analytics team that supports sales, merchant success and product. Your day will involve cleaning data, building dashboards and answering questions like which merchants are at risk of leaving and which features drive repeat payments. This is a great first role for someone who has completed a data analysis program and wants to grow quickly with strong mentorship.",
+      "responsibilities": [
+        "Build and maintain weekly dashboards for the merchant success team",
+        "Write SQL queries to answer ad hoc business questions",
+        "Clean and validate transaction data from several sources",
+        "Present findings to non-technical colleagues in plain language"
+      ],
+      "requirements": [
+        "Working knowledge of SQL and Excel or Google Sheets",
+        "Experience with a BI tool such as Power BI, Looker Studio or Tableau",
+        "Clear written and spoken communication",
+        "A degree, HND or completed data analysis program"
+      ],
+      "benefits": [
+        "HMO health cover",
+        "Monthly data and transport allowance",
+        "Two remote days per week",
+        "Paid learning budget"
+      ],
+      "skills": ["SQL", "Power BI", "Excel", "Data cleaning"],
+      "screeningQuestions": [
+        {
+          "id": "q-001-1",
+          "question": "Which BI tools have you used on a real project?",
+          "type": "short-text",
+          "required": true,
+          "options": []
+        },
+        {
+          "id": "q-001-2",
+          "question": "Are you able to work from our Lekki office two days a week?",
+          "type": "yes-no",
+          "required": true,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-002",
+      "slug": "frontend-developer-react-lumen-health",
+      "title": "Frontend Developer (React)",
+      "company": {
+        "id": "co-lumen",
+        "name": "Lumen Health Nigeria",
+        "logoUrl": null,
+        "industry": "Health tech",
+        "size": "11 to 50 employees",
+        "location": "Abuja",
+        "isVerified": true,
+        "about": "Lumen Health helps clinics across Nigeria manage patient records, appointments and billing from one simple platform."
+      },
+      "location": { "city": "Remote", "state": "Remote" },
+      "workMode": "remote",
+      "jobType": "full-time",
+      "experienceLevel": "mid",
+      "salary": { "min": 700000, "max": 1100000, "isConfidential": false },
+      "postedAt": "2026-09-23T14:30:00Z",
+      "deadline": "2026-10-10",
+      "applicantCount": 112,
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": false,
+      "summary": "Build fast, accessible clinic software used by doctors and nurses every day.",
+      "description": "We are looking for a frontend developer who cares about the people using the product. You will work closely with our designer and two backend engineers to ship features for clinic staff, many of whom use the app on low-cost Android phones with patchy connections. Performance and clarity matter more than flashy effects here.",
+      "responsibilities": [
+        "Build new features in React and TypeScript",
+        "Improve load times on slow networks and low-end devices",
+        "Review pull requests and help keep the codebase tidy",
+        "Work with the designer to turn mockups into polished screens"
+      ],
+      "requirements": [
+        "At least 3 years of professional React experience",
+        "Strong TypeScript and modern CSS skills",
+        "Experience with testing tools such as Vitest or Jest",
+        "Comfortable working fully remotely with a small team"
+      ],
+      "benefits": [
+        "Fully remote with a monthly internet stipend",
+        "Laptop provided",
+        "HMO for you and one dependant",
+        "13th month salary"
+      ],
+      "skills": ["React", "TypeScript", "Tailwind CSS", "Testing"],
+      "screeningQuestions": [
+        {
+          "id": "q-002-1",
+          "question": "How many years of professional React experience do you have?",
+          "type": "number",
+          "required": true,
+          "options": []
+        },
+        {
+          "id": "q-002-2",
+          "question": "Share a link to a project or code sample you are proud of.",
+          "type": "short-text",
+          "required": false,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-003",
+      "slug": "hr-associate-greenfield-agro",
+      "title": "HR Associate",
+      "company": {
+        "id": "co-greenfield",
+        "name": "Greenfield Agro Processing",
+        "logoUrl": null,
+        "industry": "Agriculture",
+        "size": "201 to 500 employees",
+        "location": "Ibadan",
+        "isVerified": true,
+        "about": "Greenfield processes cassava and maize into flour and starch for manufacturers across Nigeria, working with over 3,000 smallholder farmers."
+      },
+      "location": { "city": "Ibadan", "state": "Oyo" },
+      "workMode": "on-site",
+      "jobType": "full-time",
+      "experienceLevel": "entry",
+      "salary": { "min": 220000, "max": 300000, "isConfidential": false },
+      "postedAt": "2026-09-22T08:15:00Z",
+      "deadline": "2026-10-06",
+      "applicantCount": 64,
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "Support recruitment, onboarding and staff records for a growing processing plant.",
+      "description": "EduBridge Academy is recruiting this role on behalf of Greenfield Agro Processing. You will support the HR manager with day to day people operations at the Ibadan plant, including recruitment of factory staff, onboarding, attendance records and payroll inputs.",
+      "responsibilities": [
+        "Coordinate recruitment and onboarding for plant staff",
+        "Keep employee records and attendance data up to date",
+        "Prepare monthly payroll inputs for the finance team",
+        "Help organise training sessions and staff events"
+      ],
+      "requirements": [
+        "A degree or HND in Human Resources, Business or a related field",
+        "Good organisation and record keeping",
+        "Confident using Excel or Google Sheets",
+        "Able to resume on site in Ibadan"
+      ],
+      "benefits": [
+        "Staff bus from Ibadan city centre",
+        "Subsidised lunch",
+        "HMO health cover"
+      ],
+      "skills": ["Recruitment", "Onboarding", "HR records", "Excel"],
+      "screeningQuestions": [
+        {
+          "id": "q-003-1",
+          "question": "What is your notice period?",
+          "type": "multiple-choice",
+          "required": true,
+          "options": ["Available immediately", "2 weeks", "1 month", "More than 1 month"]
+        }
+      ]
+    },
+    {
+      "id": "job-004",
+      "slug": "senior-backend-engineer-confidential",
+      "title": "Senior Backend Engineer",
+      "company": {
+        "id": "co-harbourline",
+        "name": "Harbourline Consulting",
+        "logoUrl": null,
+        "industry": "Professional services",
+        "size": "51 to 200 employees",
+        "location": "Lagos",
+        "isVerified": true,
+        "about": "Harbourline advises banks and insurers on digital transformation and builds custom software for their internal teams."
+      },
+      "location": { "city": "Victoria Island", "state": "Lagos" },
+      "workMode": "hybrid",
+      "jobType": "full-time",
+      "experienceLevel": "senior",
+      "salary": { "min": null, "max": null, "isConfidential": true },
+      "postedAt": "2026-09-19T10:00:00Z",
+      "deadline": "2026-10-19",
+      "applicantCount": 27,
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": true,
+      "summary": "Lead the design of secure backend services for enterprise banking clients.",
+      "description": "EduBridge Academy is recruiting this role on behalf of Harbourline Consulting. You will lead backend work on projects for large financial institutions, owning service design, code quality and the technical relationship with client engineering teams. The role suits someone who enjoys mentoring and is comfortable explaining trade-offs to non-engineers. Projects typically run for six to twelve months, and you will usually be working on one main project at a time with support from two or three mid-level engineers. Security, auditability and reliability are central to everything we build, so experience in regulated industries is a strong advantage. You will also contribute to internal tools and help shape our engineering standards as the practice grows from twelve to twenty engineers over the next year.",
+      "responsibilities": [
+        "Design and build backend services in Node.js or Go",
+        "Lead code reviews and mentor mid-level engineers",
+        "Work directly with client teams on architecture decisions",
+        "Set up monitoring, logging and security practices"
+      ],
+      "requirements": [
+        "At least 6 years of backend development experience",
+        "Strong experience with PostgreSQL and cloud platforms",
+        "Experience in banking, insurance or another regulated industry",
+        "Excellent communication with technical and non-technical people"
+      ],
+      "benefits": [
+        "Competitive salary shared at interview stage",
+        "Performance bonus",
+        "HMO for you and your family",
+        "Annual certification budget"
+      ],
+      "skills": ["Node.js", "Go", "PostgreSQL", "AWS", "Security"],
+      "screeningQuestions": [
+        {
+          "id": "q-004-1",
+          "question": "Have you worked on software for a bank or insurer?",
+          "type": "yes-no",
+          "required": true,
+          "options": []
+        },
+        {
+          "id": "q-004-2",
+          "question": "What is your expected monthly salary in naira?",
+          "type": "number",
+          "required": true,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-005",
+      "slug": "customer-success-intern-paystream",
+      "title": "Customer Success Intern",
+      "company": {
+        "id": "co-paystream",
+        "name": "Paystream Technologies",
+        "logoUrl": null,
+        "industry": "Fintech",
+        "size": "51 to 200 employees",
+        "location": "Lagos",
+        "isVerified": true,
+        "about": "Paystream builds payment infrastructure for small and growing businesses across West Africa, processing millions of transactions every month."
+      },
+      "location": { "city": "Lekki", "state": "Lagos" },
+      "workMode": "on-site",
+      "jobType": "internship",
+      "experienceLevel": "entry",
+      "salary": { "min": 120000, "max": 150000, "isConfidential": false },
+      "postedAt": "2026-09-25T07:45:00Z",
+      "deadline": "2026-10-03",
+      "applicantCount": 9,
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": false,
+      "summary": "A six month paid internship helping merchants get the most out of Paystream.",
+      "description": "Join our customer success team for six months and learn how a fast growing fintech supports thousands of merchants. You will answer merchant questions, help new businesses get set up and log feedback for the product team.",
+      "responsibilities": [
+        "Respond to merchant questions by chat, email and phone",
+        "Guide new merchants through account setup",
+        "Log feedback and bugs for the product team"
+      ],
+      "requirements": [
+        "Recent graduate or final year student",
+        "Friendly, patient communication style",
+        "Comfortable with basic computer tools"
+      ],
+      "benefits": [],
+      "skills": ["Customer support", "Communication"],
+      "screeningQuestions": []
+    },
+    {
+      "id": "job-006",
+      "slug": "logistics-coordinator-northstar",
+      "title": "Logistics Coordinator",
+      "company": {
+        "id": "co-northstar",
+        "name": "Northstar Logistics",
+        "logoUrl": null,
+        "industry": "Logistics",
+        "size": "201 to 500 employees",
+        "location": "Port Harcourt",
+        "isVerified": false,
+        "about": "Northstar moves goods between the ports, factories and warehouses of southern Nigeria with a fleet of over 150 trucks."
+      },
+      "location": { "city": "Trans Amadi", "state": "Rivers" },
+      "workMode": "on-site",
+      "jobType": "contract",
+      "experienceLevel": "mid",
+      "salary": { "min": 400000, "max": 550000, "isConfidential": false },
+      "postedAt": "2026-09-15T12:00:00Z",
+      "deadline": "2026-09-30",
+      "applicantCount": 41,
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": false,
+      "summary": "Plan daily truck routes and keep deliveries on schedule across Rivers State.",
+      "description": "A 12 month contract, with the option to convert to full time, coordinating dispatch and delivery schedules from our Trans Amadi depot.",
+      "responsibilities": [
+        "Plan daily dispatch and delivery routes",
+        "Track trucks and resolve delays with drivers and customers",
+        "Prepare weekly delivery performance reports"
+      ],
+      "requirements": [
+        "At least 2 years in logistics or supply chain",
+        "Good knowledge of roads and routes in Rivers State",
+        "Strong Excel skills"
+      ],
+      "benefits": ["Transport allowance", "Option to convert to full time"],
+      "skills": ["Dispatch planning", "Fleet tracking", "Excel"],
+      "screeningQuestions": [
+        {
+          "id": "q-006-1",
+          "question": "How many years of logistics experience do you have?",
+          "type": "number",
+          "required": true,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-007",
+      "slug": "graphic-designer-adire-studio",
+      "title": "Graphic Designer",
+      "company": {
+        "id": "co-adire",
+        "name": "Adire Studio",
+        "logoUrl": null,
+        "industry": "Creative and media",
+        "size": "1 to 10 employees",
+        "location": "Abuja",
+        "isVerified": true,
+        "about": "Adire Studio is a small brand and content studio working with food, fashion and lifestyle businesses."
+      },
+      "location": { "city": "Wuse 2", "state": "FCT Abuja" },
+      "workMode": "hybrid",
+      "jobType": "part-time",
+      "experienceLevel": "entry",
+      "salary": { "min": 150000, "max": 200000, "isConfidential": false },
+      "postedAt": "2026-09-21T16:20:00Z",
+      "deadline": "2026-10-12",
+      "applicantCount": 53,
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "Design social media content and brand assets for food and fashion clients, three days a week.",
+      "description": "EduBridge Academy is recruiting this role on behalf of Adire Studio. You will design social posts, flyers and simple brand assets for the studio's clients, working three days a week, two of them from the Wuse 2 office.",
+      "responsibilities": [
+        "Design social media posts and campaign graphics",
+        "Prepare print-ready flyers and menus",
+        "Keep client brand files organised"
+      ],
+      "requirements": [
+        "A portfolio showing social media or brand work",
+        "Confident with Figma, Canva or Adobe tools",
+        "Good eye for typography and layout"
+      ],
+      "benefits": ["Flexible schedule", "Portfolio-building client work"],
+      "skills": ["Figma", "Canva", "Social media design", "Branding"],
+      "screeningQuestions": [
+        {
+          "id": "q-007-1",
+          "question": "Link to your portfolio",
+          "type": "short-text",
+          "required": true,
+          "options": []
+        },
+        {
+          "id": "q-007-2",
+          "question": "Which days can you work from the Wuse 2 office?",
+          "type": "multiple-choice",
+          "required": true,
+          "options": ["Monday and Tuesday", "Wednesday and Thursday", "Thursday and Friday", "I am flexible"]
+        }
+      ]
+    },
+    {
+      "id": "job-008",
+      "slug": "sales-executive-sahel-power",
+      "title": "Sales Executive, Solar Solutions",
+      "company": {
+        "id": "co-sahel",
+        "name": "Sahel Power",
+        "logoUrl": null,
+        "industry": "Renewable energy",
+        "size": "51 to 200 employees",
+        "location": "Kano",
+        "isVerified": true,
+        "about": "Sahel Power sells and installs solar systems for homes, schools and small businesses across northern Nigeria."
+      },
+      "location": { "city": "Kano", "state": "Kano" },
+      "workMode": "on-site",
+      "jobType": "full-time",
+      "experienceLevel": "mid",
+      "salary": { "min": 300000, "max": 450000, "isConfidential": false },
+      "postedAt": "2026-09-18T09:30:00Z",
+      "deadline": "2026-10-18",
+      "applicantCount": 0,
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": false,
+      "summary": "Sell solar home and business systems across Kano and neighbouring states, with commission on every sale.",
+      "description": "Grow our customer base across Kano, Kaduna and Katsina by meeting homeowners, schools and business owners and helping them choose the right solar system. Base salary plus commission.",
+      "responsibilities": [
+        "Find and visit new residential and business customers",
+        "Prepare quotes with the technical team",
+        "Meet monthly sales targets"
+      ],
+      "requirements": [
+        "At least 2 years of field sales experience",
+        "Fluent in English and Hausa",
+        "Willing to travel within northern Nigeria"
+      ],
+      "benefits": ["Uncapped commission", "Company motorcycle", "Phone allowance"],
+      "skills": ["Field sales", "Negotiation", "Hausa"],
+      "screeningQuestions": [
+        {
+          "id": "q-008-1",
+          "question": "Do you speak Hausa fluently?",
+          "type": "yes-no",
+          "required": true,
+          "options": []
+        }
+      ]
+    }
+  ],
+  "currentUser": {
+    "id": "user-chiamaka",
+    "name": "Chiamaka Obi",
+    "email": "chiamaka.obi@example.com",
+    "isVerifiedGraduate": true,
+    "graduateProgram": "Data Analysis Bootcamp",
+    "savedCv": {
+      "fileName": "Chiamaka-Obi-CV-2026.pdf",
+      "fileSizeKb": 184,
+      "uploadedAt": "2026-08-30"
+    },
+    "savedJobIds": ["job-001", "job-007"],
+    "appliedJobIds": ["job-003"]
+  },
+  "filterOptions": {
+    "locations": ["Remote", "Lagos", "FCT Abuja", "Rivers", "Oyo", "Kano", "Enugu", "Ogun"],
+    "jobTypes": [
+      { "value": "full-time", "label": "Full-time" },
+      { "value": "part-time", "label": "Part-time" },
+      { "value": "contract", "label": "Contract" },
+      { "value": "internship", "label": "Internship" }
+    ],
+    "workModes": [
+      { "value": "on-site", "label": "On-site" },
+      { "value": "hybrid", "label": "Hybrid" },
+      { "value": "remote", "label": "Remote" }
+    ],
+    "experienceLevels": [
+      { "value": "entry", "label": "Entry level" },
+      { "value": "mid", "label": "Mid level" },
+      { "value": "senior", "label": "Senior" }
+    ],
+    "salaryRanges": [
+      { "value": "under-200k", "label": "Under ₦200,000", "min": 0, "max": 200000 },
+      { "value": "200k-400k", "label": "₦200,000 to ₦400,000", "min": 200000, "max": 400000 },
+      { "value": "400k-700k", "label": "₦400,000 to ₦700,000", "min": 400000, "max": 700000 },
+      { "value": "700k-plus", "label": "₦700,000 and above", "min": 700000, "max": null }
+    ],
+    "sortOptions": [
+      { "value": "relevance", "label": "Most relevant" },
+      { "value": "newest", "label": "Newest" },
+      { "value": "salary-high", "label": "Highest salary" }
+    ]
+  }
+}
