@@ -1,0 +1,450 @@
+{
+  "_meta": {
+    "models": {
+      "profile": "The signed-in candidate's profile: personal details, experience, education, skills, job preferences, links, CV, Open to work status and their EduBridge graduate verification if they have one.",
+      "completeness": "How complete the profile is as a percentage, with the items still missing.",
+      "applications": "Every job the candidate has applied to, with the job summary, the current stage, the full status timeline and what they submitted.",
+      "savedJobs": "Jobs the candidate bookmarked on the Job Board, with deadline and whether they have already applied.",
+      "recommendedJobs": "Live jobs that match the candidate's skills and preferences, with a short reason for the match.",
+      "activity": "Recent events related to the candidate, such as application status changes and profile views."
+    },
+    "relationships": [
+      "The profile has zero or one graduate verification, linking the candidate to an EduBridge Academy program",
+      "The profile has many experience entries and many education entries",
+      "Each application belongs to one job and has a timeline of status changes",
+      "Each saved job references one job; hasApplied is true when an application exists for it",
+      "Activity items can reference an application by id"
+    ]
+  },
+  "profile": {
+    "id": "user-chiamaka",
+    "fullName": "Chiamaka Obi",
+    "email": "chiamaka.obi@example.com",
+    "phone": "+234 803 555 0142",
+    "avatarUrl": null,
+    "headline": "Junior Data Analyst | SQL, Power BI, Excel",
+    "location": "Yaba, Lagos",
+    "bio": "I am a data analyst who enjoys turning messy spreadsheets into clear answers. After studying Economics at the University of Nigeria, Nsukka, I worked in operations at a microfinance bank, where I started automating weekly reports in Excel. That led me to the EduBridge Academy Data Analysis Bootcamp, where I built dashboards in Power BI and Looker Studio using real transaction and sales data. I am now looking for my first full-time analyst role in Lagos or remote, ideally in fintech, retail or health, where I can keep learning from experienced analysts.",
+    "isOpenToWork": true,
+    "links": {
+      "linkedin": "https://linkedin.com/in/chiamaka-obi",
+      "portfolio": "https://chiamakaobi.dev",
+      "github": null
+    },
+    "experience": [
+      {
+        "id": "exp-1",
+        "title": "Operations Officer",
+        "company": "Unity Microfinance Bank",
+        "location": "Enugu",
+        "startDate": "2023-11",
+        "endDate": "2026-03",
+        "isCurrent": false,
+        "description": "Handled daily loan disbursement records for three branches and built an Excel report that cut weekly reporting time from two days to half a day."
+      },
+      {
+        "id": "exp-2",
+        "title": "Data Volunteer",
+        "company": "Lagos Food Bank Initiative",
+        "location": "Lagos",
+        "startDate": "2026-05",
+        "endDate": null,
+        "isCurrent": true,
+        "description": "Clean and analyse monthly distribution data and prepare a simple dashboard for the operations lead."
+      }
+    ],
+    "education": [
+      {
+        "id": "edu-1",
+        "qualification": "B.Sc. Economics",
+        "institution": "University of Nigeria, Nsukka",
+        "startYear": 2018,
+        "endYear": 2023,
+        "grade": "Second Class Upper"
+      }
+    ],
+    "skills": ["SQL", "Power BI", "Excel", "Looker Studio", "Data cleaning", "Python basics"],
+    "preferences": {
+      "locations": ["Lagos", "Remote"],
+      "jobTypes": ["full-time", "contract"],
+      "workModes": ["hybrid", "remote"],
+      "minMonthlySalary": 300000
+    },
+    "cv": {
+      "fileName": "Chiamaka-Obi-CV-2026.pdf",
+      "fileSizeKb": 184,
+      "uploadedAt": "2026-08-30"
+    },
+    "graduateVerification": {
+      "programName": "Data Analysis Bootcamp",
+      "completedAt": "2026-07-18",
+      "verifiedAt": "2026-07-25"
+    }
+  },
+  "completeness": {
+    "percent": 85,
+    "missing": [
+      { "key": "photo", "label": "Add a profile photo" },
+      { "key": "links", "label": "Add your GitHub link" }
+    ]
+  },
+  "applications": [
+    {
+      "id": "app-101",
+      "job": {
+        "id": "job-101",
+        "title": "Operations Analyst",
+        "companyName": "Northstar Logistics",
+        "companyId": "co-northstar",
+        "location": "Remote, Nigeria",
+        "workMode": "remote",
+        "jobType": "full-time",
+        "salary": { "min": 350000, "max": 450000, "isConfidential": false },
+        "isManagedByEduBridge": false
+      },
+      "status": "applied",
+      "appliedAt": "2026-09-24T10:12:00Z",
+      "updatedAt": "2026-09-24T10:12:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-09-24T10:12:00Z", "note": null }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-2026.pdf",
+        "coverLetter": "Dear Northstar hiring team,\n\nI would love to help your operations team track delivery performance. At Unity Microfinance Bank I automated weekly reports in Excel, and at EduBridge Academy I built Power BI dashboards on real sales data.",
+        "answers": [
+          { "question": "How many years of experience do you have with Excel?", "answer": "3" }
+        ]
+      }
+    },
+    {
+      "id": "app-102",
+      "job": {
+        "id": "job-003",
+        "title": "HR Associate",
+        "companyName": "Greenfield Agro Processing",
+        "companyId": "co-greenfield",
+        "location": "Ibadan, Oyo",
+        "workMode": "on-site",
+        "jobType": "full-time",
+        "salary": { "min": 220000, "max": 300000, "isConfidential": false },
+        "isManagedByEduBridge": true
+      },
+      "status": "screening",
+      "appliedAt": "2026-09-20T08:40:00Z",
+      "updatedAt": "2026-09-23T15:05:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-09-20T08:40:00Z", "note": null },
+        { "status": "screening", "date": "2026-09-23T15:05:00Z", "note": "An EduBridge recruiter is reviewing your application." }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-2026.pdf",
+        "coverLetter": "",
+        "answers": [
+          { "question": "What is your notice period?", "answer": "Available immediately" }
+        ]
+      }
+    },
+    {
+      "id": "app-103",
+      "job": {
+        "id": "job-102",
+        "title": "Junior Data Analyst",
+        "companyName": "Brightpath Schools",
+        "companyId": "co-brightpath",
+        "location": "Ikeja, Lagos",
+        "workMode": "hybrid",
+        "jobType": "full-time",
+        "salary": { "min": 280000, "max": 380000, "isConfidential": false },
+        "isManagedByEduBridge": true
+      },
+      "status": "interview",
+      "appliedAt": "2026-09-02T12:00:00Z",
+      "updatedAt": "2026-09-22T09:30:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-09-02T12:00:00Z", "note": null },
+        { "status": "screening", "date": "2026-09-08T10:20:00Z", "note": null },
+        { "status": "interview", "date": "2026-09-22T09:30:00Z", "note": "Brightpath Schools would like to interview you. Check your email for the invitation." }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-Education.pdf",
+        "coverLetter": "Dear Brightpath team,\n\nI am excited by the chance to help your schools understand student attendance and results through data. During my EduBridge bootcamp I built an attendance dashboard for a mock school network, and I would love to do the same for real.",
+        "answers": [
+          { "question": "Which BI tools have you used on a real project?", "answer": "Power BI and Looker Studio" },
+          { "question": "Can you work from our Ikeja office three days a week?", "answer": "Yes" }
+        ]
+      }
+    },
+    {
+      "id": "app-104",
+      "job": {
+        "id": "job-103",
+        "title": "Business Intelligence Intern",
+        "companyName": "Sahel Power",
+        "companyId": "co-sahel",
+        "location": "Remote, Nigeria",
+        "workMode": "remote",
+        "jobType": "internship",
+        "salary": { "min": 180000, "max": 180000, "isConfidential": false },
+        "isManagedByEduBridge": false
+      },
+      "status": "offer",
+      "appliedAt": "2026-08-18T14:10:00Z",
+      "updatedAt": "2026-09-24T17:45:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-08-18T14:10:00Z", "note": null },
+        { "status": "screening", "date": "2026-08-25T11:00:00Z", "note": null },
+        { "status": "interview", "date": "2026-09-05T13:00:00Z", "note": null },
+        { "status": "offer", "date": "2026-09-24T17:45:00Z", "note": "Sahel Power has sent you an offer. Check your email for the offer letter." }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-2026.pdf",
+        "coverLetter": "Dear Sahel Power team,\n\nRenewable energy is growing fast in Nigeria and I would love to help your sales team see which regions and products are performing best.",
+        "answers": []
+      }
+    },
+    {
+      "id": "app-105",
+      "job": {
+        "id": "job-104",
+        "title": "Reporting Analyst",
+        "companyName": "Harbourline Consulting",
+        "companyId": "co-harbourline",
+        "location": "Victoria Island, Lagos",
+        "workMode": "hybrid",
+        "jobType": "full-time",
+        "salary": { "min": null, "max": null, "isConfidential": true },
+        "isManagedByEduBridge": true
+      },
+      "status": "rejected",
+      "appliedAt": "2026-08-05T09:00:00Z",
+      "updatedAt": "2026-08-29T16:20:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-08-05T09:00:00Z", "note": null },
+        { "status": "screening", "date": "2026-08-12T10:00:00Z", "note": null },
+        { "status": "rejected", "date": "2026-08-29T16:20:00Z", "note": "The team chose a candidate with more banking experience. Thank you for applying." }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-2026.pdf",
+        "coverLetter": "",
+        "answers": [
+          { "question": "Have you worked on software or reporting for a bank or insurer?", "answer": "Yes" }
+        ]
+      }
+    },
+    {
+      "id": "app-106",
+      "job": {
+        "id": "job-105",
+        "title": "Data Entry Officer",
+        "companyName": "Lumen Health Nigeria",
+        "companyId": "co-lumen",
+        "location": "Wuse 2, FCT Abuja",
+        "workMode": "on-site",
+        "jobType": "contract",
+        "salary": { "min": 150000, "max": 180000, "isConfidential": false },
+        "isManagedByEduBridge": false
+      },
+      "status": "withdrawn",
+      "appliedAt": "2026-07-28T13:30:00Z",
+      "updatedAt": "2026-08-10T08:00:00Z",
+      "timeline": [
+        { "status": "applied", "date": "2026-07-28T13:30:00Z", "note": null },
+        { "status": "withdrawn", "date": "2026-08-10T08:00:00Z", "note": "You withdrew this application. Reason: I decided to focus on roles in Lagos." }
+      ],
+      "submission": {
+        "cvFileName": "Chiamaka-Obi-CV-2026.pdf",
+        "coverLetter": "",
+        "answers": []
+      }
+    }
+  ],
+  "savedJobs": [
+    {
+      "id": "saved-1",
+      "savedAt": "2026-09-24T19:00:00Z",
+      "hasApplied": false,
+      "job": {
+        "id": "job-001",
+        "title": "Data Analyst",
+        "companyName": "Paystream Technologies",
+        "companyId": "co-paystream",
+        "location": "Lekki, Lagos",
+        "workMode": "hybrid",
+        "jobType": "full-time",
+        "salary": { "min": 350000, "max": 500000, "isConfidential": false },
+        "deadline": "2026-10-15",
+        "isGraduateFriendly": true
+      }
+    },
+    {
+      "id": "saved-2",
+      "savedAt": "2026-09-21T11:30:00Z",
+      "hasApplied": false,
+      "job": {
+        "id": "job-007",
+        "title": "Graphic Designer",
+        "companyName": "Adire Studio",
+        "companyId": "co-adire",
+        "location": "Wuse 2, FCT Abuja",
+        "workMode": "hybrid",
+        "jobType": "part-time",
+        "salary": { "min": 150000, "max": 200000, "isConfidential": false },
+        "deadline": "2026-10-12",
+        "isGraduateFriendly": true
+      }
+    },
+    {
+      "id": "saved-3",
+      "savedAt": "2026-09-16T08:15:00Z",
+      "hasApplied": false,
+      "job": {
+        "id": "job-006",
+        "title": "Logistics Coordinator",
+        "companyName": "Northstar Logistics",
+        "companyId": "co-northstar",
+        "location": "Trans Amadi, Rivers",
+        "workMode": "on-site",
+        "jobType": "contract",
+        "salary": { "min": 400000, "max": 550000, "isConfidential": false },
+        "deadline": "2026-09-30",
+        "isGraduateFriendly": false
+      }
+    },
+    {
+      "id": "saved-4",
+      "savedAt": "2026-09-19T10:00:00Z",
+      "hasApplied": true,
+      "job": {
+        "id": "job-003",
+        "title": "HR Associate",
+        "companyName": "Greenfield Agro Processing",
+        "companyId": "co-greenfield",
+        "location": "Ibadan, Oyo",
+        "workMode": "on-site",
+        "jobType": "full-time",
+        "salary": { "min": 220000, "max": 300000, "isConfidential": false },
+        "deadline": "2026-10-06",
+        "isGraduateFriendly": true
+      }
+    },
+    {
+      "id": "saved-5",
+      "savedAt": "2026-09-01T09:45:00Z",
+      "hasApplied": false,
+      "job": {
+        "id": "job-106",
+        "title": "Market Research Assistant",
+        "companyName": "Greenfield Agro Processing",
+        "companyId": "co-greenfield",
+        "location": "Remote, Nigeria",
+        "workMode": "remote",
+        "jobType": "contract",
+        "salary": { "min": null, "max": null, "isConfidential": true },
+        "deadline": "2026-09-20",
+        "isGraduateFriendly": false
+      }
+    }
+  ],
+  "recommendedJobs": [
+    {
+      "id": "job-001",
+      "title": "Data Analyst",
+      "companyName": "Paystream Technologies",
+      "companyId": "co-paystream",
+      "location": "Lekki, Lagos",
+      "workMode": "hybrid",
+      "jobType": "full-time",
+      "salary": { "min": 350000, "max": 500000, "isConfidential": false },
+      "postedAt": "2026-09-24T09:00:00Z",
+      "isGraduateFriendly": true,
+      "isSaved": true,
+      "matchReason": "Matches your SQL, Power BI and Excel skills"
+    },
+    {
+      "id": "job-107",
+      "title": "Sales Data Analyst",
+      "companyName": "Adire Studio",
+      "companyId": "co-adire",
+      "location": "Remote, Nigeria",
+      "workMode": "remote",
+      "jobType": "contract",
+      "salary": { "min": 300000, "max": 400000, "isConfidential": false },
+      "postedAt": "2026-09-23T13:00:00Z",
+      "isGraduateFriendly": true,
+      "isSaved": false,
+      "matchReason": "Remote contract role, one of your preferences"
+    },
+    {
+      "id": "job-108",
+      "title": "Analytics Associate",
+      "companyName": "Lumen Health Nigeria",
+      "companyId": "co-lumen",
+      "location": "Remote, Nigeria",
+      "workMode": "remote",
+      "jobType": "full-time",
+      "salary": { "min": 450000, "max": 600000, "isConfidential": false },
+      "postedAt": "2026-09-20T08:00:00Z",
+      "isGraduateFriendly": false,
+      "isSaved": false,
+      "matchReason": "Uses Looker Studio and data cleaning"
+    }
+  ],
+  "activity": [
+    {
+      "id": "act-1",
+      "type": "status-change",
+      "message": "Sahel Power sent you an offer for Business Intelligence Intern",
+      "date": "2026-09-24T17:45:00Z",
+      "applicationId": "app-104"
+    },
+    {
+      "id": "act-2",
+      "type": "application-submitted",
+      "message": "You applied for Operations Analyst at Northstar Logistics",
+      "date": "2026-09-24T10:12:00Z",
+      "applicationId": "app-101"
+    },
+    {
+      "id": "act-3",
+      "type": "status-change",
+      "message": "Your HR Associate application moved to Screening",
+      "date": "2026-09-23T15:05:00Z",
+      "applicationId": "app-102"
+    },
+    {
+      "id": "act-4",
+      "type": "profile-view",
+      "message": "Lumen Health Nigeria viewed your profile",
+      "date": "2026-09-22T18:20:00Z",
+      "applicationId": null
+    },
+    {
+      "id": "act-5",
+      "type": "status-change",
+      "message": "Brightpath Schools invited you to interview for Junior Data Analyst",
+      "date": "2026-09-22T09:30:00Z",
+      "applicationId": "app-103"
+    },
+    {
+      "id": "act-6",
+      "type": "profile-view",
+      "message": "An EduBridge recruiter viewed your profile",
+      "date": "2026-09-19T12:00:00Z",
+      "applicationId": null
+    }
+  ],
+  "filterOptions": {
+    "locations": ["Remote", "Lagos", "FCT Abuja", "Rivers", "Oyo", "Kano", "Enugu", "Ogun"],
+    "jobTypes": [
+      { "value": "full-time", "label": "Full-time" },
+      { "value": "part-time", "label": "Part-time" },
+      { "value": "contract", "label": "Contract" },
+      { "value": "internship", "label": "Internship" }
+    ],
+    "workModes": [
+      { "value": "on-site", "label": "On-site" },
+      { "value": "hybrid", "label": "Hybrid" },
+      { "value": "remote", "label": "Remote" }
+    ]
+  }
+}
