@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Footer() {
@@ -5,9 +6,9 @@ export function Footer() {
     <footer className="border-t border-stone-200 bg-stone-50 text-stone-950 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <Link href="/" className="inline-flex items-center gap-2.5 rounded-lg text-lg font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-teal-700">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-700 text-lg font-bold text-white" aria-hidden="true">R</span>
-            <span>Recruiture<span className="text-amber-500">.</span></span>
+          <Link href="/" className="inline-flex items-center rounded-lg focus-visible:outline-2 focus-visible:outline-teal-700">
+            <Image src="/brand/recruiture-color.svg" alt="Recruiture by EduBridge Academy" width={356} height={78} className="h-auto w-56 dark:hidden" />
+            <Image src="/brand/recruiture-white.svg" alt="Recruiture by EduBridge Academy" width={356} height={78} className="hidden h-auto w-56 dark:block" />
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-600 dark:text-stone-300">Connecting people and opportunities across Nigeria. A recruitment platform by EduBridge Academy.</p>
         </div>

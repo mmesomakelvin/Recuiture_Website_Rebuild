@@ -2,7 +2,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Browse Jobs",
-  description: "Search and filter thousands of job opportunities from top companies.",
+  description: "Explore roles by skill, location, work mode, and experience level on Recruiture.",
 }
 
 export default function JobsLayout({

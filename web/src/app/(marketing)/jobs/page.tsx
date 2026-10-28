@@ -1,364 +1,190 @@
 'use client'
 
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Building2, MapPin, Briefcase, DollarSign, Calendar, ChevronLeft, ChevronRight, Filter, X, Search } from 'lucide-react'
+import { FormEvent, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { ArrowRight, ArrowUpRight, BriefcaseBusiness, MapPin, Search, SlidersHorizontal, X } from 'lucide-react'
+import { previewJobs } from '@/lib/jobs/mock-jobs'
 
-const mockJobs = [
-  {
-    id: '1',
-    title: 'Senior Frontend Engineer',
-    company: 'TechCorp Inc.',
-    companyLogo: null,
-    location: 'San Francisco, CA',
-    isRemote: true,
-    jobType: ['FULL_TIME'],
-    salaryMin: 150000,
-    salaryMax: 200000,
-    experienceLevel: 'SENIOR',
-    postedAt: '2024-01-15',
-    slug: 'senior-frontend-engineer',
-  },
-  {
-    id: '2',
-    title: 'Backend Developer',
-    company: 'StartupXYZ',
-    companyLogo: null,
-    location: 'New York, NY',
-    isRemote: false,
-    jobType: ['FULL_TIME'],
-    salaryMin: 120000,
-    salaryMax: 160000,
-    experienceLevel: 'MID',
-    postedAt: '2024-01-14',
-    slug: 'backend-developer',
-  },
-  {
-    id: '3',
-    title: 'DevOps Engineer',
-    company: 'CloudScale',
-    companyLogo: null,
-    location: 'Remote',
-    isRemote: true,
-    jobType: ['FULL_TIME', 'REMOTE'],
-    salaryMin: 130000,
-    salaryMax: 180000,
-    experienceLevel: 'SENIOR',
-    postedAt: '2024-01-13',
-    slug: 'devops-engineer',
-  },
-  {
-    id: '4',
-    title: 'Product Designer',
-    company: 'DesignStudio',
-    companyLogo: null,
-    location: 'Los Angeles, CA',
-    isRemote: true,
-    jobType: ['FULL_TIME', 'HYBRID'],
-    salaryMin: 100000,
-    salaryMax: 140000,
-    experienceLevel: 'MID',
-    postedAt: '2024-01-12',
-    slug: 'product-designer',
-  },
-  {
-    id: '5',
-    title: 'Data Scientist',
-    company: 'DataDriven Inc.',
-    companyLogo: null,
-    location: 'Boston, MA',
-    isRemote: false,
-    jobType: ['FULL_TIME'],
-    salaryMin: 140000,
-    salaryMax: 190000,
-    experienceLevel: 'SENIOR',
-    postedAt: '2024-01-11',
-    slug: 'data-scientist',
-  },
-  {
-    id: '6',
-    title: 'Mobile Developer (React Native)',
-    company: 'AppWorks',
-    companyLogo: null,
-    location: 'Austin, TX',
-    isRemote: true,
-    jobType: ['FULL_TIME', 'CONTRACT'],
-    salaryMin: 110000,
-    salaryMax: 150000,
-    experienceLevel: 'MID',
-    postedAt: '2024-01-10',
-    slug: 'mobile-developer-react-native',
-  },
+const markColors = [
+  'bg-teal-100 text-teal-900 dark:bg-teal-900 dark:text-teal-100',
+  'bg-amber-100 text-amber-900 dark:bg-amber-900 dark:text-amber-100',
+  'bg-lime-100 text-lime-900 dark:bg-lime-900 dark:text-lime-100',
+  'bg-sky-100 text-sky-900 dark:bg-sky-900 dark:text-sky-100',
+  'bg-rose-100 text-rose-900 dark:bg-rose-900 dark:text-rose-100',
+  'bg-violet-100 text-violet-900 dark:bg-violet-900 dark:text-violet-100',
 ]
 
-const jobTypes = ['FULL_TIME', 'PART_TIME', 'CONTRACT', 'INTERNSHIP', 'REMOTE', 'HYBRID']
-const experienceLevels = ['JUNIOR', 'MID', 'SENIOR', 'LEAD', 'EXECUTIVE']
+const typeNames: Record<string, string> = {
+  FULL_TIME: 'Full-time',
+  PART_TIME: 'Part-time',
+  CONTRACT: 'Contract',
+  INTERNSHIP: 'Internship',
+}
+
+const experienceNames: Record<string, string> = {
+  ENTRY: 'Entry level',
+  MID: 'Mid level',
+  SENIOR: 'Senior',
+}
+
+const formatNaira = (amount: number) =>
+  new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN', maximumFractionDigits: 0 }).format(amount)
 
 export default function JobsPage() {
-  const [searchQuery, setSearchQuery] = useState('')
+  const [query, setQuery] = useState('')
   const [location, setLocation] = useState('')
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
-  const [selectedExperience, setSelectedExperience] = useState<string[]>([])
+  const [appliedQuery, setAppliedQuery] = useState('')
+  const [appliedLocation, setAppliedLocation] = useState('')
+  const [jobType, setJobType] = useState('all')
+  const [experience, setExperience] = useState('all')
   const [remoteOnly, setRemoteOnly] = useState(false)
-  const [page, setPage] = useState(1)
-  const jobsPerPage = 6
+  const [sort, setSort] = useState('relevance')
 
-  const filteredJobs = mockJobs.filter((job) => {
-    const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      job.company.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesLocation = !location || job.location.toLowerCase().includes(location.toLowerCase())
-    const matchesType = selectedTypes.length === 0 || selectedTypes.some(t => job.jobType.includes(t as any))
-    const matchesExperience = selectedExperience.length === 0 || selectedExperience.includes(job.experienceLevel)
-    const matchesRemote = !remoteOnly || job.isRemote
-    return matchesSearch && matchesLocation && matchesType && matchesExperience && matchesRemote
-  })
+  const jobs = useMemo(() => {
+    const matches = previewJobs.filter((job) => {
+      const needle = appliedQuery.trim().toLowerCase()
+      const place = appliedLocation.trim().toLowerCase()
+      return (!needle || [job.title, job.company, job.sector, ...job.skills].some((value) => value.toLowerCase().includes(needle)))
+        && (!place || job.location.toLowerCase().includes(place))
+        && (jobType === 'all' || job.jobType.includes(jobType))
+        && (experience === 'all' || job.experienceLevel === experience)
+        && (!remoteOnly || job.isRemote)
+    })
+    if (sort === 'newest') return matches.sort((a, b) => b.postedAt.localeCompare(a.postedAt))
+    if (sort === 'salary') return matches.sort((a, b) => b.salaryMax - a.salaryMax)
+    return matches
+  }, [appliedQuery, appliedLocation, jobType, experience, remoteOnly, sort])
 
-  const paginatedJobs = filteredJobs.slice((page - 1) * jobsPerPage, page * jobsPerPage)
-  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage)
+  const hasFilters = Boolean(appliedQuery || appliedLocation || jobType !== 'all' || experience !== 'all' || remoteOnly)
 
-  const hasActiveFilters = searchQuery || location || selectedTypes.length > 0 || selectedExperience.length > 0 || remoteOnly
-
-  const clearFilters = () => {
-    setSearchQuery('')
-    setLocation('')
-    setSelectedTypes([])
-    setSelectedExperience([])
-    setRemoteOnly(false)
-    setPage(1)
+  const submitSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setAppliedQuery(query)
+    setAppliedLocation(location)
   }
 
-  const formatSalary = (min?: number, max?: number) => {
-    if (!min && !max) return 'Not specified'
-    const fmt = (n: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n)
-    if (min && max) return `${fmt(min)} - ${fmt(max)}`
-    if (min) return `From ${fmt(min)}`
-    return `Up to ${fmt(max!)}`
+  const clearFilters = () => {
+    setQuery('')
+    setLocation('')
+    setAppliedQuery('')
+    setAppliedLocation('')
+    setJobType('all')
+    setExperience('all')
+    setRemoteOnly(false)
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      {/* Search & Filters */}
-      <section className="border-b bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-          <div className="mx-auto max-w-3xl">
-            <div className="space-y-4">
-              <div className="flex gap-3">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
-                  <Input
-                    type="search"
-                    placeholder="Search jobs (e.g., React, Python, Marketing)"
-                    value={searchQuery}
-                    onChange={(e) => { setSearchQuery(e.target.value); setPage(1) }}
-                    className="pl-10"
-                    aria-label="Search jobs"
-                  />
-                </div>
-                <div className="relative w-64">
-                  <MapPin className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
-                  <Input
-                    type="search"
-                    placeholder="Location"
-                    value={location}
-                    onChange={(e) => { setLocation(e.target.value); setPage(1) }}
-                    className="pl-10"
-                    aria-label="Location"
-                  />
-                </div>
-                <Button onClick={() => setPage(1)} className="whitespace-nowrap">
-                  <Filter className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Search
-                </Button>
-              </div>
-
-              {/* Advanced Filters */}
-              <div className="flex flex-wrap gap-3">
-                <div className="flex items-center gap-2">
-                  <label htmlFor="job-type" className="text-sm font-medium text-zinc-700">Type:</label>
-                  <Select value={selectedTypes.join(',')} onValueChange={(v) => setSelectedTypes(v.split(',').filter(Boolean))}>
-                    <SelectTrigger id="job-type" className="w-44">
-                      <SelectValue placeholder="All types" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {jobTypes.map((type) => (
-                        <SelectItem key={type} value={type}>{type.replace('_', ' ')}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-center gap-2">
-                  <label htmlFor="experience" className="text-sm font-medium text-zinc-700">Experience:</label>
-                  <Select value={selectedExperience.join(',')} onValueChange={(v) => setSelectedExperience(v.split(',').filter(Boolean))}>
-                    <SelectTrigger id="experience" className="w-44">
-                      <SelectValue placeholder="All levels" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {experienceLevels.map((level) => (
-                        <SelectItem key={level} value={level}>{level}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={remoteOnly}
-                    onChange={(e) => { setRemoteOnly(e.target.checked); setPage(1) }}
-                    className="h-4 w-4 rounded border-zinc-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-zinc-700">Remote only</span>
-                </label>
-              </div>
-
-              {hasActiveFilters && (
-                <Button variant="ghost" size="sm" onClick={clearFilters} className="text-zinc-600 hover:text-zinc-900">
-                  <X className="mr-1 h-4 w-4" aria-hidden="true" />
-                  Clear all filters
-                </Button>
-              )}
-            </div>
+    <div className="min-h-screen bg-stone-50 text-stone-950 dark:bg-stone-950 dark:text-stone-50">
+      <section className="relative overflow-hidden bg-teal-950 pb-28 pt-16 text-white sm:pb-32 sm:pt-20 dark:bg-stone-900">
+        <div className="pointer-events-none absolute -right-20 top-0 size-80 rounded-full border-[50px] border-teal-800/50 sm:right-8 sm:size-[28rem] sm:border-[70px]" aria-hidden="true" />
+        <div className="pointer-events-none absolute -right-12 top-28 size-52 rounded-full border-[30px] border-lime-400/15 sm:right-40 sm:size-72" aria-hidden="true" />
+        <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
+          <div className="max-w-2xl">
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-500/50 bg-teal-800/60 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-lime-200">
+              <span className="size-1.5 rounded-full bg-lime-300" /> Find your next move
+            </p>
+            <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Work worth getting <span className="text-lime-300">excited about.</span></h1>
+            <p className="mt-5 max-w-xl text-base leading-7 text-teal-50/85 sm:text-lg">Explore opportunities that match your skills, ambitions, and the way you want to work.</p>
+          </div>
+          <div className="hidden max-w-xs border-l border-teal-400/60 pl-6 lg:block">
+            <p className="text-sm font-semibold text-lime-300">A better search starts here</p>
+            <p className="mt-2 text-sm leading-6 text-teal-50/75">Find a role, understand the opportunity, and take your next step with confidence.</p>
           </div>
         </div>
       </section>
 
-      {/* Results */}
-      <section className="py-8">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 flex items-center justify-between">
-            <p className="text-sm text-zinc-600">
-              Showing {paginatedJobs.length} of {filteredJobs.length} jobs
-            </p>
-            <div className="flex items-center gap-2">
-              <Select value="relevance" onValueChange={() => {}}>
-                <SelectTrigger className="w-40">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="relevance">Relevance</SelectItem>
-                  <SelectItem value="date">Newest</SelectItem>
-                  <SelectItem value="salary">Salary</SelectItem>
-                </SelectContent>
-              </Select>
+      <div className="relative z-10 mx-auto -mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-stone-200 bg-white p-4 shadow-xl shadow-teal-950/10 sm:p-6 dark:border-stone-700 dark:bg-stone-900 dark:shadow-black/20">
+          <form onSubmit={submitSearch} role="search" className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.65fr)_auto]">
+            <label className="block">
+              <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300">Job title or skill</span>
+              <span className="relative block">
+                <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-teal-700 dark:text-lime-300" aria-hidden="true" />
+                <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="e.g. Data analyst, design, React" className="min-h-12 w-full rounded-xl border border-stone-300 bg-stone-50 pl-12 pr-4 text-sm text-stone-950 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 dark:border-stone-600 dark:bg-stone-800 dark:text-white dark:focus:border-lime-400 dark:focus:ring-lime-400/20" />
+              </span>
+            </label>
+            <label className="block">
+              <span className="mb-2 block text-xs font-bold uppercase tracking-wider text-stone-600 dark:text-stone-300">Location</span>
+              <span className="relative block">
+                <MapPin className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-teal-700 dark:text-lime-300" aria-hidden="true" />
+                <input type="search" value={location} onChange={(event) => setLocation(event.target.value)} placeholder="City or remote" className="min-h-12 w-full rounded-xl border border-stone-300 bg-stone-50 pl-12 pr-4 text-sm text-stone-950 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20 dark:border-stone-600 dark:bg-stone-800 dark:text-white dark:focus:border-lime-400 dark:focus:ring-lime-400/20" />
+              </span>
+            </label>
+            <button type="submit" className="mt-auto inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-teal-900 px-6 text-sm font-bold text-white transition hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:bg-lime-400 dark:text-stone-950 dark:hover:bg-lime-300">
+              Search roles <ArrowRight className="size-4" aria-hidden="true" />
+            </button>
+          </form>
+
+          <div className="mt-5 flex flex-col gap-3 border-t border-stone-200 pt-5 sm:flex-row sm:flex-wrap sm:items-center dark:border-stone-700">
+            <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400"><SlidersHorizontal className="size-4" aria-hidden="true" /> Refine search</span>
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
+              <label className="sr-only" htmlFor="job-type">Job type</label>
+              <select id="job-type" value={jobType} onChange={(event) => setJobType(event.target.value)} className="min-h-11 rounded-xl border border-stone-300 bg-white px-3 text-sm font-medium text-stone-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100">
+                <option value="all">All job types</option>
+                {Object.entries(typeNames).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </select>
+              <label className="sr-only" htmlFor="experience">Experience level</label>
+              <select id="experience" value={experience} onChange={(event) => setExperience(event.target.value)} className="min-h-11 rounded-xl border border-stone-300 bg-white px-3 text-sm font-medium text-stone-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-100">
+                <option value="all">All experience</option>
+                {Object.entries(experienceNames).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+              </select>
             </div>
+            <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-stone-300 px-3 text-sm font-medium text-stone-800 dark:border-stone-600 dark:text-stone-100">
+              <input type="checkbox" checked={remoteOnly} onChange={(event) => setRemoteOnly(event.target.checked)} className="size-4 accent-teal-800 dark:accent-lime-400" /> Remote only
+            </label>
+            {hasFilters && <button type="button" onClick={clearFilters} className="inline-flex min-h-11 items-center gap-1 rounded-lg px-2 text-sm font-semibold text-teal-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:text-lime-300"><X className="size-4" aria-hidden="true" /> Clear filters</button>}
           </div>
-
-          {paginatedJobs.length > 0 ? (
-            <>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {paginatedJobs.map((job) => (
-                  <Link key={job.id} href={`/jobs/${job.slug}`}>
-                    <Card className="border-zinc-200 hover:border-zinc-300 hover:shadow-md transition-all duration-200 h-full">
-                      <CardHeader className="pb-3">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-lg font-semibold text-zinc-900 truncate">{job.title}</h3>
-                            <p className="mt-1 text-sm text-zinc-600 flex items-center gap-1">
-                              <Building2 className="h-4 w-4" aria-hidden="true" />
-                              {job.company}
-                            </p>
-                          </div>
-                          {job.isRemote && (
-                            <Badge variant="secondary" className="flex items-center gap-1 mt-0.5">
-                              <Briefcase className="h-3 w-3" aria-hidden="true" />
-                              Remote
-                            </Badge>
-                          )}
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="flex items-center gap-1 text-sm text-zinc-600">
-                            <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                            {job.location}
-                          </span>
-                          {job.jobType.map((type) => (
-                            <Badge key={type} variant="outline" className="text-xs">
-                              {type.replace('_', ' ')}
-                            </Badge>
-                          ))}
-                        </div>
-                        <div className="flex items-center gap-3 text-sm text-zinc-600">
-                          <span className="flex items-center gap-1 font-medium text-zinc-900">
-                            <DollarSign className="h-3.5 w-3.5" aria-hidden="true" />
-                            {formatSalary(job.salaryMin, job.salaryMax)}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
-                            {job.experienceLevel}
-                          </span>
-                        </div>
-                      </CardContent>
-                      <CardFooter className="pt-3 border-t">
-                        <Button className="w-full" variant="outline">
-                          View Details
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="mt-8 flex items-center justify-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setPage(p => Math.max(1, p - 1))}
-                    disabled={page === 1}
-                    aria-label="Previous page"
-                  >
-                    <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                    let pageNum = i + 1
-                    if (totalPages > 5) {
-                      if (page > 3 && page < totalPages - 2) pageNum = page - 2 + i
-                      else if (page >= totalPages - 2) pageNum = totalPages - 4 + i
-                    }
-                    return (
-                      <Button
-                        key={pageNum}
-                        variant={page === pageNum ? 'default' : 'outline'}
-                        size="sm"
-                        onClick={() => setPage(pageNum)}
-                        aria-label={`Page ${pageNum}`}
-                        aria-current={page === pageNum ? 'page' : undefined}
-                      >
-                        {pageNum}
-                      </Button>
-                    )
-                  })}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                    disabled={page === totalPages}
-                    aria-label="Next page"
-                  >
-                    <ChevronRight className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="text-center py-16">
-              <Building2 className="mx-auto h-12 w-12 text-zinc-300" aria-hidden="true" />
-              <h3 className="mt-4 text-lg font-medium text-zinc-900">No jobs found</h3>
-              <p className="mt-2 text-zinc-600">Try adjusting your search or filters</p>
-              <Button variant="outline" onClick={clearFilters} className="mt-4">
-                Clear filters
-              </Button>
-            </div>
-          )}
         </div>
+      </div>
+
+      <section className="mx-auto max-w-7xl px-4 pb-20 pt-12 sm:px-6 lg:px-8" aria-labelledby="results-heading">
+        <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-teal-800 dark:text-lime-300">Explore opportunities</p>
+            <h2 id="results-heading" className="text-2xl font-bold tracking-tight sm:text-3xl">Roles for your next chapter</h2>
+            <p role="status" className="mt-2 text-sm text-stone-600 dark:text-stone-300">{jobs.length} {jobs.length === 1 ? 'role' : 'roles'} found <span className="text-stone-400">·</span> Preview listings for design review</p>
+          </div>
+          <label className="flex items-center gap-2 text-sm font-medium text-stone-600 dark:text-stone-300">
+            Sort by
+            <select value={sort} onChange={(event) => setSort(event.target.value)} className="min-h-11 rounded-xl border border-stone-300 bg-white px-3 font-semibold text-stone-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:border-stone-600 dark:bg-stone-800 dark:text-stone-50">
+              <option value="relevance">Relevance</option>
+              <option value="newest">Newest</option>
+              <option value="salary">Highest salary</option>
+            </select>
+          </label>
+        </div>
+
+        {jobs.length ? (
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {jobs.map((job, index) => (
+              <Link key={job.id} href={`/jobs/${job.slug}`} className="group flex min-h-72 flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm shadow-stone-900/5 transition duration-200 hover:-translate-y-1 hover:border-teal-300 hover:shadow-xl hover:shadow-teal-950/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 sm:p-6 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-lime-500 dark:hover:shadow-black/30">
+                <div className="flex items-start justify-between gap-3">
+                  <span className={`inline-flex size-12 shrink-0 items-center justify-center rounded-2xl text-sm font-extrabold ${markColors[index % markColors.length]}`} aria-hidden="true">{job.company.split(' ').map((word) => word[0]).join('').slice(0, 2)}</span>
+                  <span className="rounded-full bg-stone-100 px-3 py-1.5 text-xs font-semibold text-stone-600 dark:bg-stone-800 dark:text-stone-200">{job.workMode}</span>
+                </div>
+                <p className="mt-5 text-xs font-bold uppercase tracking-wider text-teal-800 dark:text-lime-300">{job.sector}</p>
+                <h3 className="mt-1 text-xl font-bold leading-snug tracking-tight text-stone-950 group-hover:text-teal-900 dark:text-stone-50 dark:group-hover:text-lime-300">{job.title}</h3>
+                <p className="mt-1 text-sm font-medium text-stone-600 dark:text-stone-300">{job.company}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1 rounded-lg bg-stone-100 px-2.5 py-1.5 text-xs font-semibold text-stone-700 dark:bg-stone-800 dark:text-stone-200"><MapPin className="size-3.5 text-teal-700 dark:text-lime-300" aria-hidden="true" />{job.location}</span>
+                  <span className="inline-flex items-center gap-1 rounded-lg bg-stone-100 px-2.5 py-1.5 text-xs font-semibold text-stone-700 dark:bg-stone-800 dark:text-stone-200"><BriefcaseBusiness className="size-3.5 text-teal-700 dark:text-lime-300" aria-hidden="true" />{typeNames[job.jobType[0]]}</span>
+                  <span className="rounded-lg bg-stone-100 px-2.5 py-1.5 text-xs font-semibold text-stone-700 dark:bg-stone-800 dark:text-stone-200">{experienceNames[job.experienceLevel]}</span>
+                </div>
+                <div className="mt-auto flex items-end justify-between gap-3 border-t border-stone-200 pt-5 dark:border-stone-700">
+                  <div><p className="text-xs text-stone-500 dark:text-stone-400">Monthly salary</p><p className="mt-1 text-sm font-bold text-teal-950 dark:text-lime-300">{formatNaira(job.salaryMin)} – {formatNaira(job.salaryMax)}</p></div>
+                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-teal-900 text-white transition group-hover:bg-lime-400 group-hover:text-teal-950 dark:bg-lime-400 dark:text-stone-950" aria-label={`View ${job.title}`}><ArrowUpRight className="size-5" aria-hidden="true" /></span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-3xl border border-stone-200 bg-white px-6 py-16 text-center dark:border-stone-700 dark:bg-stone-900">
+            <Search className="mx-auto size-8 text-teal-800 dark:text-lime-300" aria-hidden="true" />
+            <h3 className="mt-4 text-xl font-bold">No roles match those filters</h3>
+            <p className="mt-2 text-sm text-stone-600 dark:text-stone-300">Try a different keyword, location, or job type.</p>
+            <button type="button" onClick={clearFilters} className="mt-5 inline-flex min-h-11 items-center rounded-xl bg-teal-900 px-5 text-sm font-semibold text-white hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:bg-lime-400 dark:text-stone-950">Clear filters</button>
+          </div>
+        )}
       </section>
     </div>
   )

@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
-import { Poppins } from "next/font/google"
+import { Montserrat } from "next/font/google"
 import "./globals.css"
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -10,7 +10,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "Recruiture | Find work. Build teams.",
+    default: "Recruiture | Find the right role. Hire the right people.",
     template: "%s | Recruiture",
   },
   description: "Find opportunities and connect with talent across Nigeria. Recruiture is the recruitment platform by EduBridge Academy.",
@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://recruiture.edubridgeacademy.com",
     siteName: "Recruiture",
-    title: "Recruiture | Find work. Build teams.",
+    title: "Recruiture | Find the right role. Hire the right people.",
     description: "Find opportunities and connect with talent across Nigeria.",
   },
   twitter: {
     card: "summary",
-    title: "Recruiture | Find work. Build teams.",
+    title: "Recruiture | Find the right role. Hire the right people.",
     description: "Find opportunities and connect with talent across Nigeria.",
   },
 }
@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className={`${poppins.className} flex min-h-full flex-col`}>{children}</body>
+      <body className={`${montserrat.className} flex min-h-full flex-col`}>{children}</body>
     </html>
   )
 }

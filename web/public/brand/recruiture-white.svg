@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 356 78" role="img" aria-labelledby="title">
+  <title id="title">Recruiture by EduBridge Academy, white logo</title>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="34" cy="39" r="25" stroke-width="3"/>
+    <circle cx="34" cy="39" r="18" stroke-width="3"/>
+    <circle cx="34" cy="39" r="11" stroke-width="3"/>
+    <path d="M34 39 55 18m-9 0h9v9" stroke-width="3.5"/>
+  </g>
+  <text x="76" y="43" fill="#FFFFFF" font-family="Helvetica,Arial,sans-serif" font-size="35" font-weight="700" letter-spacing="-.8">Recruiture</text>
+  <text x="78" y="63" fill="#FFFFFF" font-family="Helvetica,Arial,sans-serif" font-size="13" font-weight="600" letter-spacing=".2">By EduBridge Academy</text>
+</svg>
