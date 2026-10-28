@@ -22,10 +22,7 @@ export default function LandingPage() {
       <section className="overflow-hidden bg-stone-50 px-4 pb-16 pt-14 sm:px-6 sm:pt-16 lg:px-8 lg:pb-24 dark:bg-stone-950">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-5xl text-center">
-            <p className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-widest text-teal-800 dark:border-teal-800 dark:bg-stone-900 dark:text-teal-200">
-              <span className="h-2 w-2 rounded-full bg-lime-500" aria-hidden="true" />Made for ambition, built for hiring
-            </p>
-            <h1 className="mt-6 text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
               Find the right role. <span className="text-teal-800 dark:text-lime-400">Hire the right people.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-stone-600 sm:text-lg dark:text-stone-300">

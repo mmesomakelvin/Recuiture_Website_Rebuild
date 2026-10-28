@@ -80,9 +80,6 @@ export default function JobsPage() {
         <div className="pointer-events-none absolute -right-12 top-28 size-52 rounded-full border-[30px] border-lime-400/15 sm:right-40 sm:size-72" aria-hidden="true" />
         <div className="relative mx-auto flex max-w-7xl flex-col gap-8 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
           <div className="max-w-2xl">
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-teal-500/50 bg-teal-800/60 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-lime-200">
-              <span className="size-1.5 rounded-full bg-lime-300" /> Find your next move
-            </p>
             <h1 className="text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Work worth getting <span className="text-lime-300">excited about.</span></h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-teal-50/85 sm:text-lg">Explore opportunities that match your skills, ambitions, and the way you want to work.</p>
           </div>

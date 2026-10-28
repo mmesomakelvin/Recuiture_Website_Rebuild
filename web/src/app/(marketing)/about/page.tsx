@@ -35,10 +35,7 @@ export default function AboutPage() {
       <section className="overflow-hidden bg-stone-50 px-4 pb-20 pt-14 sm:px-6 lg:px-8 lg:pb-28 lg:pt-20 dark:bg-stone-950">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-teal-900 dark:border-teal-800 dark:bg-stone-900 dark:text-lime-300">
-              <span className="size-2 rounded-full bg-lime-500" aria-hidden="true" /> About Recruiture
-            </p>
-            <h1 className="mt-7 text-balance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">Better hiring starts with <span className="text-teal-800 dark:text-lime-400">better connections.</span></h1>
+            <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">Better hiring starts with <span className="text-teal-800 dark:text-lime-400">better connections.</span></h1>
             <p className="mt-6 max-w-xl text-base leading-8 text-stone-700 sm:text-lg dark:text-stone-300">Recruiture is a recruitment platform by EduBridge Academy, built to help people discover meaningful work and help organisations find qualified talent across Nigeria.</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link href="/jobs" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-teal-900 px-6 text-sm font-bold text-white hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 dark:bg-lime-400 dark:text-stone-950 dark:hover:bg-lime-300">Explore jobs <ArrowRight className="size-4" aria-hidden="true" /></Link>
