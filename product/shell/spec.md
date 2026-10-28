@@ -5,8 +5,9 @@ Recruiture uses a public-website style shell: a top navigation header and a foot
 
 ## Navigation Structure
 - **Find Jobs** → Job Board
-- **Companies** → Job Board (company listings)
-- **For Employers** → Employer Dashboard (landing and sign up for employers)
+- **How it works** → process section on the home page
+- **For Employers** → employer introduction and, when available, employer registration
+- **About us** → dedicated About page explaining Recruiture and EduBridge Academy
 - **My Dashboard** → Candidate Portal, Employer Dashboard or Recruiter and Admin, depending on the signed-in user's role
 
 ## User Menu
@@ -23,7 +24,7 @@ Top navigation. A sticky white header holds the Recruiture wordmark (with a smal
 ## Responsive Behavior
 - **Desktop:** Full header on one row: wordmark, nav links, user menu with avatar and name.
 - **Tablet:** Nav links stay visible; the user menu collapses to the avatar only.
-- **Mobile:** Wordmark and a menu button. The menu button opens a full-height slide-out panel with all nav links, then the account links or the sign in and post a job actions. The footer stacks its link groups vertically.
+- **Mobile:** Wordmark and a menu button. The menu opens a compact panel with the same four public links, including About us. The footer stacks its link groups vertically.
 
 ## Design Notes
 - Brand teal (primary) is used for the wordmark, active nav state, the "Post a job" button and the footer background.

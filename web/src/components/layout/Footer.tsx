@@ -18,6 +18,7 @@ export function Footer() {
             <li><Link href="/jobs" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">Find jobs</Link></li>
             <li><Link href="/#how-it-works" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">How it works</Link></li>
             <li><Link href="/#employers" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">For employers</Link></li>
+            <li><Link href="/about" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">About us</Link></li>
           </ul>
         </nav>
         <div>

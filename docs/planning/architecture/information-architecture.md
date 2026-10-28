@@ -33,7 +33,7 @@ PUBLIC WEBSITE
 ├── /terms [M] Terms of use
 ├── /resources [F] Career resource index
 │   └── /resources/[slug] [F] Useful guide and related roles
-└── /about [F] Dedicated company story if homepage cannot carry it
+└── /about [M] Recruiture and EduBridge story, audiences, and purpose
 
 SHARED ACCOUNT ENTRY
 /sign-in [M] Sign in with return-to-task destination
@@ -105,7 +105,7 @@ The **parent → children** column defines navigation relationships. A dash mean
 | Terms `/terms` | All visitors | Platform use, postings, applications, and account responsibilities. | Contact us | Footer → Contact | M |
 | Resources `/resources` | Job seekers | Curated career guides tied to a real candidate need. | Read guide | Footer/Jobs → Resource detail | F |
 | Resource detail `/resources/[slug]` | Job seekers | One actionable guide with contextual role and category links. | Explore related jobs | Resources → Jobs | F |
-| About `/about` | All visitors | Dedicated Recruiture/EduBridge story and proof once there is enough distinct content. | Explore jobs | Footer → Jobs | F |
+| About us `/about` | All visitors | Explain Recruiture's purpose, who it serves, and its connection to EduBridge Academy. | Explore jobs | Header/Footer → Jobs | M |
 
 ### Account entry and shared settings
 
@@ -171,7 +171,7 @@ The **parent → children** column defines navigation relationships. A dash mean
 
 ### Desktop public header
 
-Keep the existing floating, translucent header. Use three primary links: **Find jobs** (`/jobs`), **How it works** (`/#how-it-works`), and **For employers** (`/employers`). This is below the six-item ceiling. The Recruiture logo returns home. On the right, show **Sign in** and a prominent **Post a job** button; **Create account** is visible on the sign-in page, apply gate, and employer landing page. If width permits, add a quieter Create account link beside Sign in, without displacing Post a job.
+Keep the existing floating, translucent header. Use four primary links: **Find jobs** (`/jobs`), **How it works** (`/#how-it-works`), **For employers** (currently `/#employers`, moving to `/employers` when that page exists), and **About us** (`/about`). This is below the six-item ceiling. The Recruiture logo returns home. On the right, show **Sign in** and a prominent **Post a job** button once those routes exist; **Create account** belongs on the sign-in page, apply gate, and employer landing page. The current design preview uses **Explore jobs** as its working header action.
 
 The Find jobs dropdown, if needed after launch, contains **All jobs**, **Internships**, **Graduate roles**, and **Remote jobs** as prefiltered `/jobs` links. Do not add empty dropdowns at MVP. The employer link can reveal **How hiring works** and **Post a job** only if research shows a need; the landing page already covers both.
 
@@ -179,7 +179,7 @@ For signed-in users, replace Sign in with an account menu containing the name, *
 
 ### Footer
 
-Group links by user task: **Explore** (Find jobs, Graduate roles, Remote jobs), **Employers** (For employers, Post a job, Contact), and **Recruiture** (About when substantive, Contact, EduBridge Academy). Put Privacy and Terms in a quiet legal row. Do not show private dashboard or staff links in the public footer.
+Group links by user task: **Explore** (Find jobs, Graduate roles, Remote jobs), **Employers** (For employers, Post a job, Contact), and **Recruiture** (About us, Contact, EduBridge Academy). Put Privacy and Terms in a quiet legal row. Do not show private dashboard or staff links in the public footer.
 
 ### Contextual navigation
 
@@ -257,14 +257,14 @@ Only published, live jobs appear in public discovery. Closed roles retain the ca
 
 | Priority | Deliverable | Why it is needed |
 | --- | --- | --- |
-| P0 foundation | Public home, job search/detail, company profile, employer landing, contact/legal, role-safe auth and account recovery | Visitors can orient, assess trust, and enter the right journey. |
+| P0 foundation | Public home, job search/detail, About us, company profile, employer landing, contact/legal, role-safe auth and account recovery | Visitors can orient, assess trust, and enter the right journey. |
 | P0 candidate loop | Apply flow, candidate profile/CV, applications/status detail, saved jobs | A person can discover, submit, and track an application. |
 | P0 employer loop | Company profile, post/edit/close job, review applicants, update stages | An organisation can run a complete hiring cycle. |
 | P0 staff operations | Job/company moderation, candidate verification, applications, managed client roles, shortlists, user access | EduBridge can oversee quality and deliver its managed recruitment service. |
 | P1 after launch | Career resources, notification archive, team accounts, interview scheduling | Add where usage shows a clear need; attach to existing journeys. |
 | P2 when validated | Candidate assessments, employer subscriptions, analytics, consented talent discovery, automated matching | These need policy, data, and operational evidence before implementation. |
 
-Future navigation can add an **Interviews** section inside candidate/employer workspaces, **Talent** and **Analytics** inside employer navigation, and **Assessments** inside staff navigation. The public header can stay at three primary links; new services belong on the relevant landing page or dashboard first.
+Future navigation can add an **Interviews** section inside candidate/employer workspaces, **Talent** and **Analytics** inside employer navigation, and **Assessments** inside staff navigation. The public header can stay at four primary links; new services belong on the relevant landing page or dashboard first.
 
 ## 10. Overlap and pages to avoid
 
@@ -274,7 +274,7 @@ Future navigation can add an **Interviews** section inside candidate/employer wo
 - **No separate candidate and employer sign-in pages.** One account entry preserves the destination and routes by role.
 - **No duplicate job detail in dashboards.** Employer edit and applicant management are private tasks; the public job detail remains the canonical candidate view.
 - **No generic Services page.** Explain self-serve and managed recruitment on For employers, then add a dedicated service page only if the offer becomes complex enough.
-- **No empty Resources or About page.** Publish them when distinct, useful content exists.
+- **No empty Resources page.** Publish it when distinct, useful content exists. Keep About us focused on the company story rather than duplicating the homepage.
 - **No client-side-only access controls.** Private routes and data must be authorised on the server; see security issues [#2](https://github.com/mmesomakelvin/Recuiture_Website_Rebuild/issues/2), [#3](https://github.com/mmesomakelvin/Recuiture_Website_Rebuild/issues/3), and [#4](https://github.com/mmesomakelvin/Recuiture_Website_Rebuild/issues/4).
 
 ## 11. Decisions to validate together
