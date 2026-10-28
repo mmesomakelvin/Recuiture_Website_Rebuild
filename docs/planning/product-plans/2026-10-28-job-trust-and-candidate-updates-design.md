@@ -1,6 +1,6 @@
 # Job trust and candidate updates
 
-**Status:** Draft for approval
+**Status:** Approved by product owner on 28 October 2026
 
 **Product:** Recruiture by EduBridge Academy
 
