@@ -1,103 +1,31 @@
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 
 export function Footer() {
-  const links = {
-    product: [
-      { label: 'Job Board', href: '/jobs' },
-      { label: 'Companies', href: '/companies' },
-      { label: 'Pricing', href: '/pricing' },
-      { label: 'Candidate Portal', href: '/candidate' },
-      { label: 'Employer Dashboard', href: '/employer' },
-    ],
-    company: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-      { label: 'Careers', href: '/careers' },
-      { label: 'Blog', href: '/blog' },
-      { label: 'Press', href: '/press' },
-    ],
-    resources: [
-      { label: 'Help Center', href: '/help' },
-      { label: 'Candidate Guide', href: '/guides/candidates' },
-      { label: 'Employer Guide', href: '/guides/employers' },
-      { label: 'API Docs', href: '/api-docs' },
-      { label: 'Status', href: '/status' },
-    ],
-    legal: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms of Service', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-      { label: 'GDPR', href: '/gdpr' },
-    ],
-  }
-
   return (
-    <footer className="border-t bg-zinc-50">
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8 lg:py-16">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-2xl font-bold text-zinc-900" aria-label="Recruiture Home">
-              Recruiture
-            </Link>
-            <p className="mt-4 text-sm text-zinc-600">
-              Connecting talent with opportunity. Building the future of recruitment.
-            </p>
-          </div>
-          <nav aria-label="Product links">
-            <h3 className="text-sm font-semibold text-zinc-900">Product</h3>
-            <ul className="mt-4 space-y-3">
-              {links.product.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Company links">
-            <h3 className="text-sm font-semibold text-zinc-900">Company</h3>
-            <ul className="mt-4 space-y-3">
-              {links.company.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Resource links">
-            <h3 className="text-sm font-semibold text-zinc-900">Resources</h3>
-            <ul className="mt-4 space-y-3">
-              {links.resources.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Legal links">
-            <h3 className="text-sm font-semibold text-zinc-900">Legal</h3>
-            <ul className="mt-4 space-y-3">
-              {links.legal.map((link) => (
-                <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+    <footer className="border-t border-stone-200 bg-stone-50 text-stone-950 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
+        <div>
+          <Link href="/" className="inline-flex items-center gap-2.5 rounded-lg text-lg font-semibold tracking-tight focus-visible:outline-2 focus-visible:outline-teal-700">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-700 text-lg font-bold text-white" aria-hidden="true">R</span>
+            <span>Recruiture<span className="text-amber-500">.</span></span>
+          </Link>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-600 dark:text-stone-300">Connecting people and opportunities across Nigeria. A recruitment platform by EduBridge Academy.</p>
         </div>
-        <div className="mt-12 border-t pt-8">
-          <p className="text-center text-sm text-zinc-500">
-            &copy; {new Date().getFullYear()} Recruiture. All rights reserved.
-          </p>
+        <nav aria-label="Explore Recruiture">
+          <h2 className="text-sm font-semibold">Explore</h2>
+          <ul className="mt-4 space-y-3 text-sm text-stone-600 dark:text-stone-300">
+            <li><Link href="/jobs" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">Find jobs</Link></li>
+            <li><Link href="/#how-it-works" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">How it works</Link></li>
+            <li><Link href="/#employers" className="hover:text-teal-800 hover:underline focus-visible:outline-2 focus-visible:outline-teal-700 dark:hover:text-teal-300">For employers</Link></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 className="text-sm font-semibold">Built for better hiring</h2>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-stone-600 dark:text-stone-300">For candidates, employers, and the EduBridge Academy community.</p>
         </div>
+      </div>
+      <div className="mx-auto max-w-7xl border-t border-stone-200 px-4 py-6 text-sm text-stone-500 sm:px-6 lg:px-8 dark:border-stone-700 dark:text-stone-400">
+        © {new Date().getFullYear()} Recruiture by EduBridge Academy.
       </div>
     </footer>
   )

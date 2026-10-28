@@ -1,47 +1,36 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 })
 
 export const metadata: Metadata = {
   title: {
-    default: "Recruiture - Find Your Dream Job",
+    default: "Recruiture | Find work. Build teams.",
     template: "%s | Recruiture",
   },
-  description: "Connect with top companies and find your perfect role. Smart job matching, transparent salaries, and a seamless application experience.",
-  keywords: ["jobs", "career", "recruitment", "hiring", "employment"],
-  authors: [{ name: "Recruiture" }],
-  creator: "Recruiture",
-  publisher: "Recruiture",
+  description: "Find opportunities and connect with talent across Nigeria. Recruiture is the recruitment platform by EduBridge Academy.",
+  keywords: ["Nigeria jobs", "recruitment", "hiring", "EduBridge Academy"],
+  authors: [{ name: "EduBridge Academy" }],
+  creator: "EduBridge Academy",
+  publisher: "EduBridge Academy",
   robots: "index, follow",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://recruiture.edubridgeacademy.com",
     siteName: "Recruiture",
-    title: "Recruiture - Find Your Dream Job",
-    description: "Connect with top companies and find your perfect role.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Recruiture",
-      },
-    ],
+    title: "Recruiture | Find work. Build teams.",
+    description: "Find opportunities and connect with talent across Nigeria.",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Recruiture - Find Your Dream Job",
-    description: "Connect with top companies and find your perfect role.",
-    images: ["/og-image.png"],
-  },
-  verification: {
-    google: "google-site-verification-code",
+    card: "summary",
+    title: "Recruiture | Find work. Build teams.",
+    description: "Find opportunities and connect with talent across Nigeria.",
   },
 }
 
@@ -51,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+    <html lang="en" className="h-full antialiased">
+      <body className={`${poppins.className} flex min-h-full flex-col`}>{children}</body>
     </html>
   )
 }
