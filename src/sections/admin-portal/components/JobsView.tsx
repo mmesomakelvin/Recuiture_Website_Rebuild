@@ -52,14 +52,14 @@ function RowMenu({ actions, label }: { actions: MenuAction[]; label: string }) {
           event.stopPropagation()
           setIsOpen((open) => !open)
         }}
-        className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-white"
+        className="rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900"
       >
         <Ellipsis className="h-5 w-5" />
       </button>
       {isOpen && (
         <div
           role="menu"
-          className="ap-pop absolute right-0 top-full z-30 mt-1 w-52 overflow-hidden rounded-xl bg-white py-1 shadow-xl ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800"
+          className="ap-pop absolute right-0 top-full z-30 mt-1 w-52 overflow-hidden rounded-xl bg-white py-1 shadow-xl ring-1 ring-stone-200"
         >
           {actions.map((action) => (
             <button
@@ -73,8 +73,8 @@ function RowMenu({ actions, label }: { actions: MenuAction[]; label: string }) {
               }}
               className={`flex w-full items-center gap-2.5 px-3.5 py-2 text-left text-sm ${
                 action.danger
-                  ? 'text-rose-700 hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10'
-                  : 'text-stone-700 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800'
+                  ? 'text-rose-700 hover:bg-rose-50'
+                  : 'text-stone-700 hover:bg-stone-50'
               }`}
             >
               <action.icon className="h-4 w-4" />
@@ -132,7 +132,7 @@ function CloseJobDialog({
       }
     >
       <fieldset>
-        <legend className="mb-3 text-sm font-medium text-stone-800 dark:text-stone-200">Why is this job closing?</legend>
+        <legend className="mb-3 text-sm font-medium text-stone-800">Why is this job closing?</legend>
         <div className="grid gap-3 sm:grid-cols-2">
           {options.map((option) => {
             const isChosen = option.value === reason
@@ -141,8 +141,8 @@ function CloseJobDialog({
                 key={option.value}
                 className={`cursor-pointer rounded-xl border p-4 transition ${
                   isChosen
-                    ? 'border-teal-700 bg-teal-50 ring-2 ring-teal-700/20 dark:border-teal-400 dark:bg-teal-400/10'
-                    : 'border-stone-200 hover:border-stone-300 dark:border-stone-700 dark:hover:border-stone-600'
+                    ? 'border-teal-700 bg-teal-50 ring-2 ring-teal-700/20'
+                    : 'border-stone-200 hover:border-stone-300'
                 }`}
               >
                 <input
@@ -153,14 +153,14 @@ function CloseJobDialog({
                   onChange={() => setReason(option.value)}
                   className="sr-only"
                 />
-                <span className="block text-sm font-semibold text-stone-900 dark:text-white">{option.title}</span>
-                <span className="mt-1 block text-xs text-stone-500 dark:text-stone-400">{option.body}</span>
+                <span className="block text-sm font-semibold text-stone-900">{option.title}</span>
+                <span className="mt-1 block text-xs text-stone-500">{option.body}</span>
               </label>
             )
           })}
         </div>
       </fieldset>
-      <div className="mt-4 rounded-xl bg-stone-100 p-4 text-sm text-stone-700 dark:bg-stone-800 dark:text-stone-200">
+      <div className="mt-4 rounded-xl bg-stone-100 p-4 text-sm text-stone-700">
         {activeCount === 0 ? (
           <p>This job has no active applicants, so no candidate emails will be sent.</p>
         ) : chosen ? (
@@ -245,7 +245,7 @@ export function JobsView({
       <span
         style={MONO}
         className={`text-sm ${
-          soon ? 'font-medium text-amber-700 dark:text-amber-300' : past ? 'text-rose-700 dark:text-rose-300' : 'text-stone-600 dark:text-stone-300'
+          soon ? 'font-medium text-amber-700' : past ? 'text-rose-700' : 'text-stone-600'
         }`}
       >
         {formatDate(job.deadline, true)}
@@ -325,7 +325,7 @@ export function JobsView({
             {/* Desktop table */}
             <table className="hidden w-full text-left md:table">
               <thead>
-                <tr className="border-b border-stone-200 text-xs font-semibold text-stone-500 dark:border-stone-800 dark:text-stone-400">
+                <tr className="border-b border-stone-200 text-xs font-semibold text-stone-500">
                   <th className="px-5 py-3 font-semibold">Job</th>
                   <th className="px-3 py-3 font-semibold">Status</th>
                   <th className="px-3 py-3 font-semibold">Applicants</th>
@@ -336,7 +336,7 @@ export function JobsView({
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+              <tbody className="divide-y divide-stone-100">
                 {visible.map((job, index) => {
                   const company = companiesById.get(job.companyId)
                   const counts = countsByJob.get(job.id) ?? { total: 0, active: 0 }
@@ -344,17 +344,17 @@ export function JobsView({
                     <tr
                       key={job.id}
                       style={{ animationDelay: `${index * 30}ms` }}
-                      className="ap-rise group cursor-pointer transition hover:bg-stone-50 dark:hover:bg-stone-800/40"
+                      className="ap-rise group cursor-pointer transition hover:bg-stone-50"
                       onClick={() => (job.status === 'draft' ? onEditJob(job.id) : onViewApplicants(job.id))}
                     >
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-3">
                           <CompanyLogo company={company} />
                           <div className="min-w-0">
-                            <p className="truncate font-medium text-stone-900 group-hover:text-teal-800 dark:text-white dark:group-hover:text-teal-300">
+                            <p className="truncate font-medium text-stone-900 group-hover:text-teal-800">
                               {job.title}
                             </p>
-                            <p className="truncate text-xs text-stone-500 dark:text-stone-400">
+                            <p className="truncate text-xs text-stone-500">
                               {company?.name} · {formatLocation(job)}
                             </p>
                           </div>
@@ -367,12 +367,12 @@ export function JobsView({
                         {job.status === 'draft' ? (
                           <span className="text-sm text-stone-400">Not live</span>
                         ) : (
-                          <span className="text-sm text-stone-700 dark:text-stone-200">
+                          <span className="text-sm text-stone-700">
                             <span style={MONO} className="font-medium">
                               {counts.total}
                             </span>
                             {counts.active > 0 && (
-                              <span className="text-stone-500 dark:text-stone-400">
+                              <span className="text-stone-500">
                                 {' '}
                                 · <span style={MONO}>{counts.active}</span> active
                               </span>
@@ -381,7 +381,7 @@ export function JobsView({
                         )}
                       </td>
                       <td className="px-3 py-3.5">{deadlineCell(job)}</td>
-                      <td className="hidden px-3 py-3.5 text-sm text-stone-500 xl:table-cell dark:text-stone-400">
+                      <td className="hidden px-3 py-3.5 text-sm text-stone-500 xl:table-cell">
                         {relativeDay(job.updatedAt, today)}
                       </td>
                       <td className="px-3 py-3.5 text-right" onClick={(event) => event.stopPropagation()}>
@@ -394,7 +394,7 @@ export function JobsView({
             </table>
 
             {/* Mobile cards */}
-            <ul className="divide-y divide-stone-100 md:hidden dark:divide-stone-800">
+            <ul className="divide-y divide-stone-100 md:hidden">
               {visible.map((job) => {
                 const company = companiesById.get(job.companyId)
                 const counts = countsByJob.get(job.id) ?? { total: 0, active: 0 }
@@ -406,15 +406,15 @@ export function JobsView({
                       className="min-w-0 flex-1 text-left"
                       onClick={() => (job.status === 'draft' ? onEditJob(job.id) : onViewApplicants(job.id))}
                     >
-                      <p className="font-medium text-stone-900 dark:text-white">{job.title}</p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">{company?.name}</p>
+                      <p className="font-medium text-stone-900">{job.title}</p>
+                      <p className="text-xs text-stone-500">{company?.name}</p>
                       <div className="mt-2 flex flex-wrap items-center gap-2">
                         <JobStatusBadge status={job.status} closedReason={job.closedReason} />
                         {job.status !== 'draft' && (
-                          <span className="text-xs text-stone-500 dark:text-stone-400">{pluralise(counts.total, 'applicant')}</span>
+                          <span className="text-xs text-stone-500">{pluralise(counts.total, 'applicant')}</span>
                         )}
                       </div>
-                      <p className="mt-2 text-xs text-stone-500 dark:text-stone-400">Deadline {deadlineCell(job)}</p>
+                      <p className="mt-2 text-xs text-stone-500">Deadline {deadlineCell(job)}</p>
                     </button>
                     <RowMenu label={`Actions for ${job.title}`} actions={actionsFor(job)} />
                   </li>

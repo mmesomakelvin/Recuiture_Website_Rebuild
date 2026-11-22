@@ -17,8 +17,8 @@ interface ApplicationDetailProps {
 const DOT_TONES: Partial<Record<ApplicationStage, string>> = {
   applied: 'bg-stone-400',
   screening: 'bg-amber-500',
-  interview: 'bg-teal-600 dark:bg-teal-400',
-  offer: 'bg-teal-800 dark:bg-teal-300',
+  interview: 'bg-teal-600',
+  offer: 'bg-teal-800',
   hired: 'bg-emerald-600',
   'not-selected': 'bg-rose-500',
 }
@@ -47,43 +47,43 @@ function Timeline({ application }: { application: Application }) {
         const isLast = index === items.length - 1
         return (
           <li key={item.id} className="relative flex gap-4 pb-6 last:pb-0">
-            {!isLast && <span className="absolute left-[7px] top-5 h-[calc(100%-12px)] w-0.5 bg-stone-200 dark:bg-stone-800" aria-hidden="true" />}
+            {!isLast && <span className="absolute left-[7px] top-5 h-[calc(100%-12px)] w-0.5 bg-stone-200" aria-hidden="true" />}
             <span
-              className={`relative mt-1 h-4 w-4 shrink-0 rounded-full ring-4 ring-white dark:ring-stone-900 ${
-                item.kind === 'stage' ? DOT_TONES[item.stage] ?? 'bg-stone-300 dark:bg-stone-600' : 'bg-teal-600 dark:bg-teal-400'
-              } ${isLatest ? 'outline outline-2 outline-offset-2 outline-teal-600/30 dark:outline-teal-400/30' : ''}`}
+              className={`relative mt-1 h-4 w-4 shrink-0 rounded-full ring-4 ring-white ${
+                item.kind === 'stage' ? DOT_TONES[item.stage] ?? 'bg-stone-300' : 'bg-teal-600'
+              } ${isLatest ? 'outline outline-2 outline-offset-2 outline-teal-600/30' : ''}`}
               aria-hidden="true"
             />
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                <p className={`text-sm font-semibold ${isLatest ? 'text-stone-900 dark:text-white' : 'text-stone-700 dark:text-stone-200'}`}>
+                <p className={`text-sm font-semibold ${isLatest ? 'text-stone-900' : 'text-stone-700'}`}>
                   {item.kind === 'stage' ? HISTORY_TEXT[item.stage] : 'Interview completed'}
                 </p>
-                <p className="text-xs tabular-nums text-stone-500 dark:text-stone-400">
+                <p className="text-xs tabular-nums text-stone-500">
                   {formatDate(item.at, true)}
-                  {item.kind === 'stage' && <span className="text-stone-400 dark:text-stone-500">, {formatTime(item.at)}</span>}
+                  {item.kind === 'stage' && <span className="text-stone-400">, {formatTime(item.at)}</span>}
                 </p>
               </div>
               {item.kind === 'stage' ? (
                 <>
-                  <p className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500 dark:text-stone-400">
+                  <p className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500">
                     <span>{WHO[item.actorKind]}</span>
                     {item.emailSent && (
-                      <span className="inline-flex items-center gap-1 text-teal-700 dark:text-teal-300">
+                      <span className="inline-flex items-center gap-1 text-teal-700">
                         <Mail className="h-3.5 w-3.5" />
                         We emailed you
                       </span>
                     )}
                   </p>
                   {item.note && (
-                    <blockquote className="mt-2 rounded-xl bg-amber-50 px-3.5 py-2.5 text-sm leading-relaxed text-stone-700 ring-1 ring-inset ring-amber-200/70 dark:bg-amber-400/10 dark:text-stone-200 dark:ring-amber-400/20">
-                      <span className="mb-0.5 block text-xs font-semibold text-amber-800 dark:text-amber-300">Note from the hiring team</span>
+                    <blockquote className="mt-2 rounded-xl bg-amber-50 px-3.5 py-2.5 text-sm leading-relaxed text-stone-700 ring-1 ring-inset ring-amber-200/70">
+                      <span className="mb-0.5 block text-xs font-semibold text-amber-800">Note from the hiring team</span>
                       {item.note}
                     </blockquote>
                   )}
                 </>
               ) : (
-                <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">Recorded by the EduBridge hiring team</p>
+                <p className="mt-0.5 text-xs text-stone-500">Recorded by the EduBridge hiring team</p>
               )}
             </div>
           </li>
@@ -100,7 +100,7 @@ function WithdrawDialog({ jobTitle, onCancel, onConfirm }: { jobTitle: string; o
       title="Withdraw this application?"
       description={
         <>
-          The hiring team for <span className="font-medium text-stone-700 dark:text-stone-200">{jobTitle}</span> will stop considering you. You cannot
+          The hiring team for <span className="font-medium text-stone-700">{jobTitle}</span> will stop considering you. You cannot
           undo this.
         </>
       }
@@ -138,7 +138,7 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
 
   return (
     <div className="cp-rise space-y-6">
-      <button type="button" onClick={onBack} className="inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white">
+      <button type="button" onClick={onBack} className="inline-flex items-center gap-2 text-sm font-medium text-stone-600 hover:text-stone-900">
         <ArrowLeft className="h-4 w-4" />
         All applications
       </button>
@@ -149,10 +149,10 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
           <CompanyTile name={job.companyName} size="lg" />
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl dark:text-white">{job.title}</h2>
+              <h2 className="text-xl font-semibold tracking-tight text-stone-900 sm:text-2xl">{job.title}</h2>
               <StagePill stage={application.stage} />
             </div>
-            <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+            <p className="mt-1 text-sm text-stone-500">
               {job.companyName} · Applied {formatDate(application.submittedAt, true)} · Ref <span className="tabular-nums">{application.reference}</span>
             </p>
           </div>
@@ -160,7 +160,7 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
             <button
               type="button"
               onClick={() => setIsWithdrawing(true)}
-              className="self-start rounded-xl px-3 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-50 dark:text-rose-300 dark:hover:bg-rose-500/10"
+              className="self-start rounded-xl px-3 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-50"
             >
               Withdraw
             </button>
@@ -169,7 +169,7 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
         <div className="mt-6">
           <StageProgress application={application} />
         </div>
-        <div className="mt-5 rounded-xl bg-stone-50 px-4 py-3 dark:bg-stone-800/60">
+        <div className="mt-5 rounded-xl bg-stone-50 px-4 py-3">
           <NextStep application={application} today={today} />
         </div>
       </section>
@@ -177,43 +177,43 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* Timeline */}
         <section className={`${CARD} min-w-0 p-5 sm:p-6 lg:col-span-7 lg:self-start`}>
-          <h3 className="text-base font-semibold text-stone-900 dark:text-white">History</h3>
-          <p className="mb-5 text-sm text-stone-500 dark:text-stone-400">Every change to this application, newest first.</p>
+          <h3 className="text-base font-semibold text-stone-900">History</h3>
+          <p className="mb-5 text-sm text-stone-500">Every change to this application, newest first.</p>
           <Timeline application={application} />
         </section>
 
         <div className="min-w-0 space-y-6 lg:col-span-5">
           {/* What you sent */}
           <section className={`${CARD} p-5 sm:p-6`}>
-            <h3 className="text-base font-semibold text-stone-900 dark:text-white">What you sent</h3>
-            <div className="mt-4 flex items-center gap-3 rounded-xl border border-stone-200 p-3 dark:border-stone-700">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">
+            <h3 className="text-base font-semibold text-stone-900">What you sent</h3>
+            <div className="mt-4 flex items-center gap-3 rounded-xl border border-stone-200 p-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-rose-700">
                 <FileText className="h-5 w-5" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-stone-900 dark:text-white">{submission.cvFileName}</p>
-                <p className="text-xs text-stone-500 dark:text-stone-400">CV sent with this application</p>
+                <p className="truncate text-sm font-medium text-stone-900">{submission.cvFileName}</p>
+                <p className="text-xs text-stone-500">CV sent with this application</p>
               </div>
               <button type="button" onClick={() => onOpenSubmittedCv?.(application.id)} className={BTN_SOFT}>
                 Open
               </button>
             </div>
 
-            <h4 className="mt-5 text-sm font-semibold text-stone-900 dark:text-white">Cover letter</h4>
+            <h4 className="mt-5 text-sm font-semibold text-stone-900">Cover letter</h4>
             {submission.coverLetter ? (
-              <p className="mt-1.5 whitespace-pre-line text-sm leading-relaxed text-stone-600 dark:text-stone-300">{submission.coverLetter}</p>
+              <p className="mt-1.5 whitespace-pre-line text-sm leading-relaxed text-stone-600">{submission.coverLetter}</p>
             ) : (
-              <p className="mt-1.5 text-sm text-stone-400 dark:text-stone-500">No cover letter</p>
+              <p className="mt-1.5 text-sm text-stone-400">No cover letter</p>
             )}
 
             {submission.answers.length > 0 && (
               <>
-                <h4 className="mt-5 text-sm font-semibold text-stone-900 dark:text-white">Your answers</h4>
+                <h4 className="mt-5 text-sm font-semibold text-stone-900">Your answers</h4>
                 <dl className="mt-2 space-y-3">
                   {submission.answers.map((answer) => (
-                    <div key={answer.question} className="rounded-xl bg-stone-50 px-3.5 py-3 dark:bg-stone-800/60">
-                      <dt className="text-xs text-stone-500 dark:text-stone-400">{answer.question}</dt>
-                      <dd className="mt-0.5 break-words text-sm font-medium text-stone-900 dark:text-white">{answer.answer}</dd>
+                    <div key={answer.question} className="rounded-xl bg-stone-50 px-3.5 py-3">
+                      <dt className="text-xs text-stone-500">{answer.question}</dt>
+                      <dd className="mt-0.5 break-words text-sm font-medium text-stone-900">{answer.answer}</dd>
                     </div>
                   ))}
                 </dl>
@@ -223,8 +223,8 @@ export function ApplicationDetail({ application, today, onBack, onViewJob, onOpe
 
           {/* Job summary */}
           <section className={`${CARD} p-5 sm:p-6`}>
-            <h3 className="text-base font-semibold text-stone-900 dark:text-white">About the job</h3>
-            <ul className="mt-4 space-y-2.5 text-sm text-stone-600 dark:text-stone-300">
+            <h3 className="text-base font-semibold text-stone-900">About the job</h3>
+            <ul className="mt-4 space-y-2.5 text-sm text-stone-600">
               <li className="flex items-center gap-2.5">
                 <Building2 className="h-4 w-4 text-stone-400" />
                 {job.companyName}

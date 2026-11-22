@@ -112,9 +112,9 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
   // ---------------------------------------------------------------------------
   if (isSubmitted) {
     return (
-      <div className="min-h-full bg-stone-50 px-4 py-12 sm:py-20 dark:bg-stone-950">
+      <div className="min-h-full bg-white px-4 py-12 sm:py-20">
         <style>{JOB_BOARD_STYLES}</style>
-        <div className="jb-rise mx-auto max-w-lg overflow-hidden rounded-3xl border border-stone-200 bg-white text-center shadow-[0_30px_60px_-30px_rgba(19,78,74,0.35)] dark:border-stone-800 dark:bg-stone-900">
+        <div className="jb-rise mx-auto max-w-lg overflow-hidden rounded-3xl border border-stone-200 bg-white text-center shadow-[0_30px_60px_-30px_rgba(19,78,74,0.35)]">
           <div className="relative overflow-hidden bg-teal-950 px-6 pb-10 pt-12">
             <div aria-hidden="true" className="jb-adire-fade absolute inset-0 opacity-20" />
             <span className="jb-pop relative mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-amber-400 text-teal-950 shadow-[0_0_0_10px_rgba(251,191,36,0.15)]">
@@ -123,23 +123,23 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
             <h1 className="relative mt-6 text-2xl font-bold tracking-tight text-white sm:text-3xl">Application sent</h1>
           </div>
           <div className="px-6 pb-8 pt-6 sm:px-10">
-            <p className="text-[15px] leading-relaxed text-stone-600 dark:text-stone-400">
-              Your application for <span className="font-semibold text-stone-900 dark:text-white">{job.title}</span> at{' '}
-              <span className="font-semibold text-stone-900 dark:text-white">{job.company.name}</span> is on its way. You
+            <p className="text-[15px] leading-relaxed text-stone-600">
+              Your application for <span className="font-semibold text-stone-900">{job.title}</span> at{' '}
+              <span className="font-semibold text-stone-900">{job.company.name}</span> is on its way. You
               can follow its progress from your applications.
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row-reverse">
               <button
                 type="button"
                 onClick={onViewApplications}
-                className="h-12 flex-1 rounded-xl bg-teal-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 dark:bg-teal-600 dark:hover:bg-teal-500"
+                className="h-12 flex-1 rounded-xl bg-teal-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
               >
                 View my applications
               </button>
               <button
                 type="button"
                 onClick={onKeepBrowsing}
-                className="h-12 flex-1 rounded-xl border border-stone-300 px-6 text-sm font-semibold text-stone-800 transition-colors hover:border-teal-800 hover:text-teal-900 dark:border-stone-700 dark:text-stone-200 dark:hover:border-teal-400 dark:hover:text-teal-200"
+                className="h-12 flex-1 rounded-xl border border-stone-300 px-6 text-sm font-semibold text-stone-800 transition-colors hover:border-teal-800 hover:text-teal-900"
               >
                 Keep browsing
               </button>
@@ -154,7 +154,7 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
   // Steps
   // ---------------------------------------------------------------------------
   return (
-    <div className="min-h-full bg-stone-50 pb-28 sm:pb-16 dark:bg-stone-950">
+    <div className="min-h-full bg-white pb-28 sm:pb-16">
       <style>{JOB_BOARD_STYLES}</style>
 
       {/* Job context */}
@@ -169,7 +169,7 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
               {job.company.name} · {formatLocation(job)}
               <span className="hidden sm:inline">
                 {' '}
-                · <span className="font-mono tabular-nums">{salary}</span>
+                · <span className="tabular-nums">{salary}</span>
               </span>
             </p>
           </div>
@@ -195,12 +195,12 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
               <li key={id} className="flex flex-1 items-center gap-2 last:flex-none">
                 <span className="flex items-center gap-2.5">
                   <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-mono text-sm font-semibold transition-colors ${
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full tabular-nums text-sm font-semibold transition-colors ${
                       done
-                        ? 'bg-teal-900 text-white dark:bg-teal-600'
+                        ? 'bg-teal-900 text-white'
                         : current
                           ? 'bg-amber-400 text-teal-950 ring-4 ring-amber-400/25'
-                          : 'bg-stone-200 text-stone-500 dark:bg-stone-800 dark:text-stone-400'
+                          : 'bg-stone-200 text-stone-500'
                     }`}
                   >
                     {done ? <Check className="h-4 w-4" strokeWidth={3} /> : index + 1}
@@ -208,7 +208,7 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
                   <span
                     aria-current={current ? 'step' : undefined}
                     className={`whitespace-nowrap text-sm font-semibold ${
-                      current ? 'text-stone-900 dark:text-white' : done ? 'text-teal-900 dark:text-teal-300' : 'text-stone-500 dark:text-stone-400'
+                      current ? 'text-stone-900' : done ? 'text-teal-900' : 'text-stone-500'
                     }`}
                   >
                     {STEP_LABELS[id]}
@@ -217,7 +217,7 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
                 {index < steps.length - 1 && (
                   <span
                     aria-hidden="true"
-                    className={`mx-2 h-0.5 flex-1 rounded-full ${done ? 'bg-teal-900 dark:bg-teal-600' : 'bg-stone-200 dark:bg-stone-800'}`}
+                    className={`mx-2 h-0.5 flex-1 rounded-full ${done ? 'bg-teal-900' : 'bg-stone-200'}`}
                   />
                 )}
               </li>
@@ -228,21 +228,21 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
         {/* Step indicator: mobile */}
         <div className="py-5 sm:hidden">
           <div className="flex items-center justify-between text-sm">
-            <span className="font-semibold text-stone-900 dark:text-white">{STEP_LABELS[step]}</span>
-            <span className="font-mono text-xs tabular-nums text-stone-500 dark:text-stone-400">
+            <span className="font-semibold text-stone-900">{STEP_LABELS[step]}</span>
+            <span className="tabular-nums text-xs text-stone-500">
               Step {stepIndex + 1} of {steps.length}
             </span>
           </div>
-          <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800">
+          <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-stone-200">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-teal-900 to-teal-700 transition-all duration-300 dark:from-teal-600 dark:to-teal-400"
+              className="h-full rounded-full bg-gradient-to-r from-teal-900 to-teal-700 transition-all duration-300"
               style={{ width: `${((stepIndex + 1) / steps.length) * 100}%` }}
             />
           </div>
         </div>
 
         {/* Step content */}
-        <div key={step} className="jb-rise rounded-3xl border border-stone-200 bg-white p-5 sm:p-8 dark:border-stone-800 dark:bg-stone-900">
+        <div key={step} className="jb-rise rounded-3xl border border-stone-200 bg-white p-5 sm:p-8">
           {step === 'cv' && (
             <CvStep
               savedCv={currentUser.savedCv}
@@ -296,19 +296,19 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
         </div>
 
         {!hasQuestions && step === 'cover-letter' && (
-          <p className="mt-3 text-center text-xs text-stone-500 dark:text-stone-400">
+          <p className="mt-3 text-center text-xs text-stone-500">
             This employer has no screening questions, so the next step is your review.
           </p>
         )}
       </div>
 
       {/* Actions */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone-200 bg-white/95 backdrop-blur sm:static sm:mx-auto sm:mt-6 sm:max-w-3xl sm:border-0 sm:bg-transparent sm:px-6 sm:backdrop-blur-none dark:border-stone-800 dark:bg-stone-950/95 sm:dark:bg-transparent">
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-stone-200 bg-white/95 backdrop-blur sm:static sm:mx-auto sm:mt-6 sm:max-w-3xl sm:border-0 sm:bg-transparent sm:px-6 sm:backdrop-blur-none">
         <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-0 sm:py-0">
           <button
             type="button"
             onClick={handleBack}
-            className="flex h-12 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white"
+            className="flex h-12 items-center gap-2 rounded-xl px-4 text-sm font-semibold text-stone-700 transition-colors hover:bg-stone-100 hover:text-stone-900"
           >
             <ArrowLeft className="h-4 w-4" />
             {stepIndex === 0 ? 'Cancel' : 'Back'}
@@ -319,7 +319,7 @@ export function ApplyFlow({ job, currentUser, onSubmit, onCancel, onViewApplicat
             className={`flex h-12 flex-1 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition-all focus-visible:outline-2 focus-visible:outline-offset-2 sm:flex-none sm:px-8 ${
               isLastStep
                 ? 'bg-amber-400 text-teal-950 shadow-[0_10px_24px_-10px_rgba(245,158,11,0.8)] hover:bg-amber-300 focus-visible:outline-teal-900'
-                : 'bg-teal-900 text-white shadow-[0_8px_20px_-8px_rgba(19,78,74,0.7)] hover:bg-teal-800 focus-visible:outline-amber-400 dark:bg-teal-600 dark:hover:bg-teal-500'
+                : 'bg-teal-900 text-white shadow-[0_8px_20px_-8px_rgba(19,78,74,0.7)] hover:bg-teal-800 focus-visible:outline-amber-400'
             }`}
           >
             {isLastStep ? (

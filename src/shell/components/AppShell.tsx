@@ -23,7 +23,9 @@ const FONT_STACK = {
   '--font-display': POPPINS,
   '--font-sans': POPPINS,
   '--font-body': POPPINS,
-  '--font-mono': '"IBM Plex Mono", ui-monospace, monospace',
+  '--font-mono': POPPINS,
+  // White-only designs: keep native controls light even when the host is dark
+  colorScheme: 'light',
 } as React.CSSProperties
 
 const FOOTER_GROUPS = [
@@ -66,7 +68,7 @@ function Wordmark({ onNavigate, inverted = false }: { onNavigate?: (href: string
       <span
         aria-hidden="true"
         className={`flex h-9 w-9 items-center justify-center rounded-lg text-lg font-bold ${
-          inverted ? 'bg-amber-400 text-teal-950' : 'bg-teal-900 text-amber-300 dark:bg-teal-700'
+          inverted ? 'bg-amber-400 text-teal-950' : 'bg-teal-900 text-amber-300'
         }`}
       >
         R
@@ -74,14 +76,14 @@ function Wordmark({ onNavigate, inverted = false }: { onNavigate?: (href: string
       <span className="flex flex-col leading-none">
         <span
           className={`text-lg font-bold tracking-tight ${
-            inverted ? 'text-white' : 'text-teal-900 dark:text-white'
+            inverted ? 'text-white' : 'text-teal-900'
           }`}
         >
           Recruiture
         </span>
         <span
           className={`mt-1 text-[11px] font-medium ${
-            inverted ? 'text-teal-100/80' : 'text-stone-500 dark:text-stone-400'
+            inverted ? 'text-teal-100/80' : 'text-stone-500'
           }`}
         >
           by EduBridge Academy
@@ -122,11 +124,11 @@ export function AppShell({
   }
 
   const mobileLinkClass =
-    'flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-base font-medium text-stone-700 transition-colors hover:bg-stone-100 hover:text-teal-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-teal-200'
+    'flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-base font-medium text-stone-700 transition-colors hover:bg-stone-100 hover:text-teal-900'
 
   return (
-    <div style={FONT_STACK} className="flex min-h-screen flex-col bg-stone-50 text-stone-900 dark:bg-stone-950 dark:text-stone-100">
-      <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85 dark:border-stone-800 dark:bg-stone-950/95 dark:supports-[backdrop-filter]:bg-stone-950/85">
+    <div style={FONT_STACK} className="flex min-h-screen flex-col bg-white text-stone-900">
+      <header className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/85">
         <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:px-8">
           <Wordmark onNavigate={onNavigate} />
 
@@ -142,14 +144,14 @@ export function AppShell({
                 <button
                   type="button"
                   onClick={() => onSignIn?.()}
-                  className="px-2 py-2 text-sm font-medium text-stone-700 transition-colors hover:text-teal-800 dark:text-stone-300 dark:hover:text-teal-200"
+                  className="px-2 py-2 text-sm font-medium text-stone-700 transition-colors hover:text-teal-800"
                 >
                   Sign in
                 </button>
                 <button
                   type="button"
                   onClick={() => onPostJob?.()}
-                  className="rounded-lg bg-teal-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 dark:bg-teal-700 dark:hover:bg-teal-600"
+                  className="rounded-lg bg-teal-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-teal-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
                 >
                   Post a job
                 </button>
@@ -162,7 +164,7 @@ export function AppShell({
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open menu"
             aria-expanded={isMobileMenuOpen}
-            className="ml-auto rounded-lg p-2 text-stone-700 transition-colors hover:bg-stone-100 md:hidden dark:text-stone-300 dark:hover:bg-stone-800"
+            className="ml-auto rounded-lg p-2 text-stone-700 transition-colors hover:bg-stone-100 md:hidden"
           >
             <Menu className="h-6 w-6" />
           </button>
@@ -175,14 +177,14 @@ export function AppShell({
             className="absolute inset-0 bg-stone-950/40 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl dark:bg-stone-950">
-            <div className="flex h-16 items-center justify-between border-b border-stone-200 px-4 dark:border-stone-800">
+          <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl">
+            <div className="flex h-16 items-center justify-between border-b border-stone-200 px-4">
               <Wordmark onNavigate={navigateAndClose} />
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(false)}
                 aria-label="Close menu"
-                className="rounded-lg p-2 text-stone-700 transition-colors hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                className="rounded-lg p-2 text-stone-700 transition-colors hover:bg-stone-100"
               >
                 <X className="h-6 w-6" />
               </button>
@@ -192,15 +194,15 @@ export function AppShell({
               <MainNav items={navigationItems} onNavigate={navigateAndClose} orientation="vertical" />
             </div>
 
-            <div className="border-t border-stone-200 px-3 py-4 dark:border-stone-800">
+            <div className="border-t border-stone-200 px-3 py-4">
               {user ? (
                 <>
                   <div className="mb-3 flex items-center gap-3 px-4">
                     <UserAvatar user={user} size="lg" />
                     <div className="min-w-0">
-                      <p className="truncate text-sm font-semibold text-stone-900 dark:text-stone-100">{user.name}</p>
+                      <p className="truncate text-sm font-semibold text-stone-900">{user.name}</p>
                       {user.email && (
-                        <p className="truncate text-xs text-stone-500 dark:text-stone-400">{user.email}</p>
+                        <p className="truncate text-xs text-stone-500">{user.email}</p>
                       )}
                       {user.isVerifiedGraduate && (
                         <div className="mt-1.5">
@@ -237,7 +239,7 @@ export function AppShell({
                       setIsMobileMenuOpen(false)
                       onPostJob?.()
                     }}
-                    className="w-full rounded-lg bg-teal-900 px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-teal-800 dark:bg-teal-700 dark:hover:bg-teal-600"
+                    className="w-full rounded-lg bg-teal-900 px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-teal-800"
                   >
                     Post a job
                   </button>
@@ -247,7 +249,7 @@ export function AppShell({
                       setIsMobileMenuOpen(false)
                       onSignIn?.()
                     }}
-                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base font-medium text-stone-800 transition-colors hover:bg-stone-100 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800"
+                    className="w-full rounded-lg border border-stone-300 px-4 py-3 text-base font-medium text-stone-800 transition-colors hover:bg-stone-100"
                   >
                     Sign in
                   </button>

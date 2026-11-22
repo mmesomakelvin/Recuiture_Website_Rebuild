@@ -130,12 +130,12 @@ export function initials(name: string) {
 }
 
 const TILE_TONES = [
-  'bg-teal-600 text-white dark:bg-teal-500 dark:text-teal-950',
+  'bg-teal-600 text-white',
   'bg-amber-400 text-teal-950',
-  'bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950',
-  'bg-rose-500 text-white dark:bg-rose-400 dark:text-rose-950',
-  'bg-sky-600 text-white dark:bg-sky-500 dark:text-sky-950',
-  'bg-teal-900 text-amber-300 dark:bg-teal-800',
+  'bg-emerald-600 text-white',
+  'bg-rose-500 text-white',
+  'bg-sky-600 text-white',
+  'bg-teal-900 text-amber-300',
 ]
 
 /** A stable colour per company name for initials tiles */

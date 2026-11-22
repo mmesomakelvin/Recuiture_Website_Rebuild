@@ -48,8 +48,8 @@ function DetailsCard({ candidate, locationOptions, onSave }: Pick<ProfilePanelPr
 
   return (
     <form onSubmit={submit} className={`${CARD} p-5 sm:p-6`} noValidate>
-      <h2 className="text-base font-semibold text-stone-900 dark:text-white">Your details</h2>
-      <p className="text-sm text-stone-500 dark:text-stone-400">Employers see these when you apply.</p>
+      <h2 className="text-base font-semibold text-stone-900">Your details</h2>
+      <p className="text-sm text-stone-500">Employers see these when you apply.</p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -121,7 +121,7 @@ function DetailsCard({ candidate, locationOptions, onSave }: Pick<ProfilePanelPr
           </button>
         )}
         {savedAt && !isDirty && (
-          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 dark:text-teal-300">
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700">
             <CircleCheck className="h-4 w-4" />
             Saved
           </span>
@@ -147,18 +147,18 @@ function CvCard({ candidate, onViewCv, onReplaceCv }: Pick<ProfilePanelProps, 'c
 
   return (
     <section className={`${CARD} p-5 sm:p-6`}>
-      <h2 className="text-base font-semibold text-stone-900 dark:text-white">Your CV</h2>
-      <p className="text-sm text-stone-500 dark:text-stone-400">Used by default when you apply. Applications you already sent keep their own copy.</p>
+      <h2 className="text-base font-semibold text-stone-900">Your CV</h2>
+      <p className="text-sm text-stone-500">Used by default when you apply. Applications you already sent keep their own copy.</p>
 
       {cv ? (
-        <div className="mt-5 rounded-xl border border-stone-200 p-4 dark:border-stone-700">
+        <div className="mt-5 rounded-xl border border-stone-200 p-4">
           <div className="flex items-center gap-4">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-700">
               <FileText className="h-6 w-6" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold text-stone-900 dark:text-white">{cv.fileName}</p>
-              <p className="text-xs tabular-nums text-stone-500 dark:text-stone-400">
+              <p className="truncate text-sm font-semibold text-stone-900">{cv.fileName}</p>
+              <p className="text-xs tabular-nums text-stone-500">
                 {formatFileSize(cv.sizeBytes)} · uploaded {formatDate(cv.uploadedAt, true)}
               </p>
             </div>
@@ -177,11 +177,11 @@ function CvCard({ candidate, onViewCv, onReplaceCv }: Pick<ProfilePanelProps, 'c
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="mt-5 flex w-full flex-col items-center rounded-xl border-2 border-dashed border-stone-300 px-4 py-8 text-center transition hover:border-teal-500 hover:bg-teal-50/50 dark:border-stone-700 dark:hover:border-teal-400 dark:hover:bg-teal-400/5"
+          className="mt-5 flex w-full flex-col items-center rounded-xl border-2 border-dashed border-stone-300 px-4 py-8 text-center transition hover:border-teal-500 hover:bg-teal-50/50"
         >
-          <Upload className="h-6 w-6 text-teal-700 dark:text-teal-300" />
-          <span className="mt-2 text-sm font-semibold text-stone-900 dark:text-white">Upload your CV</span>
-          <span className="text-xs text-stone-500 dark:text-stone-400">PDF or Word, up to 5 MB</span>
+          <Upload className="h-6 w-6 text-teal-700" />
+          <span className="mt-2 text-sm font-semibold text-stone-900">Upload your CV</span>
+          <span className="text-xs text-stone-500">PDF or Word, up to 5 MB</span>
         </button>
       )}
 
@@ -203,17 +203,17 @@ function PasswordCard({ email, onRequestPasswordReset }: { email: string; onRequ
   return (
     <section className={`${CARD} p-5 sm:p-6`}>
       <div className="flex items-start gap-4">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800 dark:bg-amber-400/15 dark:text-amber-200">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
           <KeyRound className="h-5 w-5" />
         </span>
         <div className="min-w-0 flex-1">
-          <h2 className="text-base font-semibold text-stone-900 dark:text-white">Password</h2>
+          <h2 className="text-base font-semibold text-stone-900">Password</h2>
           {isSent ? (
-            <p className="mt-0.5 text-sm text-teal-700 dark:text-teal-300">
+            <p className="mt-0.5 text-sm text-teal-700">
               We sent a reset link to <span className="font-medium">{email}</span>.
             </p>
           ) : (
-            <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">We will email you a link to set a new password.</p>
+            <p className="mt-0.5 text-sm text-stone-500">We will email you a link to set a new password.</p>
           )}
           <button
             type="button"

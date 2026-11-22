@@ -14,19 +14,19 @@ export const PORTAL_STYLES = `
 `
 
 const BTN_BASE =
-  'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 dark:focus-visible:ring-offset-stone-950'
+  'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50'
 
-export const BTN_PRIMARY = `${BTN_BASE} bg-teal-800 px-4 py-2.5 text-white shadow-sm hover:bg-teal-900 dark:bg-teal-600 dark:hover:bg-teal-500`
-export const BTN_SECONDARY = `${BTN_BASE} border border-stone-300 bg-white px-4 py-2.5 text-stone-800 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800`
-export const BTN_SOFT = `${BTN_BASE} bg-teal-50 px-3 py-2 text-teal-800 hover:bg-teal-100 dark:bg-teal-400/10 dark:text-teal-200 dark:hover:bg-teal-400/20`
-export const BTN_DANGER = `${BTN_BASE} bg-rose-700 px-4 py-2.5 text-white shadow-sm hover:bg-rose-800 dark:bg-rose-600 dark:hover:bg-rose-500`
-export const LINK = 'font-semibold text-teal-700 hover:text-teal-900 hover:underline dark:text-teal-300 dark:hover:text-teal-200'
+export const BTN_PRIMARY = `${BTN_BASE} bg-teal-800 px-4 py-2.5 text-white shadow-sm hover:bg-teal-900`
+export const BTN_SECONDARY = `${BTN_BASE} border border-stone-300 bg-white px-4 py-2.5 text-stone-800 hover:bg-stone-50`
+export const BTN_SOFT = `${BTN_BASE} bg-teal-50 px-3 py-2 text-teal-800 hover:bg-teal-100`
+export const BTN_DANGER = `${BTN_BASE} bg-rose-700 px-4 py-2.5 text-white shadow-sm hover:bg-rose-800`
+export const LINK = 'font-semibold text-teal-700 hover:text-teal-900 hover:underline'
 
 export const INPUT =
-  'block w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 shadow-sm transition focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/20 disabled:bg-stone-100 disabled:text-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/20 dark:disabled:bg-stone-800 dark:disabled:text-stone-400'
-export const LABEL = 'mb-1.5 block text-sm font-medium text-stone-800 dark:text-stone-200'
-export const HINT = 'mt-1.5 text-xs text-stone-500 dark:text-stone-400'
-export const FIELD_ERROR = 'mt-1.5 text-xs font-medium text-rose-700 dark:text-rose-300'
+  'block w-full rounded-xl border border-stone-300 bg-white px-3.5 py-2.5 text-sm text-stone-900 placeholder:text-stone-400 shadow-sm transition focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/20 disabled:bg-stone-100 disabled:text-stone-500'
+export const LABEL = 'mb-1.5 block text-sm font-medium text-stone-800'
+export const HINT = 'mt-1.5 text-xs text-stone-500'
+export const FIELD_ERROR = 'mt-1.5 text-xs font-medium text-rose-700'
 
 export const CARD =
-  'rounded-2xl bg-white shadow-[0_2px_14px_rgba(28,25,23,0.06)] ring-1 ring-stone-200/70 dark:bg-stone-900 dark:shadow-none dark:ring-stone-800'
+  'rounded-2xl bg-white shadow-[0_2px_14px_rgba(28,25,23,0.06)] ring-1 ring-stone-200/70'

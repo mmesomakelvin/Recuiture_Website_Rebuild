@@ -37,8 +37,8 @@ function EnquiryDetail({
 
   return (
     <article key={enquiry.id} className="ap-rise flex h-full flex-col">
-      <div className="border-b border-stone-200 px-5 py-4 sm:px-6 dark:border-stone-800">
-        <button type="button" onClick={onBack} className="mb-3 inline-flex items-center gap-1.5 text-sm text-stone-500 hover:text-stone-900 lg:hidden dark:text-stone-400">
+      <div className="border-b border-stone-200 px-5 py-4 sm:px-6">
+        <button type="button" onClick={onBack} className="mb-3 inline-flex items-center gap-1.5 text-sm text-stone-500 hover:text-stone-900 lg:hidden">
           <ArrowLeft className="h-4 w-4" />
           All enquiries
         </button>
@@ -48,9 +48,9 @@ function EnquiryDetail({
             {enquiry.reference}
           </span>
         </div>
-        <h2 className="mt-2 text-lg font-semibold text-stone-900 dark:text-white">{enquiry.subject}</h2>
-        <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">
-          From <span className="font-medium text-stone-800 dark:text-stone-200">{enquiry.name}</span>
+        <h2 className="mt-2 text-lg font-semibold text-stone-900">{enquiry.subject}</h2>
+        <p className="mt-0.5 text-sm text-stone-500">
+          From <span className="font-medium text-stone-800">{enquiry.name}</span>
           {' · '}
           <span style={MONO} className="text-xs">
             {formatDateTime(enquiry.receivedAt)}
@@ -61,7 +61,7 @@ function EnquiryDetail({
       <div className="flex-1 space-y-6 overflow-y-auto px-5 py-5 sm:px-6">
         {/* Status and reply */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div role="radiogroup" aria-label="Enquiry status" className="inline-flex rounded-lg bg-stone-100 p-1 dark:bg-stone-800">
+          <div role="radiogroup" aria-label="Enquiry status" className="inline-flex rounded-lg bg-stone-100 p-1">
             {STATUSES.map((status) => {
               const isActive = enquiry.status === status
               return (
@@ -73,8 +73,8 @@ function EnquiryDetail({
                   onClick={() => !isActive && onUpdateStatus(status)}
                   className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
                     isActive
-                      ? 'bg-white text-teal-900 shadow-sm dark:bg-stone-950 dark:text-teal-200'
-                      : 'text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white'
+                      ? 'bg-white text-teal-900 shadow-sm'
+                      : 'text-stone-600 hover:text-stone-900'
                   }`}
                 >
                   {ENQUIRY_STATUS_LABELS[status]}
@@ -92,15 +92,15 @@ function EnquiryDetail({
         <section className="grid gap-3 sm:grid-cols-2">
           <a
             href={`mailto:${enquiry.email}`}
-            className="flex items-center gap-2.5 rounded-xl border border-stone-200 px-3 py-2.5 text-sm text-teal-800 hover:border-teal-300 dark:border-stone-700 dark:text-teal-300"
+            className="flex items-center gap-2.5 rounded-xl border border-stone-200 px-3 py-2.5 text-sm text-teal-800 hover:border-teal-300"
           >
             <Mail className="h-4 w-4 shrink-0 text-stone-400" />
             <span className="truncate">{enquiry.email}</span>
           </a>
-          <div className="flex items-center gap-2.5 rounded-xl border border-stone-200 px-3 py-2.5 text-sm dark:border-stone-700">
+          <div className="flex items-center gap-2.5 rounded-xl border border-stone-200 px-3 py-2.5 text-sm">
             <Phone className="h-4 w-4 shrink-0 text-stone-400" />
             {enquiry.phone ? (
-              <span style={MONO} className="text-stone-700 dark:text-stone-200">
+              <span style={MONO} className="text-stone-700">
                 {enquiry.phone}
               </span>
             ) : (
@@ -110,7 +110,7 @@ function EnquiryDetail({
         </section>
 
         {enquiry.employerDetails && (
-          <section className="rounded-xl bg-teal-950 p-4 text-teal-50 dark:bg-teal-900/50">
+          <section className="rounded-xl bg-teal-950 p-4 text-teal-50">
             <p className="flex items-center gap-2 text-sm font-semibold">
               <Building2 className="h-4 w-4 text-amber-300" />
               {enquiry.employerDetails.companyName}
@@ -136,7 +136,7 @@ function EnquiryDetail({
 
         <section>
           <h3 className={`${SECTION_TITLE} mb-2`}>Message</h3>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-stone-700 dark:text-stone-200">{enquiry.message}</p>
+          <p className="whitespace-pre-line text-sm leading-relaxed text-stone-700">{enquiry.message}</p>
         </section>
 
         {/* Notes */}
@@ -150,9 +150,9 @@ function EnquiryDetail({
           ) : (
             <ul className="mb-4 space-y-3">
               {enquiry.notes.map((item) => (
-                <li key={item.id} className="rounded-xl bg-amber-50/70 px-4 py-3 ring-1 ring-inset ring-amber-200/70 dark:bg-amber-400/5 dark:ring-amber-400/15">
-                  <p className="text-sm text-stone-800 dark:text-stone-100">{item.body}</p>
-                  <p className="mt-1.5 text-xs text-stone-500 dark:text-stone-400">
+                <li key={item.id} className="rounded-xl bg-amber-50/70 px-4 py-3 ring-1 ring-inset ring-amber-200/70">
+                  <p className="text-sm text-stone-800">{item.body}</p>
+                  <p className="mt-1.5 text-xs text-stone-500">
                     {item.authorName} ·{' '}
                     <span style={MONO} className="text-[11px]">
                       {formatDateTime(item.at)}
@@ -232,7 +232,7 @@ export function EnquiriesView({ enquiries, today, selectedId, onSelect, onUpdate
 
       <div className={`${CARD} overflow-hidden lg:grid lg:h-[calc(100vh-15rem)] lg:min-h-[560px] lg:grid-cols-[360px_minmax(0,1fr)]`}>
         {/* List */}
-        <div className={`border-stone-200 lg:block lg:overflow-y-auto lg:border-r dark:border-stone-800 ${selected ? 'hidden' : 'block'}`}>
+        <div className={`border-stone-200 lg:block lg:overflow-y-auto lg:border-r ${selected ? 'hidden' : 'block'}`}>
           {enquiries.length === 0 ? (
             <EmptyState compact icon={Inbox} title="No enquiries yet" body="Messages from the Contact and For Employers forms will land here." />
           ) : visible.length === 0 ? (
@@ -248,7 +248,7 @@ export function EnquiriesView({ enquiries, today, selectedId, onSelect, onUpdate
               }
             />
           ) : (
-            <ul className="divide-y divide-stone-100 dark:divide-stone-800">
+            <ul className="divide-y divide-stone-100">
               {visible.map((enquiry) => {
                 const isSelected = enquiry.id === selectedId
                 return (
@@ -257,10 +257,10 @@ export function EnquiriesView({ enquiries, today, selectedId, onSelect, onUpdate
                       type="button"
                       onClick={() => onSelect(enquiry.id)}
                       className={`relative flex w-full gap-3 px-4 py-3.5 text-left transition ${
-                        isSelected ? 'bg-teal-50/80 dark:bg-teal-400/5' : 'hover:bg-stone-50 dark:hover:bg-stone-800/40'
+                        isSelected ? 'bg-teal-50/80' : 'hover:bg-stone-50'
                       }`}
                     >
-                      {isSelected && <span className="absolute inset-y-0 left-0 w-[3px] bg-teal-700 dark:bg-teal-400" />}
+                      {isSelected && <span className="absolute inset-y-0 left-0 w-[3px] bg-teal-700" />}
                       <span
                         className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${enquiry.status === 'new' ? 'bg-amber-500' : 'bg-transparent'}`}
                         aria-hidden="true"
@@ -269,14 +269,14 @@ export function EnquiriesView({ enquiries, today, selectedId, onSelect, onUpdate
                         <span className="flex items-baseline justify-between gap-2">
                           <span
                             className={`truncate text-sm ${
-                              enquiry.status === 'new' ? 'font-semibold text-stone-900 dark:text-white' : 'font-medium text-stone-700 dark:text-stone-200'
+                              enquiry.status === 'new' ? 'font-semibold text-stone-900' : 'font-medium text-stone-700'
                             }`}
                           >
                             {enquiry.employerDetails?.companyName ?? enquiry.name}
                           </span>
                           <span className="shrink-0 text-[11px] text-stone-400">{relativeDay(enquiry.receivedAt, today)}</span>
                         </span>
-                        <span className="mt-0.5 block truncate text-sm text-stone-600 dark:text-stone-300">{enquiry.subject}</span>
+                        <span className="mt-0.5 block truncate text-sm text-stone-600">{enquiry.subject}</span>
                         <span className="mt-1.5 flex items-center gap-2">
                           <SourceTag source={enquiry.source} />
                           {status === 'all' && <EnquiryStatusBadge status={enquiry.status} />}

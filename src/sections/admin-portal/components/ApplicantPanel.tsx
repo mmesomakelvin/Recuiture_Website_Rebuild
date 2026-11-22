@@ -34,9 +34,9 @@ interface ApplicantPanelProps {
 }
 
 const EMAIL_STATUS = {
-  sent: { label: 'Email sent', className: 'text-stone-500 dark:text-stone-400' },
-  queued: { label: 'Email queued', className: 'text-amber-700 dark:text-amber-300' },
-  failed: { label: 'Email failed', className: 'font-semibold text-rose-700 dark:text-rose-300' },
+  sent: { label: 'Email sent', className: 'text-stone-500' },
+  queued: { label: 'Email queued', className: 'text-amber-700' },
+  failed: { label: 'Email failed', className: 'font-semibold text-rose-700' },
 }
 
 function actorLabel(entry: HistoryEntry) {
@@ -49,7 +49,7 @@ function Timeline({ history }: { history: HistoryEntry[] }) {
   const entries = [...history].reverse()
   return (
     <ol className="relative space-y-5">
-      <span className="absolute bottom-2 left-[7px] top-2 w-px bg-stone-200 dark:bg-stone-700" aria-hidden="true" />
+      <span className="absolute bottom-2 left-[7px] top-2 w-px bg-stone-200" aria-hidden="true" />
       {entries.map((entry, index) => {
         const email = EMAIL_STATUS[entry.emailStatus]
         return (
@@ -57,22 +57,22 @@ function Timeline({ history }: { history: HistoryEntry[] }) {
             <span
               className={`absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 ${
                 index === 0
-                  ? 'border-teal-700 bg-amber-300 dark:border-teal-400 dark:bg-amber-300'
-                  : 'border-stone-300 bg-white dark:border-stone-600 dark:bg-stone-900'
+                  ? 'border-teal-700 bg-amber-300'
+                  : 'border-stone-300 bg-white'
               }`}
               aria-hidden="true"
             />
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
               <StageBadge stage={entry.stage} />
-              <span style={MONO} className="text-xs text-stone-500 dark:text-stone-400">
+              <span style={MONO} className="text-xs text-stone-500">
                 {formatDateTime(entry.at)}
               </span>
             </div>
-            <p className="mt-1 text-xs text-stone-500 dark:text-stone-400">
+            <p className="mt-1 text-xs text-stone-500">
               {actorLabel(entry)} · <span className={email.className}>{email.label}</span>
             </p>
             {entry.note && (
-              <p className="mt-2 rounded-lg border-l-2 border-amber-400 bg-amber-50/60 px-3 py-2 text-sm text-stone-700 dark:bg-amber-400/5 dark:text-stone-200">
+              <p className="mt-2 rounded-lg border-l-2 border-amber-400 bg-amber-50/60 px-3 py-2 text-sm text-stone-700">
                 {entry.note}
               </p>
             )}
@@ -100,11 +100,11 @@ function InterviewBlock({
 
   if (isCompleted && !isEditing) {
     return (
-      <div className="rounded-xl border border-stone-200 p-4 dark:border-stone-700">
-        <p className="flex items-center gap-2 text-sm font-medium text-stone-900 dark:text-white">
-          <CalendarCheck className="h-4 w-4 text-teal-700 dark:text-teal-300" />
+      <div className="rounded-xl border border-stone-200 p-4">
+        <p className="flex items-center gap-2 text-sm font-medium text-stone-900">
+          <CalendarCheck className="h-4 w-4 text-teal-700" />
           Interview completed{' '}
-          <span style={MONO} className="font-normal text-stone-500 dark:text-stone-400">
+          <span style={MONO} className="font-normal text-stone-500">
             {formatDate(application.interviewCompletedAt as string)}
           </span>
         </p>
@@ -112,12 +112,12 @@ function InterviewBlock({
           {application.nextUpdateDueDate ? (
             <DueTag date={application.nextUpdateDueDate} today={today} prefix="Next update" />
           ) : (
-            <span className="text-xs font-medium text-amber-700 dark:text-amber-300">No next update date set</span>
+            <span className="text-xs font-medium text-amber-700">No next update date set</span>
           )}
           <button
             type="button"
             onClick={() => setIsEditing(true)}
-            className="text-xs font-semibold text-teal-800 hover:underline dark:text-teal-300"
+            className="text-xs font-semibold text-teal-800 hover:underline"
           >
             {application.nextUpdateDueDate ? 'Change date' : 'Set date'}
           </button>
@@ -128,8 +128,8 @@ function InterviewBlock({
 
   if (!isCompleted && !isEditing) {
     return (
-      <div className="flex flex-col gap-3 rounded-xl border border-dashed border-stone-300 p-4 sm:flex-row sm:items-center sm:justify-between dark:border-stone-700">
-        <p className="text-sm text-stone-600 dark:text-stone-300">Interview scheduled. Mark it completed once it has happened.</p>
+      <div className="flex flex-col gap-3 rounded-xl border border-dashed border-stone-300 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-stone-600">Interview scheduled. Mark it completed once it has happened.</p>
         <button type="button" onClick={() => setIsEditing(true)} className={`${BTN_SECONDARY} shrink-0`}>
           <CalendarCheck className="h-4 w-4" />
           Mark interview completed
@@ -139,11 +139,11 @@ function InterviewBlock({
   }
 
   return (
-    <div className="ap-rise rounded-xl border border-teal-200 bg-teal-50/60 p-4 dark:border-teal-800 dark:bg-teal-950/30">
-      <label htmlFor="next-update" className="block text-sm font-medium text-stone-900 dark:text-white">
+    <div className="ap-rise rounded-xl border border-teal-200 bg-teal-50/60 p-4">
+      <label htmlFor="next-update" className="block text-sm font-medium text-stone-900">
         When will the candidate hear next?
       </label>
-      <p className="mt-0.5 text-xs text-stone-600 dark:text-stone-400">
+      <p className="mt-0.5 text-xs text-stone-600">
         Suggested: five business days from today,{' '}
         <span style={MONO} className="font-medium">
           {formatDate(suggested)}
@@ -190,7 +190,7 @@ function StageControls({
             ? 'This candidate was hired.'
             : 'This application has ended.'
     return (
-      <p className="flex items-center gap-2 rounded-xl bg-stone-100 px-4 py-3 text-sm text-stone-600 dark:bg-stone-800 dark:text-stone-300">
+      <p className="flex items-center gap-2 rounded-xl bg-stone-100 px-4 py-3 text-sm text-stone-600">
         <Lock className="h-4 w-4 shrink-0" />
         {closedText} No further stage changes.
       </p>
@@ -210,7 +210,7 @@ function StageControls({
       <button
         type="button"
         onClick={() => onRequestMove('not-selected')}
-        className={`${BTN_SECONDARY} text-rose-700 hover:border-rose-300 hover:bg-rose-50 dark:text-rose-300 dark:hover:border-rose-500/40 dark:hover:bg-rose-500/10`}
+        className={`${BTN_SECONDARY} text-rose-700 hover:border-rose-300 hover:bg-rose-50`}
       >
         Not selected
       </button>
@@ -221,7 +221,7 @@ function StageControls({
             <ChevronDown className="h-4 w-4" />
           </button>
           {isMoreOpen && (
-            <div className="ap-pop absolute left-0 top-full z-10 mt-1 w-44 overflow-hidden rounded-xl bg-white py-1 shadow-xl ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-700">
+            <div className="ap-pop absolute left-0 top-full z-10 mt-1 w-44 overflow-hidden rounded-xl bg-white py-1 shadow-xl ring-1 ring-stone-200">
               {others.map((stage) => (
                 <button
                   key={stage}
@@ -230,7 +230,7 @@ function StageControls({
                     setIsMoreOpen(false)
                     onRequestMove(stage)
                   }}
-                  className="block w-full px-3.5 py-2 text-left text-sm text-stone-700 hover:bg-stone-50 dark:text-stone-200 dark:hover:bg-stone-800"
+                  className="block w-full px-3.5 py-2 text-left text-sm text-stone-700 hover:bg-stone-50"
                 >
                   {STAGE_LABELS[stage]}
                 </button>
@@ -269,18 +269,18 @@ export function ApplicantPanel({
       <aside
         key={application.id}
         aria-label={`Application from ${candidate.name}`}
-        className="ap-panel pointer-events-auto relative flex h-full w-full flex-col bg-white shadow-2xl ring-1 ring-stone-200 sm:max-w-xl dark:bg-stone-900 dark:ring-stone-800"
+        className="ap-panel pointer-events-auto relative flex h-full w-full flex-col bg-white shadow-2xl ring-1 ring-stone-200 sm:max-w-xl"
       >
         {/* Header */}
-        <div className="border-b border-stone-200 px-5 pb-4 pt-5 sm:px-6 dark:border-stone-800">
+        <div className="border-b border-stone-200 px-5 pb-4 pt-5 sm:px-6">
           <div className="flex items-start gap-3">
             <Avatar id={candidate.id} name={candidate.name} size="lg" />
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-lg font-semibold text-stone-900 dark:text-white">{candidate.name}</h2>
+                <h2 className="text-lg font-semibold text-stone-900">{candidate.name}</h2>
                 {candidate.isVerifiedGraduate && <GraduateMarker program={candidate.graduateProgram} />}
               </div>
-              <p className="truncate text-sm text-stone-500 dark:text-stone-400">
+              <p className="truncate text-sm text-stone-500">
                 {job?.title} at {company?.name}
               </p>
               <p style={MONO} className="mt-0.5 text-[11px] text-stone-400">
@@ -291,7 +291,7 @@ export function ApplicantPanel({
               type="button"
               onClick={onClose}
               aria-label="Close application"
-              className="-mr-2 rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-white"
+              className="-mr-2 rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900"
             >
               <X className="h-5 w-5" />
             </button>
@@ -306,9 +306,9 @@ export function ApplicantPanel({
               <StageBadge stage={application.stage} />
             </div>
             {awaitsFirstReview(application) && (
-              <div className="mb-4 rounded-xl bg-stone-50 p-3 dark:bg-stone-800/60">
+              <div className="mb-4 rounded-xl bg-stone-50 p-3">
                 <div className="mb-2 flex items-center justify-between gap-2">
-                  <span className="text-xs font-medium text-stone-600 dark:text-stone-300">7-day first review target</span>
+                  <span className="text-xs font-medium text-stone-600">7-day first review target</span>
                   <DueTag date={application.firstReviewDueDate} today={today} />
                 </div>
                 <TargetBar progress={firstReviewProgress(application, today)} overdue={isFirstReviewOverdue(application, today)} />
@@ -334,17 +334,17 @@ export function ApplicantPanel({
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-stone-400" />
-                <a href={`mailto:${candidate.email}`} className="truncate text-teal-800 hover:underline dark:text-teal-300">
+                <a href={`mailto:${candidate.email}`} className="truncate text-teal-800 hover:underline">
                   {candidate.email}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-stone-400" />
-                <a href={`tel:${candidate.phone.replace(/\s/g, '')}`} style={MONO} className="text-stone-700 hover:underline dark:text-stone-200">
+                <a href={`tel:${candidate.phone.replace(/\s/g, '')}`} style={MONO} className="text-stone-700 hover:underline">
                   {candidate.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-2.5 text-stone-700 dark:text-stone-200">
+              <li className="flex items-center gap-2.5 text-stone-700">
                 <MapPin className="h-4 w-4 shrink-0 text-stone-400" />
                 {candidate.location}
               </li>
@@ -357,18 +357,18 @@ export function ApplicantPanel({
             <button
               type="button"
               onClick={onOpenCv}
-              className="group flex w-full items-center gap-3 rounded-xl border border-stone-200 p-3 text-left transition hover:border-teal-300 hover:bg-teal-50/40 dark:border-stone-700 dark:hover:border-teal-700 dark:hover:bg-teal-400/5"
+              className="group flex w-full items-center gap-3 rounded-xl border border-stone-200 p-3 text-left transition hover:border-teal-300 hover:bg-teal-50/40"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-rose-50 text-rose-700 dark:bg-rose-500/10 dark:text-rose-300">
+              <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-rose-50 text-rose-700">
                 <FileText className="h-5 w-5" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium text-stone-900 dark:text-white">{application.cv.fileName}</span>
-                <span style={MONO} className="text-xs text-stone-500 dark:text-stone-400">
+                <span className="block truncate text-sm font-medium text-stone-900">{application.cv.fileName}</span>
+                <span style={MONO} className="text-xs text-stone-500">
                   {application.cv.fileSizeKb} KB
                 </span>
               </span>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold text-teal-800 group-hover:underline dark:text-teal-300">
+              <span className="inline-flex items-center gap-1 text-sm font-semibold text-teal-800 group-hover:underline">
                 Open
                 <ExternalLink className="h-3.5 w-3.5" />
               </span>
@@ -379,7 +379,7 @@ export function ApplicantPanel({
           <section>
             <h3 className={`${SECTION_TITLE} mb-3`}>Cover letter</h3>
             {application.coverLetter ? (
-              <p className="whitespace-pre-line text-sm leading-relaxed text-stone-700 dark:text-stone-200">{application.coverLetter}</p>
+              <p className="whitespace-pre-line text-sm leading-relaxed text-stone-700">{application.coverLetter}</p>
             ) : (
               <p className="text-sm italic text-stone-400">No cover letter included.</p>
             )}
@@ -389,11 +389,11 @@ export function ApplicantPanel({
           {application.answers.length > 0 && (
             <section>
               <h3 className={`${SECTION_TITLE} mb-3`}>Screening answers</h3>
-              <dl className="divide-y divide-stone-100 rounded-xl border border-stone-200 dark:divide-stone-800 dark:border-stone-700">
+              <dl className="divide-y divide-stone-100 rounded-xl border border-stone-200">
                 {application.answers.map((answer) => (
                   <div key={answer.questionId} className="px-4 py-3">
-                    <dt className="text-xs text-stone-500 dark:text-stone-400">{answer.question}</dt>
-                    <dd className="mt-0.5 break-words text-sm font-medium text-stone-900 dark:text-white">{answer.answer}</dd>
+                    <dt className="text-xs text-stone-500">{answer.question}</dt>
+                    <dd className="mt-0.5 break-words text-sm font-medium text-stone-900">{answer.answer}</dd>
                   </div>
                 ))}
               </dl>

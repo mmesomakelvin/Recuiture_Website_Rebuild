@@ -28,20 +28,20 @@ const PILL = 'inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px
 // -----------------------------------------------------------------------------
 
 const STAGE_TONES: Record<ApplicationStage, string> = {
-  applied: 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-200 dark:ring-stone-700',
-  screening: 'bg-amber-50 text-amber-900 ring-1 ring-inset ring-amber-200 dark:bg-amber-400/10 dark:text-amber-200 dark:ring-amber-400/25',
-  interview: 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25',
-  offer: 'bg-teal-800 text-white dark:bg-teal-600',
-  hired: 'bg-emerald-600 text-white dark:bg-emerald-500 dark:text-emerald-950',
-  'not-selected': 'bg-rose-50 text-rose-800 ring-1 ring-inset ring-rose-200 dark:bg-rose-500/10 dark:text-rose-200 dark:ring-rose-500/25',
-  withdrawn: 'bg-white text-stone-500 border border-dashed border-stone-300 dark:bg-transparent dark:text-stone-400 dark:border-stone-600',
-  'role-cancelled': 'bg-white text-stone-500 ring-1 ring-inset ring-stone-300 line-through decoration-stone-400 dark:bg-transparent dark:text-stone-400 dark:ring-stone-600',
+  applied: 'bg-stone-100 text-stone-700 ring-1 ring-inset ring-stone-200',
+  screening: 'bg-amber-50 text-amber-900 ring-1 ring-inset ring-amber-200',
+  interview: 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200',
+  offer: 'bg-teal-800 text-white',
+  hired: 'bg-emerald-600 text-white',
+  'not-selected': 'bg-rose-50 text-rose-800 ring-1 ring-inset ring-rose-200',
+  withdrawn: 'bg-white text-stone-500 border border-dashed border-stone-300',
+  'role-cancelled': 'bg-white text-stone-500 ring-1 ring-inset ring-stone-300 line-through decoration-stone-400',
 }
 
 const STAGE_DOTS: Partial<Record<ApplicationStage, string>> = {
   applied: 'bg-stone-400',
   screening: 'bg-amber-500',
-  interview: 'bg-teal-600 dark:bg-teal-300',
+  interview: 'bg-teal-600',
 }
 
 export function StageBadge({ stage }: { stage: ApplicationStage }) {
@@ -55,15 +55,15 @@ export function StageBadge({ stage }: { stage: ApplicationStage }) {
 }
 
 const JOB_STATUS_TONES: Record<JobStatus, string> = {
-  draft: 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:ring-stone-700',
-  published: 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25',
-  paused: 'bg-amber-50 text-amber-900 ring-1 ring-inset ring-amber-200 dark:bg-amber-400/10 dark:text-amber-200 dark:ring-amber-400/25',
-  closed: 'bg-stone-800 text-stone-100 dark:bg-stone-700 dark:text-stone-100',
+  draft: 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200',
+  published: 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200',
+  paused: 'bg-amber-50 text-amber-900 ring-1 ring-inset ring-amber-200',
+  closed: 'bg-stone-800 text-stone-100',
 }
 
 const JOB_STATUS_DOTS: Record<JobStatus, string> = {
   draft: 'bg-stone-400',
-  published: 'bg-teal-600 dark:bg-teal-300',
+  published: 'bg-teal-600',
   paused: 'bg-amber-500',
   closed: 'bg-stone-400',
 }
@@ -80,9 +80,9 @@ export function JobStatusBadge({ status, closedReason }: { status: JobStatus; cl
 }
 
 const ENQUIRY_TONES: Record<EnquiryStatus, string> = {
-  new: 'bg-amber-400 text-amber-950 dark:bg-amber-400 dark:text-amber-950',
-  'in-progress': 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25',
-  closed: 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:ring-stone-700',
+  new: 'bg-amber-400 text-amber-950',
+  'in-progress': 'bg-teal-50 text-teal-900 ring-1 ring-inset ring-teal-200',
+  closed: 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200',
 }
 
 export function EnquiryStatusBadge({ status }: { status: EnquiryStatus }) {
@@ -94,8 +94,8 @@ export function SourceTag({ source }: { source: EnquirySource }) {
     <span
       className={`inline-flex shrink-0 items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
         source === 'for-employers'
-          ? 'bg-teal-50 text-teal-800 dark:bg-teal-400/10 dark:text-teal-200'
-          : 'bg-sky-50 text-sky-800 dark:bg-sky-400/10 dark:text-sky-200'
+          ? 'bg-teal-50 text-teal-800'
+          : 'bg-sky-50 text-sky-800'
       }`}
     >
       {ENQUIRY_SOURCE_LABELS[source]}
@@ -107,7 +107,7 @@ export function GraduateMarker({ program }: { program?: string | null }) {
   return (
     <span
       title={program ? `Verified EduBridge graduate: ${program}` : 'Verified EduBridge graduate'}
-      className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900 ring-1 ring-inset ring-amber-300/70 dark:bg-amber-400/15 dark:text-amber-200 dark:ring-amber-400/30"
+      className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-semibold text-amber-900 ring-1 ring-inset ring-amber-300/70"
     >
       <GraduationCap className="h-3 w-3" strokeWidth={2.25} />
       EduBridge Graduate
@@ -144,14 +144,14 @@ const LOGO_SIZES = {
 
 export function CompanyLogo({ company, size = 'sm' }: { company: Company | undefined; size?: keyof typeof LOGO_SIZES }) {
   if (!company) {
-    return <span aria-hidden="true" className={`${LOGO_SIZES[size]} shrink-0 bg-stone-100 dark:bg-stone-800`} />
+    return <span aria-hidden="true" className={`${LOGO_SIZES[size]} shrink-0 bg-stone-100`} />
   }
   if (company.logoUrl) {
     return (
       <img
         src={company.logoUrl}
         alt={`${company.name} logo`}
-        className={`${LOGO_SIZES[size]} shrink-0 border border-stone-200 bg-white object-contain p-1 dark:border-stone-700`}
+        className={`${LOGO_SIZES[size]} shrink-0 border border-stone-200 bg-white object-contain p-1`}
       />
     )
   }
@@ -170,9 +170,9 @@ export function CompanyLogo({ company, size = 'sm' }: { company: Company | undef
 // -----------------------------------------------------------------------------
 
 const DUE_TONES = {
-  ok: 'text-stone-600 dark:text-stone-300',
-  soon: 'text-amber-700 dark:text-amber-300',
-  overdue: 'text-rose-700 dark:text-rose-300',
+  ok: 'text-stone-600',
+  soon: 'text-amber-700',
+  overdue: 'text-rose-700',
 }
 
 /** A due date in mono that turns amber within two days and red once overdue */
@@ -185,7 +185,7 @@ export function DueTag({ date, today, prefix }: { date: string; today: string; p
       <span>
         {prefix && <span className="font-sans">{prefix} </span>}
         <span className="tabular-nums">{formatDate(date)}</span>
-        <span className="text-stone-400 dark:text-stone-500"> · </span>
+        <span className="text-stone-400"> · </span>
         <span>{dueLabel(date, today)}</span>
       </span>
     </span>
@@ -194,9 +194,9 @@ export function DueTag({ date, today, prefix }: { date: string; today: string; p
 
 /** A slim bar showing time used against the seven-day first review target */
 export function TargetBar({ progress, overdue }: { progress: number; overdue: boolean }) {
-  const tone = overdue ? 'bg-rose-600 dark:bg-rose-400' : progress >= 5 / 7 ? 'bg-amber-500' : 'bg-teal-600 dark:bg-teal-400'
+  const tone = overdue ? 'bg-rose-600' : progress >= 5 / 7 ? 'bg-amber-500' : 'bg-teal-600'
   return (
-    <div className="relative h-1 w-full overflow-hidden rounded-full bg-stone-200 dark:bg-stone-800" aria-hidden="true">
+    <div className="relative h-1 w-full overflow-hidden rounded-full bg-stone-200" aria-hidden="true">
       <div className={`absolute inset-y-0 left-0 rounded-full ${tone}`} style={{ width: `${Math.max(6, progress * 100)}%` }} />
     </div>
   )
@@ -217,11 +217,11 @@ interface EmptyStateProps {
 export function EmptyState({ icon: Icon, title, body, action, compact = false }: EmptyStateProps) {
   return (
     <div className={`flex flex-col items-center text-center ${compact ? 'px-4 py-8' : 'px-6 py-16'}`}>
-      <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-800 ring-1 ring-inset ring-teal-100 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/20">
+      <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-800 ring-1 ring-inset ring-teal-100">
         <Icon className="h-5 w-5" strokeWidth={2} />
       </span>
-      <p className="font-semibold text-stone-900 dark:text-white">{title}</p>
-      <p className="mt-1 max-w-sm text-sm text-stone-500 dark:text-stone-400">{body}</p>
+      <p className="font-semibold text-stone-900">{title}</p>
+      <p className="mt-1 max-w-sm text-sm text-stone-500">{body}</p>
       {action && <div className="mt-5">{action}</div>}
     </div>
   )
@@ -253,26 +253,26 @@ export function Dialog({ title, description, onClose, children, footer, wide = f
     <div className="fixed inset-0 z-[60] flex items-end justify-center p-0 sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={title}>
       <div className="ap-fade absolute inset-0 bg-stone-950/50 backdrop-blur-[2px]" onClick={onClose} />
       <div
-        className={`ap-pop relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl ring-1 ring-stone-200 sm:rounded-2xl dark:bg-stone-900 dark:ring-stone-800 ${
+        className={`ap-pop relative flex max-h-[92vh] w-full flex-col overflow-hidden rounded-t-2xl bg-white shadow-2xl ring-1 ring-stone-200 sm:rounded-2xl ${
           wide ? 'sm:max-w-2xl' : 'sm:max-w-lg'
         }`}
       >
-        <div className="flex items-start justify-between gap-4 border-b border-stone-200 px-5 py-4 sm:px-6 dark:border-stone-800">
+        <div className="flex items-start justify-between gap-4 border-b border-stone-200 px-5 py-4 sm:px-6">
           <div>
-            <h2 className="text-base font-semibold text-stone-900 dark:text-white">{title}</h2>
-            {description && <div className="mt-1 text-sm text-stone-500 dark:text-stone-400">{description}</div>}
+            <h2 className="text-base font-semibold text-stone-900">{title}</h2>
+            {description && <div className="mt-1 text-sm text-stone-500">{description}</div>}
           </div>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="-mr-2 rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-white"
+            className="-mr-2 rounded-lg p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
         <div className="overflow-y-auto px-5 py-5 sm:px-6">{children}</div>
-        <div className="flex flex-col-reverse gap-2 border-t border-stone-200 bg-stone-50 px-5 py-4 sm:flex-row sm:justify-end sm:px-6 dark:border-stone-800 dark:bg-stone-950/40">
+        <div className="flex flex-col-reverse gap-2 border-t border-stone-200 bg-stone-50 px-5 py-4 sm:flex-row sm:justify-end sm:px-6">
           {footer}
         </div>
       </div>
@@ -290,7 +290,7 @@ export function PageHeader({ title, description, actions }: { title: string; des
     <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <h2 className="sr-only">{title}</h2>
-        {description && <p className="max-w-2xl text-sm text-stone-500 dark:text-stone-400">{description}</p>}
+        {description && <p className="max-w-2xl text-sm text-stone-500">{description}</p>}
       </div>
       {actions && <div className="flex shrink-0 flex-wrap gap-2">{actions}</div>}
     </div>
@@ -322,8 +322,8 @@ export function FilterTabs<T extends string>({
             onClick={() => onChange(option.value)}
             className={`inline-flex shrink-0 items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
               isActive
-                ? 'bg-teal-900 text-white shadow-sm dark:bg-teal-700'
-                : 'text-stone-600 hover:bg-stone-200/60 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white'
+                ? 'bg-teal-900 text-white shadow-sm'
+                : 'text-stone-600 hover:bg-stone-200/60 hover:text-stone-900'
             }`}
           >
             {option.label}
@@ -331,7 +331,7 @@ export function FilterTabs<T extends string>({
               <span
                 style={MONO}
                 className={`rounded px-1.5 text-xs ${
-                  isActive ? 'bg-white/15 text-amber-200' : 'bg-stone-200/80 text-stone-600 dark:bg-stone-800 dark:text-stone-400'
+                  isActive ? 'bg-white/15 text-amber-200' : 'bg-stone-200/80 text-stone-600'
                 }`}
               >
                 {option.count}

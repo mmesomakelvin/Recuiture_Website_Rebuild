@@ -55,8 +55,8 @@ function useDismiss(isOpen: boolean, close: () => void) {
 function chipClass(active: boolean) {
   return `inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 ${
     active
-      ? 'border-teal-900 bg-teal-900 text-white dark:border-teal-500 dark:bg-teal-600'
-      : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300 dark:hover:border-stone-600 dark:hover:bg-stone-800'
+      ? 'border-teal-900 bg-teal-900 text-white'
+      : 'border-stone-300 bg-white text-stone-700 hover:border-stone-400 hover:bg-stone-50'
   }`
 }
 
@@ -77,7 +77,7 @@ function OptionRow({
       role={radio ? 'menuitemradio' : 'menuitemcheckbox'}
       aria-checked={checked}
       onClick={onToggle}
-      className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm text-stone-700 transition-colors hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+      className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm text-stone-700 transition-colors hover:bg-stone-100"
     >
       <span
         aria-hidden="true"
@@ -85,8 +85,8 @@ function OptionRow({
           radio ? 'rounded-full' : 'rounded-[5px]'
         } ${
           checked
-            ? 'border-teal-900 bg-teal-900 text-white dark:border-teal-500 dark:bg-teal-600'
-            : 'border-stone-300 dark:border-stone-600'
+            ? 'border-teal-900 bg-teal-900 text-white'
+            : 'border-stone-300'
         }`}
       >
         {checked && (radio ? <span className="h-1.5 w-1.5 rounded-full bg-white" /> : <Check className="h-3 w-3" strokeWidth={3} />)}
@@ -119,7 +119,7 @@ function FilterDropdown({
       >
         {label}
         {count > 0 && (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1.5 font-mono text-[11px] font-semibold text-teal-950">
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1.5 tabular-nums text-[11px] font-semibold text-teal-950">
             {count}
           </span>
         )}
@@ -128,7 +128,7 @@ function FilterDropdown({
       {isOpen && (
         <div
           role="menu"
-          className="absolute left-0 top-full z-30 mt-2 max-h-80 w-60 overflow-y-auto rounded-xl border border-stone-200 bg-white p-1.5 shadow-xl shadow-stone-900/10 dark:border-stone-700 dark:bg-stone-900 dark:shadow-black/40"
+          className="absolute left-0 top-full z-30 mt-2 max-h-80 w-60 overflow-y-auto rounded-xl border border-stone-200 bg-white p-1.5 shadow-xl shadow-stone-900/10"
         >
           {children}
         </div>
@@ -189,16 +189,16 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
       onClick={toggleGraduate}
       className={`inline-flex h-10 items-center gap-2.5 rounded-full border pl-3 pr-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400 ${
         state.graduateFriendlyOnly
-          ? 'border-amber-400 bg-amber-50 text-amber-950 dark:border-amber-400/60 dark:bg-amber-400/10 dark:text-amber-100'
-          : 'border-stone-300 bg-white text-stone-700 hover:border-amber-300 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300'
+          ? 'border-amber-400 bg-amber-50 text-amber-950'
+          : 'border-stone-300 bg-white text-stone-700 hover:border-amber-300'
       }`}
     >
-      <GraduationCap className="h-4 w-4 text-amber-600 dark:text-amber-300" />
+      <GraduationCap className="h-4 w-4 text-amber-600" />
       Graduate-friendly
       <span
         aria-hidden="true"
         className={`relative h-5 w-9 rounded-full transition-colors ${
-          state.graduateFriendlyOnly ? 'bg-amber-400' : 'bg-stone-300 dark:bg-stone-700'
+          state.graduateFriendlyOnly ? 'bg-amber-400' : 'bg-stone-300'
         }`}
       >
         <span
@@ -227,7 +227,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
           </FilterDropdown>
         ))}
         <FilterDropdown label="Salary" count={state.salaryRange ? 1 : 0}>
-          <p className="px-3 pb-1 pt-2 text-xs font-medium text-stone-500 dark:text-stone-400">Monthly, in naira</p>
+          <p className="px-3 pb-1 pt-2 text-xs font-medium text-stone-500">Monthly, in naira</p>
           {options.salaryRanges.map((range) => (
             <OptionRow
               key={range.value}
@@ -238,7 +238,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
             />
           ))}
         </FilterDropdown>
-        <span aria-hidden="true" className="mx-1 h-6 w-px bg-stone-300 dark:bg-stone-700" />
+        <span aria-hidden="true" className="mx-1 h-6 w-px bg-stone-300" />
         {graduateToggle}
       </div>
 
@@ -248,7 +248,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
           <SlidersHorizontal className="h-4 w-4" />
           Filters
           {activeCount > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1.5 font-mono text-[11px] font-semibold text-teal-950">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-400 px-1.5 tabular-nums text-[11px] font-semibold text-teal-950">
               {activeCount}
             </span>
           )}
@@ -265,7 +265,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
               type="button"
               onClick={chip.remove}
               aria-label={`Remove filter ${chip.label}`}
-              className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 py-1 pl-3 pr-2 text-xs font-semibold text-teal-900 ring-1 ring-inset ring-teal-200 transition-colors hover:bg-teal-100 dark:bg-teal-400/10 dark:text-teal-200 dark:ring-teal-400/25 dark:hover:bg-teal-400/20"
+              className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 py-1 pl-3 pr-2 text-xs font-semibold text-teal-900 ring-1 ring-inset ring-teal-200 transition-colors hover:bg-teal-100"
             >
               {chip.label}
               <X className="h-3.5 w-3.5" />
@@ -274,7 +274,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
           <button
             type="button"
             onClick={onClearAll}
-            className="px-2 py-1 text-xs font-semibold text-stone-600 underline decoration-stone-300 underline-offset-4 hover:text-teal-900 hover:decoration-teal-900 dark:text-stone-400 dark:hover:text-teal-200"
+            className="px-2 py-1 text-xs font-semibold text-stone-600 underline decoration-stone-300 underline-offset-4 hover:text-teal-900 hover:decoration-teal-900"
           >
             Clear all
           </button>
@@ -285,14 +285,14 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
       {isSheetOpen && (
         <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" aria-label="Filters">
           <div className="absolute inset-0 bg-stone-950/50 backdrop-blur-sm" onClick={() => setIsSheetOpen(false)} />
-          <div className="jb-sheet absolute inset-x-0 bottom-0 flex max-h-[88vh] flex-col rounded-t-3xl bg-white dark:bg-stone-900">
-            <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4 dark:border-stone-800">
-              <h2 className="text-lg font-semibold text-stone-900 dark:text-white">Filters</h2>
+          <div className="jb-sheet absolute inset-x-0 bottom-0 flex max-h-[88vh] flex-col rounded-t-3xl bg-white">
+            <div className="flex items-center justify-between border-b border-stone-200 px-5 py-4">
+              <h2 className="text-lg font-semibold text-stone-900">Filters</h2>
               <button
                 type="button"
                 onClick={() => setIsSheetOpen(false)}
                 aria-label="Close filters"
-                className="rounded-full p-2 text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800"
+                className="rounded-full p-2 text-stone-600 hover:bg-stone-100"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -300,7 +300,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
             <div className="flex-1 space-y-6 overflow-y-auto px-5 py-5">
               {groups.map((group) => (
                 <fieldset key={group.key}>
-                  <legend className="text-sm font-semibold text-stone-900 dark:text-stone-100">{group.label}</legend>
+                  <legend className="text-sm font-semibold text-stone-900">{group.label}</legend>
                   <div className="mt-2.5 flex flex-wrap gap-2">
                     {group.options.map((option) => {
                       const checked = (state[group.key] as string[]).includes(option.value)
@@ -320,7 +320,7 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
                 </fieldset>
               ))}
               <fieldset>
-                <legend className="text-sm font-semibold text-stone-900 dark:text-stone-100">Monthly salary</legend>
+                <legend className="text-sm font-semibold text-stone-900">Monthly salary</legend>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {options.salaryRanges.map((range) => (
                     <button
@@ -336,18 +336,18 @@ export function FilterBar({ state, options, resultCount, onChange, onClearAll }:
                 </div>
               </fieldset>
             </div>
-            <div className="flex gap-3 border-t border-stone-200 px-5 py-4 dark:border-stone-800">
+            <div className="flex gap-3 border-t border-stone-200 px-5 py-4">
               <button
                 type="button"
                 onClick={onClearAll}
-                className="h-12 rounded-xl border border-stone-300 px-5 text-sm font-semibold text-stone-700 dark:border-stone-700 dark:text-stone-300"
+                className="h-12 rounded-xl border border-stone-300 px-5 text-sm font-semibold text-stone-700"
               >
                 Clear all
               </button>
               <button
                 type="button"
                 onClick={() => setIsSheetOpen(false)}
-                className="h-12 flex-1 rounded-xl bg-teal-900 text-sm font-semibold text-white dark:bg-teal-600"
+                className="h-12 flex-1 rounded-xl bg-teal-900 text-sm font-semibold text-white"
               >
                 Show {resultCount} {resultCount === 1 ? 'job' : 'jobs'}
               </button>

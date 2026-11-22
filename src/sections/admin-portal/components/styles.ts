@@ -27,7 +27,9 @@ export const FONT_STACK = {
   '--font-display': POPPINS,
   '--font-sans': POPPINS,
   '--font-body': POPPINS,
-  '--font-mono': '"IBM Plex Mono", ui-monospace, monospace',
+  '--font-mono': POPPINS,
+  // White-only design: keep native controls light even when the host is dark
+  colorScheme: 'light',
 } as React.CSSProperties
 
 /** Even-width figures for dates, counts and reference codes so columns line up */
@@ -35,20 +37,20 @@ export const MONO = { fontVariantNumeric: 'tabular-nums' } as React.CSSPropertie
 
 // Buttons
 const BTN_BASE =
-  'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 dark:focus-visible:ring-offset-stone-950'
+  'inline-flex items-center justify-center gap-2 rounded-xl text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50'
 
-export const BTN_PRIMARY = `${BTN_BASE} bg-teal-800 px-4 py-2 text-white shadow-sm hover:bg-teal-900 dark:bg-teal-600 dark:hover:bg-teal-500`
-export const BTN_SECONDARY = `${BTN_BASE} border border-stone-300 bg-white px-4 py-2 text-stone-800 hover:bg-stone-50 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:hover:bg-stone-800`
-export const BTN_GHOST = `${BTN_BASE} px-3 py-2 text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-300 dark:hover:bg-stone-800 dark:hover:text-white`
-export const BTN_DANGER = `${BTN_BASE} bg-rose-700 px-4 py-2 text-white shadow-sm hover:bg-rose-800 dark:bg-rose-600 dark:hover:bg-rose-500`
+export const BTN_PRIMARY = `${BTN_BASE} bg-teal-800 px-4 py-2 text-white shadow-sm hover:bg-teal-900`
+export const BTN_SECONDARY = `${BTN_BASE} border border-stone-300 bg-white px-4 py-2 text-stone-800 hover:bg-stone-50`
+export const BTN_GHOST = `${BTN_BASE} px-3 py-2 text-stone-600 hover:bg-stone-100 hover:text-stone-900`
+export const BTN_DANGER = `${BTN_BASE} bg-rose-700 px-4 py-2 text-white shadow-sm hover:bg-rose-800`
 
 // Form fields
 export const INPUT =
-  'block w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 shadow-sm transition focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/20 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/20'
-export const LABEL = 'mb-1.5 block text-sm font-medium text-stone-800 dark:text-stone-200'
-export const HINT = 'mt-1 text-xs text-stone-500 dark:text-stone-400'
+  'block w-full rounded-lg border border-stone-300 bg-white px-3 py-2 text-sm text-stone-900 placeholder:text-stone-400 shadow-sm transition focus:border-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600/20'
+export const LABEL = 'mb-1.5 block text-sm font-medium text-stone-800'
+export const HINT = 'mt-1 text-xs text-stone-500'
 
 // Surfaces
 export const CARD =
-  'rounded-2xl bg-white shadow-[0_2px_14px_rgba(28,25,23,0.06)] ring-1 ring-stone-200/70 dark:bg-stone-900 dark:shadow-none dark:ring-stone-800'
-export const SECTION_TITLE = 'text-sm font-semibold text-stone-900 dark:text-white'
+  'rounded-2xl bg-white shadow-[0_2px_14px_rgba(28,25,23,0.06)] ring-1 ring-stone-200/70'
+export const SECTION_TITLE = 'text-sm font-semibold text-stone-900'

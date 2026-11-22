@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 
-const montserrat = Montserrat({
+// Poppins is the EduBridge brand font; exposed as --font-poppins for Tailwind's font-sans
+const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  variable: "--font-poppins",
 })
 
 export const metadata: Metadata = {
@@ -40,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className={`${montserrat.className} flex min-h-full flex-col`}>{children}</body>
+    <html lang="en" className={`${poppins.variable} h-full bg-white antialiased`}>
+      <body className={`${poppins.className} flex min-h-full flex-col bg-white`}>{children}</body>
     </html>
   )
 }

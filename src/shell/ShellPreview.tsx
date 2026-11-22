@@ -47,7 +47,7 @@ export default function ShellPreview() {
       onPostJob={() => console.log('Post a job')}
     >
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="mb-8 inline-flex flex-wrap gap-1 rounded-xl border border-stone-200 bg-white p-1 dark:border-stone-800 dark:bg-stone-900">
+        <div className="mb-8 inline-flex flex-wrap gap-1 rounded-xl border border-stone-200 bg-white p-1">
           {(Object.keys(ROLE_LABELS) as PreviewRole[]).map((option) => (
             <button
               key={option}
@@ -55,8 +55,8 @@ export default function ShellPreview() {
               onClick={() => setRole(option)}
               className={
                 option === role
-                  ? 'rounded-lg bg-teal-900 px-3 py-1.5 text-sm font-medium text-white dark:bg-teal-700'
-                  : 'rounded-lg px-3 py-1.5 text-sm font-medium text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-800'
+                  ? 'rounded-lg bg-teal-900 px-3 py-1.5 text-sm font-medium text-white'
+                  : 'rounded-lg px-3 py-1.5 text-sm font-medium text-stone-600 hover:bg-stone-100'
               }
             >
               {ROLE_LABELS[option]}
@@ -64,15 +64,15 @@ export default function ShellPreview() {
           ))}
         </div>
 
-        <h1 className="text-2xl font-bold text-stone-900 dark:text-white">Content area</h1>
-        <p className="mt-2 max-w-2xl text-stone-600 dark:text-stone-400">
+        <h1 className="text-2xl font-bold text-stone-900">Content area</h1>
+        <p className="mt-2 max-w-2xl text-stone-600">
           Section screens such as the job board render here. Use the switcher above to see the header as a visitor or as each signed-in role.
         </p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((placeholder) => (
             <div
               key={placeholder}
-              className="h-40 rounded-xl border border-dashed border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
+              className="h-40 rounded-xl border border-dashed border-stone-300 bg-white"
             />
           ))}
         </div>

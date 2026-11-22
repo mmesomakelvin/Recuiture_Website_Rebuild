@@ -37,7 +37,7 @@ function AccountLayout({
       <style>{PORTAL_STYLES}</style>
       <div className="cp-rise w-full max-w-md">
         {continueTo && (
-          <div className="mb-4 flex items-center gap-3 rounded-2xl bg-teal-800 px-4 py-3 text-white shadow-sm dark:bg-teal-700">
+          <div className="mb-4 flex items-center gap-3 rounded-2xl bg-teal-800 px-4 py-3 text-white shadow-sm">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/15">
               <BriefcaseBusiness className="h-4 w-4" />
             </span>
@@ -53,13 +53,13 @@ function AccountLayout({
         <div className={`${CARD} p-6 sm:p-8`}>
           <div className="mb-6 flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400 text-base font-bold text-teal-950">R</span>
-            <span className="text-lg font-semibold tracking-tight text-teal-900 dark:text-white">Recruiture</span>
+            <span className="text-lg font-semibold tracking-tight text-teal-900">Recruiture</span>
           </div>
-          <h1 className="text-2xl font-semibold tracking-tight text-stone-900 dark:text-white">{title}</h1>
-          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">{subtitle}</p>
+          <h1 className="text-2xl font-semibold tracking-tight text-stone-900">{title}</h1>
+          <p className="mt-1 text-sm text-stone-500">{subtitle}</p>
 
           {errorMessage && (
-            <div role="alert" className="mt-5 flex items-start gap-2.5 rounded-xl bg-rose-50 px-3.5 py-3 text-sm text-rose-800 ring-1 ring-inset ring-rose-200 dark:bg-rose-500/10 dark:text-rose-200 dark:ring-rose-500/25">
+            <div role="alert" className="mt-5 flex items-start gap-2.5 rounded-xl bg-rose-50 px-3.5 py-3 text-sm text-rose-800 ring-1 ring-inset ring-rose-200">
               <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" />
               {errorMessage}
             </div>
@@ -68,7 +68,7 @@ function AccountLayout({
           <div className="mt-6">{children}</div>
         </div>
 
-        {footer && <div className="mt-5 text-center text-sm text-stone-600 dark:text-stone-300">{footer}</div>}
+        {footer && <div className="mt-5 text-center text-sm text-stone-600">{footer}</div>}
       </div>
     </div>
   )
@@ -115,7 +115,7 @@ function PasswordField({
           type="button"
           onClick={() => setIsVisible((visible) => !visible)}
           aria-label={isVisible ? 'Hide password' : 'Show password'}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 hover:text-stone-700 dark:hover:bg-stone-800 dark:hover:text-stone-200"
+          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-stone-400 hover:bg-stone-100 hover:text-stone-700"
         >
           {isVisible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
         </button>
@@ -125,8 +125,8 @@ function PasswordField({
           {PASSWORD_RULES.map((rule) => {
             const met = rule.test(value)
             return (
-              <li key={rule.label} className={`inline-flex items-center gap-1.5 text-xs ${met ? 'text-teal-700 dark:text-teal-300' : 'text-stone-500 dark:text-stone-400'}`}>
-                <span className={`flex h-3.5 w-3.5 items-center justify-center rounded-full ${met ? 'bg-teal-600 text-white' : 'bg-stone-200 dark:bg-stone-700'}`}>
+              <li key={rule.label} className={`inline-flex items-center gap-1.5 text-xs ${met ? 'text-teal-700' : 'text-stone-500'}`}>
+                <span className={`flex h-3.5 w-3.5 items-center justify-center rounded-full ${met ? 'bg-teal-600 text-white' : 'bg-stone-200'}`}>
                   {met && <Check className="h-2.5 w-2.5" strokeWidth={3} />}
                 </span>
                 {rule.label}
@@ -296,7 +296,7 @@ export function CreateAccountScreen({ continueTo, errorMessage, onSignUp, onGoTo
           error={errors.password}
         />
         <div>
-          <label className="flex items-start gap-3 text-sm text-stone-600 dark:text-stone-300">
+          <label className="flex items-start gap-3 text-sm text-stone-600">
             <input
               type="checkbox"
               checked={agreed}
@@ -353,7 +353,7 @@ export function ForgotPasswordScreen({ onRequestPasswordReset, onGoToSignIn }: A
   if (sentTo) {
     return (
       <AccountLayout title="Check your email" subtitle="If an account uses that address, a reset link is on its way." footer={back}>
-        <div className="flex items-start gap-3 rounded-xl bg-teal-50 p-4 text-sm text-teal-900 dark:bg-teal-400/10 dark:text-teal-100">
+        <div className="flex items-start gap-3 rounded-xl bg-teal-50 p-4 text-sm text-teal-900">
           <MailCheck className="mt-0.5 h-5 w-5 shrink-0" />
           <p>
             We sent the link to <span className="font-semibold">{sentTo}</span>. Open it on this device to set a new password. If it does not arrive in a few

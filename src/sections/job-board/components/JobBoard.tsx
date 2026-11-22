@@ -105,7 +105,7 @@ export function JobBoard({
   )
 
   return (
-    <div className="min-h-full bg-stone-50 dark:bg-stone-950">
+    <div className="min-h-full bg-white">
       <style>{JOB_BOARD_STYLES}</style>
 
       {/* Mobile full-page detail */}
@@ -144,29 +144,29 @@ export function JobBoard({
             <form
               onSubmit={submitSearch}
               role="search"
-              className="mt-7 flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center sm:gap-0 dark:bg-stone-900"
+              className="mt-7 flex flex-col gap-2 rounded-2xl bg-white p-2 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.6)] sm:flex-row sm:items-center sm:gap-0"
             >
-              <label className="flex flex-1 items-center gap-3 rounded-xl px-3 py-2.5 focus-within:bg-stone-50 dark:focus-within:bg-stone-800">
-                <Search className="h-5 w-5 shrink-0 text-teal-800 dark:text-teal-300" />
+              <label className="flex flex-1 items-center gap-3 rounded-xl px-3 py-2.5 focus-within:bg-stone-50">
+                <Search className="h-5 w-5 shrink-0 text-teal-800" />
                 <span className="sr-only">Job title, skill or company</span>
                 <input
                   type="search"
                   value={draftKeyword}
                   onChange={(event) => setDraftKeyword(event.target.value)}
                   placeholder="Job title, skill or company"
-                  className="w-full bg-transparent text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none dark:text-white"
+                  className="w-full bg-transparent text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none"
                 />
               </label>
-              <span aria-hidden="true" className="hidden h-8 w-px bg-stone-200 sm:block dark:bg-stone-700" />
-              <label className="flex items-center gap-3 rounded-xl px-3 py-2.5 focus-within:bg-stone-50 sm:w-64 dark:focus-within:bg-stone-800">
-                <MapPin className="h-5 w-5 shrink-0 text-teal-800 dark:text-teal-300" />
+              <span aria-hidden="true" className="hidden h-8 w-px bg-stone-200 sm:block" />
+              <label className="flex items-center gap-3 rounded-xl px-3 py-2.5 focus-within:bg-stone-50 sm:w-64">
+                <MapPin className="h-5 w-5 shrink-0 text-teal-800" />
                 <span className="sr-only">City, state or Remote</span>
                 <input
                   type="text"
                   value={draftLocation}
                   onChange={(event) => setDraftLocation(event.target.value)}
                   placeholder="City, state or Remote"
-                  className="w-full bg-transparent text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none dark:text-white"
+                  className="w-full bg-transparent text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none"
                 />
               </label>
               <button
@@ -179,11 +179,11 @@ export function JobBoard({
 
             <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-teal-100/80">
               <span>
-                <span className="font-mono font-semibold tabular-nums text-white">{jobs.length}</span> live jobs
+                <span className="font-semibold tabular-nums text-white">{jobs.length}</span> live jobs
               </span>
               <span aria-hidden="true" className="h-1 w-1 rounded-full bg-teal-100/40" />
               <span>
-                <span className="font-mono font-semibold tabular-nums text-amber-300">{graduateFriendlyCount}</span>{' '}
+                <span className="font-semibold tabular-nums text-amber-300">{graduateFriendlyCount}</span>{' '}
                 open to EduBridge graduates
               </span>
             </p>
@@ -192,7 +192,7 @@ export function JobBoard({
 
         <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
           {/* Filters */}
-          <div className="border-b border-stone-200 py-5 dark:border-stone-800">
+          <div className="border-b border-stone-200 py-5">
             <FilterBar
               state={search}
               options={filterOptions}
@@ -204,23 +204,23 @@ export function JobBoard({
 
           {/* Result count and sort */}
           <div className="flex items-center justify-between gap-4 py-4">
-            <p className="text-sm text-stone-600 dark:text-stone-400" aria-live="polite">
-              <span className="font-mono font-semibold tabular-nums text-stone-900 dark:text-white">{results.length}</span>{' '}
+            <p className="text-sm text-stone-600" aria-live="polite">
+              <span className="font-semibold tabular-nums text-stone-900">{results.length}</span>{' '}
               {results.length === 1 ? 'job' : 'jobs'}
               {search.keyword && (
                 <>
                   {' '}
-                  for <span className="font-semibold text-stone-900 dark:text-white">"{search.keyword}"</span>
+                  for <span className="font-semibold text-stone-900">"{search.keyword}"</span>
                 </>
               )}
             </p>
-            <label className="relative flex items-center gap-2 text-sm text-stone-600 dark:text-stone-400">
+            <label className="relative flex items-center gap-2 text-sm text-stone-600">
               <ArrowUpDown className="h-4 w-4" />
               <span className="sr-only sm:not-sr-only">Sort by</span>
               <select
                 value={search.sort}
                 onChange={(event) => updateSearch({ ...search, sort: event.target.value as SortOption })}
-                className="cursor-pointer rounded-lg border border-stone-300 bg-white py-1.5 pl-2.5 pr-8 text-sm font-medium text-stone-900 focus:border-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-800/20 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100"
+                className="cursor-pointer rounded-lg border border-stone-300 bg-white py-1.5 pl-2.5 pr-8 text-sm font-medium text-stone-900 focus:border-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-800/20"
               >
                 {filterOptions.sortOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -232,18 +232,18 @@ export function JobBoard({
           </div>
 
           {results.length === 0 ? (
-            <div className="jb-rise mx-auto flex max-w-md flex-col items-center rounded-3xl border border-dashed border-stone-300 bg-white px-6 py-16 text-center dark:border-stone-700 dark:bg-stone-900">
-              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-800 dark:bg-teal-400/10 dark:text-teal-300">
+            <div className="jb-rise mx-auto flex max-w-md flex-col items-center rounded-3xl border border-dashed border-stone-300 bg-white px-6 py-16 text-center">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-teal-800">
                 <SearchX className="h-7 w-7" />
               </span>
-              <h2 className="mt-5 text-lg font-semibold text-stone-900 dark:text-white">No jobs match your search</h2>
-              <p className="mt-2 text-sm leading-relaxed text-stone-600 dark:text-stone-400">
+              <h2 className="mt-5 text-lg font-semibold text-stone-900">No jobs match your search</h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
                 Try removing a filter, widening the salary range or searching a different location.
               </p>
               <button
                 type="button"
                 onClick={clearAll}
-                className="mt-6 h-11 rounded-xl bg-teal-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500"
+                className="mt-6 h-11 rounded-xl bg-teal-900 px-6 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
               >
                 Clear filters
               </button>

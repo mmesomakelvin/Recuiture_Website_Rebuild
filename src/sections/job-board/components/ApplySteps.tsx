@@ -14,8 +14,8 @@ function formatFileSize(kb: number) {
 function StepHeading({ title, description }: { title: string; description: string }) {
   return (
     <div>
-      <h2 className="text-xl font-bold tracking-tight text-stone-900 sm:text-2xl dark:text-white">{title}</h2>
-      <p className="mt-1.5 text-sm leading-relaxed text-stone-600 dark:text-stone-400">{description}</p>
+      <h2 className="text-xl font-bold tracking-tight text-stone-900 sm:text-2xl">{title}</h2>
+      <p className="mt-1.5 text-sm leading-relaxed text-stone-600">{description}</p>
     </div>
   )
 }
@@ -23,7 +23,7 @@ function StepHeading({ title, description }: { title: string; description: strin
 function FieldError({ message }: { message?: string }) {
   if (!message) return null
   return (
-    <p role="alert" className="mt-2 flex items-center gap-1.5 text-sm font-medium text-red-700 dark:text-red-400">
+    <p role="alert" className="mt-2 flex items-center gap-1.5 text-sm font-medium text-red-700">
       <AlertCircle className="h-4 w-4 shrink-0" />
       {message}
     </p>
@@ -35,10 +35,10 @@ function RadioDot({ checked }: { checked: boolean }) {
     <span
       aria-hidden="true"
       className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-        checked ? 'border-teal-900 dark:border-teal-400' : 'border-stone-300 dark:border-stone-600'
+        checked ? 'border-teal-900' : 'border-stone-300'
       }`}
     >
-      {checked && <span className="h-2.5 w-2.5 rounded-full bg-teal-900 dark:bg-teal-400" />}
+      {checked && <span className="h-2.5 w-2.5 rounded-full bg-teal-900" />}
     </span>
   )
 }
@@ -46,8 +46,8 @@ function RadioDot({ checked }: { checked: boolean }) {
 function optionCardClass(checked: boolean) {
   return `flex w-full cursor-pointer items-start gap-4 rounded-2xl border p-4 text-left transition-all sm:p-5 ${
     checked
-      ? 'border-teal-900 bg-teal-50/60 ring-1 ring-teal-900 dark:border-teal-400 dark:bg-teal-400/5 dark:ring-teal-400'
-      : 'border-stone-200 bg-white hover:border-stone-300 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600'
+      ? 'border-teal-900 bg-teal-50/60 ring-1 ring-teal-900'
+      : 'border-stone-200 bg-white hover:border-stone-300'
   }`
 }
 
@@ -101,17 +101,17 @@ export function CvStep({ savedCv, source, file, error, onSourceChange, onFileCha
           >
             <RadioDot checked={source === 'saved'} />
             <span className="flex min-w-0 flex-1 items-center gap-3.5">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-900 text-amber-300 dark:bg-teal-700">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-900 text-amber-300">
                 <FileText className="h-5 w-5" />
               </span>
               <span className="min-w-0">
-                <span className="block text-xs font-semibold uppercase tracking-wider text-teal-800 dark:text-teal-300">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-teal-800">
                   From your profile
                 </span>
-                <span className="mt-0.5 block truncate text-[15px] font-semibold text-stone-900 dark:text-white">
+                <span className="mt-0.5 block truncate text-[15px] font-semibold text-stone-900">
                   {savedCv.fileName}
                 </span>
-                <span className="mt-0.5 block text-xs text-stone-500 dark:text-stone-400">
+                <span className="mt-0.5 block text-xs text-stone-500">
                   {formatFileSize(savedCv.fileSizeKb)} · Uploaded {formatDate(savedCv.uploadedAt)}
                 </span>
               </span>
@@ -134,19 +134,19 @@ export function CvStep({ savedCv, source, file, error, onSourceChange, onFileCha
         >
           <RadioDot checked={source === 'upload'} />
           <div className="min-w-0 flex-1">
-            <p className="text-[15px] font-semibold text-stone-900 dark:text-white">Upload a new CV</p>
-            <p className="mt-0.5 text-xs text-stone-500 dark:text-stone-400">PDF or Word document, up to 5MB</p>
+            <p className="text-[15px] font-semibold text-stone-900">Upload a new CV</p>
+            <p className="mt-0.5 text-xs text-stone-500">PDF or Word document, up to 5MB</p>
 
             {source === 'upload' && (
               <div className="mt-4">
                 {file ? (
-                  <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3 dark:border-stone-700 dark:bg-stone-950">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-900 dark:bg-teal-400/10 dark:text-teal-200">
+                  <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-white p-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-900">
                       <Check className="h-5 w-5" />
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-semibold text-stone-900 dark:text-white">{file.name}</p>
-                      <p className="text-xs text-stone-500 dark:text-stone-400">{formatFileSize(file.size / 1024)}</p>
+                      <p className="truncate text-sm font-semibold text-stone-900">{file.name}</p>
+                      <p className="text-xs text-stone-500">{formatFileSize(file.size / 1024)}</p>
                     </div>
                     <button
                       type="button"
@@ -155,7 +155,7 @@ export function CvStep({ savedCv, source, file, error, onSourceChange, onFileCha
                         onFileChange(null)
                       }}
                       aria-label="Remove file"
-                      className="rounded-full p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900 dark:hover:bg-stone-800 dark:hover:text-white"
+                      className="rounded-full p-1.5 text-stone-500 hover:bg-stone-100 hover:text-stone-900"
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -174,13 +174,13 @@ export function CvStep({ savedCv, source, file, error, onSourceChange, onFileCha
                     }}
                     className={`flex cursor-pointer flex-col items-center rounded-xl border-2 border-dashed px-4 py-7 text-center transition-colors ${
                       isDragging
-                        ? 'border-amber-400 bg-amber-50 dark:bg-amber-400/10'
-                        : 'border-stone-300 hover:border-teal-800 hover:bg-white dark:border-stone-600 dark:hover:border-teal-400 dark:hover:bg-stone-950'
+                        ? 'border-amber-400 bg-amber-50'
+                        : 'border-stone-300 hover:border-teal-800 hover:bg-white'
                     }`}
                   >
-                    <UploadCloud className="h-8 w-8 text-teal-800 dark:text-teal-300" />
-                    <span className="mt-2 text-sm font-semibold text-stone-900 dark:text-white">
-                      Drag your CV here or <span className="text-teal-800 underline underline-offset-4 dark:text-teal-300">browse</span>
+                    <UploadCloud className="h-8 w-8 text-teal-800" />
+                    <span className="mt-2 text-sm font-semibold text-stone-900">
+                      Drag your CV here or <span className="text-teal-800 underline underline-offset-4">browse</span>
                     </span>
                     <input
                       ref={inputRef}
@@ -234,11 +234,11 @@ export function CoverLetterStep({ jobTitle, companyName, value, onChange }: Cove
           onChange={(event) => onChange(event.target.value)}
           rows={10}
           placeholder={`Dear ${companyName} hiring team,`}
-          className="block w-full resize-y rounded-2xl border border-stone-300 bg-white px-4 py-3.5 text-[15px] leading-relaxed text-stone-900 placeholder:text-stone-400 focus:border-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-800/10 dark:border-stone-700 dark:bg-stone-900 dark:text-white dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
+          className="block w-full resize-y rounded-2xl border border-stone-300 bg-white px-4 py-3.5 text-[15px] leading-relaxed text-stone-900 placeholder:text-stone-400 focus:border-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-800/10"
         />
-        <div className="mt-2 flex items-center justify-between text-xs text-stone-500 dark:text-stone-400">
+        <div className="mt-2 flex items-center justify-between text-xs text-stone-500">
           <span>You can skip this step.</span>
-          <span className={`font-mono tabular-nums ${remaining < 100 ? 'text-amber-700 dark:text-amber-300' : ''}`}>
+          <span className={`tabular-nums ${remaining < 100 ? 'text-amber-700' : ''}`}>
             {value.length.toLocaleString('en-NG')} / {COVER_LETTER_LIMIT.toLocaleString('en-NG')}
           </span>
         </div>
@@ -270,31 +270,31 @@ function QuestionField({
   onAnswer: (value: string) => void
 }) {
   const inputId = `apply-q-${question.id}`
-  const inputClass = `block w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-4 dark:bg-stone-900 dark:text-white ${
+  const inputClass = `block w-full rounded-xl border bg-white px-4 py-3 text-[15px] text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-4 ${
     error
       ? 'border-red-400 focus:border-red-500 focus:ring-red-500/10'
-      : 'border-stone-300 focus:border-teal-800 focus:ring-teal-800/10 dark:border-stone-700 dark:focus:border-teal-400 dark:focus:ring-teal-400/10'
+      : 'border-stone-300 focus:border-teal-800 focus:ring-teal-800/10'
   }`
 
   const choiceClass = (selected: boolean) =>
     `rounded-xl border px-4 py-2.5 text-sm font-semibold transition-colors ${
       selected
-        ? 'border-teal-900 bg-teal-900 text-white dark:border-teal-500 dark:bg-teal-600'
-        : 'border-stone-300 bg-white text-stone-700 hover:border-teal-800 hover:text-teal-900 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-300 dark:hover:border-teal-400 dark:hover:text-teal-200'
+        ? 'border-teal-900 bg-teal-900 text-white'
+        : 'border-stone-300 bg-white text-stone-700 hover:border-teal-800 hover:text-teal-900'
     }`
 
   return (
     <fieldset>
-      <legend className="flex flex-wrap items-center gap-2 text-[15px] font-semibold text-stone-900 dark:text-white">
+      <legend className="flex flex-wrap items-center gap-2 text-[15px] font-semibold text-stone-900">
         <label htmlFor={question.type === 'short-text' || question.type === 'number' ? inputId : undefined}>
           {question.question}
         </label>
         {question.required ? (
-          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-900 dark:bg-amber-400/15 dark:text-amber-200">
+          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-amber-900">
             Required
           </span>
         ) : (
-          <span className="text-xs font-medium text-stone-500 dark:text-stone-400">Optional</span>
+          <span className="text-xs font-medium text-stone-500">Optional</span>
         )}
       </legend>
 
@@ -309,7 +309,7 @@ function QuestionField({
             inputMode="numeric"
             value={value}
             onChange={(event) => onAnswer(event.target.value.replace(/[^\d]/g, ''))}
-            className={`${inputClass} font-mono tabular-nums sm:max-w-xs`}
+            className={`${inputClass} tabular-nums sm:max-w-xs`}
           />
         )}
         {question.type === 'yes-no' && (
@@ -360,7 +360,7 @@ export function QuestionsStep({ questions, answers, errors, onAnswer }: Question
       <div className="space-y-7">
         {questions.map((question, index) => (
           <div key={question.id} className="flex gap-4">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-200 font-mono text-xs font-semibold text-stone-700 dark:bg-stone-800 dark:text-stone-300">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-stone-200 tabular-nums text-xs font-semibold text-stone-700">
               {index + 1}
             </span>
             <div className="min-w-0 flex-1">
@@ -402,13 +402,13 @@ function ReviewBlock({
   children: React.ReactNode
 }) {
   return (
-    <section className="rounded-2xl border border-stone-200 bg-white p-5 dark:border-stone-800 dark:bg-stone-900">
+    <section className="rounded-2xl border border-stone-200 bg-white p-5">
       <div className="flex items-center justify-between gap-4">
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-500 dark:text-stone-400">{title}</h3>
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-500">{title}</h3>
         <button
           type="button"
           onClick={onEdit}
-          className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold text-teal-800 hover:bg-teal-50 dark:text-teal-300 dark:hover:bg-teal-400/10"
+          className="inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold text-teal-800 hover:bg-teal-50"
         >
           <Pencil className="h-3.5 w-3.5" />
           Edit
@@ -429,41 +429,41 @@ export function ReviewStep({ currentUser, cvLabel, cvMeta, coverLetter, question
       <div className="space-y-3">
         <ReviewBlock title="CV" onEdit={() => onEdit('cv')}>
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-900 text-amber-300 dark:bg-teal-700">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-900 text-amber-300">
               <FileText className="h-5 w-5" />
             </span>
             <div className="min-w-0">
-              <p className="truncate text-[15px] font-semibold text-stone-900 dark:text-white">{cvLabel}</p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">{cvMeta}</p>
+              <p className="truncate text-[15px] font-semibold text-stone-900">{cvLabel}</p>
+              <p className="text-xs text-stone-500">{cvMeta}</p>
             </div>
           </div>
         </ReviewBlock>
 
         <ReviewBlock title="Cover letter" onEdit={() => onEdit('cover-letter')}>
           {coverLetter.trim() ? (
-            <p className="line-clamp-6 whitespace-pre-line text-[15px] leading-relaxed text-stone-700 dark:text-stone-300">
+            <p className="line-clamp-6 whitespace-pre-line text-[15px] leading-relaxed text-stone-700">
               {coverLetter}
             </p>
           ) : (
-            <p className="text-sm italic text-stone-500 dark:text-stone-400">No cover letter added</p>
+            <p className="text-sm italic text-stone-500">No cover letter added</p>
           )}
         </ReviewBlock>
 
         {questions.length > 0 && (
           <ReviewBlock title="Screening questions" onEdit={() => onEdit('questions')}>
-            <dl className="divide-y divide-stone-200 dark:divide-stone-800">
+            <dl className="divide-y divide-stone-200">
               {questions.map((question) => (
                 <div key={question.id} className="py-3 first:pt-0 last:pb-0">
-                  <dt className="text-sm text-stone-600 dark:text-stone-400">{question.question}</dt>
-                  <dd className="mt-1 text-[15px] font-semibold text-stone-900 dark:text-white">
+                  <dt className="text-sm text-stone-600">{question.question}</dt>
+                  <dd className="mt-1 text-[15px] font-semibold text-stone-900">
                     {answers[question.id]?.trim() ? (
                       question.type === 'number' ? (
-                        <span className="font-mono tabular-nums">{Number(answers[question.id]).toLocaleString('en-NG')}</span>
+                        <span className="tabular-nums">{Number(answers[question.id]).toLocaleString('en-NG')}</span>
                       ) : (
                         answers[question.id]
                       )
                     ) : (
-                      <span className="font-normal italic text-stone-500 dark:text-stone-400">Not answered</span>
+                      <span className="font-normal italic text-stone-500">Not answered</span>
                     )}
                   </dd>
                 </div>

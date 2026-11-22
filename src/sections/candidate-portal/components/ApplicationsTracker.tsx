@@ -26,7 +26,7 @@ function StatTile({
   tone: 'teal' | 'amber' | 'emerald'
 }) {
   const tones = {
-    teal: 'bg-teal-800 text-white dark:bg-teal-700',
+    teal: 'bg-teal-800 text-white',
     amber: 'bg-amber-400 text-teal-950',
     emerald: 'bg-emerald-700 text-white',
   }
@@ -65,8 +65,8 @@ function ApplicationCard({ application, today, onOpen, index }: { application: A
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
               <div className="min-w-0">
-                <h3 className="text-base font-semibold leading-snug text-stone-900 dark:text-white">{job.title}</h3>
-                <p className="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm text-stone-500 dark:text-stone-400">
+                <h3 className="text-base font-semibold leading-snug text-stone-900">{job.title}</h3>
+                <p className="mt-0.5 flex flex-wrap items-center gap-x-2 text-sm text-stone-500">
                   <span>{job.companyName}</span>
                   <span aria-hidden="true">·</span>
                   <span className="inline-flex items-center gap-1">
@@ -82,11 +82,11 @@ function ApplicationCard({ application, today, onOpen, index }: { application: A
               <StageProgress application={application} />
             </div>
 
-            <div className="mt-4 flex flex-col gap-3 border-t border-stone-100 pt-3 sm:flex-row sm:items-center sm:justify-between dark:border-stone-800">
+            <div className="mt-4 flex flex-col gap-3 border-t border-stone-100 pt-3 sm:flex-row sm:items-center sm:justify-between">
               <NextStep application={application} today={today} />
-              <span className="flex shrink-0 items-center gap-3 text-xs text-stone-400 dark:text-stone-500">
+              <span className="flex shrink-0 items-center gap-3 text-xs text-stone-400">
                 <span className="tabular-nums">Updated {relativeDay(application.updatedAt, today).toLowerCase()}</span>
-                <ArrowRight className="h-4 w-4 text-stone-300 transition group-hover:translate-x-0.5 group-hover:text-teal-700 dark:text-stone-600 dark:group-hover:text-teal-300" />
+                <ArrowRight className="h-4 w-4 text-stone-300 transition group-hover:translate-x-0.5 group-hover:text-teal-700" />
               </span>
             </div>
           </div>
@@ -114,8 +114,8 @@ export function ApplicationsTracker({ applications, today, onOpen, onBrowseJobs 
         <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-teal-950">
           <BriefcaseBusiness className="h-6 w-6" />
         </span>
-        <h2 className="mt-5 text-lg font-semibold text-stone-900 dark:text-white">No applications yet</h2>
-        <p className="mt-1 max-w-sm text-sm text-stone-500 dark:text-stone-400">
+        <h2 className="mt-5 text-lg font-semibold text-stone-900">No applications yet</h2>
+        <p className="mt-1 max-w-sm text-sm text-stone-500">
           When you apply for a job, it shows up here with every update from the hiring team.
         </p>
         <button type="button" onClick={onBrowseJobs} className={`${BTN_PRIMARY} mt-6`}>
@@ -148,8 +148,8 @@ export function ApplicationsTracker({ applications, today, onOpen, onBrowseJobs 
 
       <section>
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-lg font-semibold text-stone-900 dark:text-white">Your applications</h2>
-          <div role="tablist" aria-label="Filter applications" className="flex gap-1 rounded-xl bg-white p-1 ring-1 ring-stone-200 dark:bg-stone-900 dark:ring-stone-800">
+          <h2 className="text-lg font-semibold text-stone-900">Your applications</h2>
+          <div role="tablist" aria-label="Filter applications" className="flex gap-1 rounded-xl bg-white p-1 ring-1 ring-stone-200">
             {tabs.map((tab) => {
               const isCurrent = tab.value === filter
               return (
@@ -160,13 +160,13 @@ export function ApplicationsTracker({ applications, today, onOpen, onBrowseJobs 
                   aria-selected={isCurrent}
                   onClick={() => setFilter(tab.value)}
                   className={`inline-flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
-                    isCurrent ? 'bg-teal-800 text-white dark:bg-teal-600' : 'text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white'
+                    isCurrent ? 'bg-teal-800 text-white' : 'text-stone-600 hover:text-stone-900'
                   }`}
                 >
                   {tab.label}
                   <span
                     className={`rounded-full px-1.5 text-xs font-semibold tabular-nums ${
-                      isCurrent ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500 dark:bg-stone-800 dark:text-stone-400'
+                      isCurrent ? 'bg-white/20 text-white' : 'bg-stone-100 text-stone-500'
                     }`}
                   >
                     {tab.count}
@@ -178,7 +178,7 @@ export function ApplicationsTracker({ applications, today, onOpen, onBrowseJobs 
         </div>
 
         {shown.length === 0 ? (
-          <div className={`${CARD} px-6 py-12 text-center text-sm text-stone-500 dark:text-stone-400`}>
+          <div className={`${CARD} px-6 py-12 text-center text-sm text-stone-500`}>
             {filter === 'active' ? 'You have no active applications right now.' : 'No closed applications yet.'}
           </div>
         ) : (

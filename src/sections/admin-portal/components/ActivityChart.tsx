@@ -2,8 +2,7 @@ import { useState } from 'react'
 import type { WeeklyActivity } from '@/../product/sections/admin-portal/types'
 import { formatDate } from './format'
 
-// Series colours were checked for colour-blind separation and contrast on
-// both the light (white) and dark (stone-900) card surfaces.
+// Series colours were checked for colour-blind separation and contrast on a white card.
 const SERIES = [
   { key: 'applications', label: 'Applications', stroke: 'stroke-teal-600', swatch: 'bg-teal-600' },
   { key: 'interviews', label: 'Moved to interview', stroke: 'stroke-amber-600', swatch: 'bg-amber-600' },
@@ -35,7 +34,7 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
   const [hovered, setHovered] = useState<number | null>(null)
 
   if (weeks.length < 2) {
-    return <p className="py-16 text-center text-sm text-stone-500 dark:text-stone-400">Not enough activity to chart yet.</p>
+    return <p className="py-16 text-center text-sm text-stone-500">Not enough activity to chart yet.</p>
   }
 
   const max = niceMax(Math.max(...weeks.map((week) => Math.max(week.applications, week.interviews))))
@@ -68,17 +67,17 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
       {/* Legend with the latest week's totals */}
       <div className="mb-5 flex flex-wrap gap-x-6 gap-y-2">
         {SERIES.map((series) => (
-          <div key={series.key} className="flex items-center gap-2 text-sm text-stone-600 dark:text-stone-300">
+          <div key={series.key} className="flex items-center gap-2 text-sm text-stone-600">
             <span className={`h-1 w-5 rounded-full ${series.swatch}`} aria-hidden="true" />
             {series.label}
-            <span className="font-semibold tabular-nums text-stone-900 dark:text-white">{activeWeek[series.key]}</span>
+            <span className="font-semibold tabular-nums text-stone-900">{activeWeek[series.key]}</span>
           </div>
         ))}
       </div>
 
       <div className="flex gap-3">
         {/* Y axis */}
-        <div className="relative h-56 w-7 shrink-0 text-right text-xs tabular-nums text-stone-400 dark:text-stone-500" aria-hidden="true">
+        <div className="relative h-56 w-7 shrink-0 text-right text-xs tabular-nums text-stone-400" aria-hidden="true">
           {ticks.map((tick) => (
             <span key={tick} className="absolute right-0 -translate-y-1/2" style={{ top: `${yFor(tick)}%` }}>
               {tick}
@@ -101,13 +100,13 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
             {ticks.map((tick) => (
               <div
                 key={tick}
-                className={`absolute inset-x-0 border-t ${tick === 0 ? 'border-stone-300 dark:border-stone-700' : 'border-dashed border-stone-200 dark:border-stone-800'}`}
+                className={`absolute inset-x-0 border-t ${tick === 0 ? 'border-stone-300' : 'border-dashed border-stone-200'}`}
                 style={{ top: `${yFor(tick)}%` }}
               />
             ))}
 
             <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full overflow-visible" aria-hidden="true">
-              <path d={areaPath} className="fill-teal-600/10 dark:fill-teal-500/10" />
+              <path d={areaPath} className="fill-teal-600/10" />
               {SERIES.map((series) => (
                 <path
                   key={series.key}
@@ -123,7 +122,7 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
 
             {/* Crosshair and markers for the active week */}
             <div
-              className="pointer-events-none absolute inset-y-0 border-l border-stone-300 dark:border-stone-600"
+              className="pointer-events-none absolute inset-y-0 border-l border-stone-300"
               style={{ left: `${xFor(active)}%` }}
               aria-hidden="true"
             />
@@ -131,22 +130,22 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
               <span
                 key={series.key}
                 aria-hidden="true"
-                className={`pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-white dark:ring-stone-900 ${series.swatch}`}
+                className={`pointer-events-none absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-white ${series.swatch}`}
                 style={{ left: `${xFor(active)}%`, top: `${yFor(activeWeek[series.key])}%` }}
               />
             ))}
 
             {hovered !== null && (
               <div
-                className={`pointer-events-none absolute top-0 z-10 w-48 ${tooltipAlign} rounded-xl bg-white p-3 text-xs shadow-lg ring-1 ring-stone-200 dark:bg-stone-800 dark:ring-stone-700`}
+                className={`pointer-events-none absolute top-0 z-10 w-48 ${tooltipAlign} rounded-xl bg-white p-3 text-xs shadow-lg ring-1 ring-stone-200`}
                 style={{ left: `${xFor(active)}%` }}
               >
-                <p className="mb-2 font-semibold text-stone-900 dark:text-white">Week of {formatDate(activeWeek.weekStart)}</p>
+                <p className="mb-2 font-semibold text-stone-900">Week of {formatDate(activeWeek.weekStart)}</p>
                 {SERIES.map((series) => (
-                  <p key={series.key} className="flex items-center gap-2 text-stone-600 dark:text-stone-300">
+                  <p key={series.key} className="flex items-center gap-2 text-stone-600">
                     <span className={`h-2 w-2 rounded-full ${series.swatch}`} aria-hidden="true" />
                     <span className="flex-1">{series.label}</span>
-                    <span className="font-semibold tabular-nums text-stone-900 dark:text-white">{activeWeek[series.key]}</span>
+                    <span className="font-semibold tabular-nums text-stone-900">{activeWeek[series.key]}</span>
                   </p>
                 ))}
               </div>
@@ -154,14 +153,14 @@ export function ActivityChart({ weeks }: { weeks: WeeklyActivity[] }) {
           </div>
 
           {/* X axis */}
-          <div className="relative mt-3 h-4 text-xs text-stone-400 dark:text-stone-500" aria-hidden="true">
+          <div className="relative mt-3 h-4 text-xs text-stone-400" aria-hidden="true">
             {weeks.map((week, index) => (
               <span
                 key={week.weekStart}
                 className={`absolute whitespace-nowrap ${
                   index === 0 ? '' : index === weeks.length - 1 ? '-translate-x-full' : '-translate-x-1/2'
                 } ${(index % 2 === 1 || index === weeks.length - 2) && index !== weeks.length - 1 ? 'hidden sm:inline' : ''} ${
-                  index === active ? 'font-semibold text-stone-700 dark:text-stone-200' : ''
+                  index === active ? 'font-semibold text-stone-700' : ''
                 }`}
                 style={{ left: `${xFor(index)}%` }}
               >

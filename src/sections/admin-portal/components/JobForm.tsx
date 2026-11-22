@@ -38,8 +38,8 @@ const fromLines = (text: string) =>
 function FormSection({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
   return (
     <section className={`${CARD} p-5 sm:p-6`}>
-      <h2 className="text-base font-semibold text-stone-900 dark:text-white">{title}</h2>
-      {description && <p className="mt-0.5 text-sm text-stone-500 dark:text-stone-400">{description}</p>}
+      <h2 className="text-base font-semibold text-stone-900">{title}</h2>
+      {description && <p className="mt-0.5 text-sm text-stone-500">{description}</p>}
       <div className="mt-5 space-y-5">{children}</div>
     </section>
   )
@@ -57,7 +57,7 @@ function Segmented<T extends string>({
   label: string
 }) {
   return (
-    <div role="radiogroup" aria-label={label} className="inline-flex w-full rounded-lg bg-stone-100 p-1 dark:bg-stone-800">
+    <div role="radiogroup" aria-label={label} className="inline-flex w-full rounded-lg bg-stone-100 p-1">
       {options.map((option) => {
         const isActive = option.value === value
         return (
@@ -69,8 +69,8 @@ function Segmented<T extends string>({
             onClick={() => onChange(option.value)}
             className={`flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition ${
               isActive
-                ? 'bg-white text-teal-900 shadow-sm dark:bg-stone-950 dark:text-teal-200'
-                : 'text-stone-600 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white'
+                ? 'bg-white text-teal-900 shadow-sm'
+                : 'text-stone-600 hover:text-stone-900'
             }`}
           >
             {option.label}
@@ -109,11 +109,11 @@ function CompanyPicker({
 
   if (selected && !isSearching && !isAdding) {
     return (
-      <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3 dark:border-stone-700 dark:bg-stone-800/50">
+      <div className="flex items-center gap-3 rounded-xl border border-stone-200 bg-stone-50 p-3">
         <CompanyLogo company={selected} size="md" />
         <div className="min-w-0 flex-1">
-          <p className="font-medium text-stone-900 dark:text-white">{selected.name}</p>
-          <p className="truncate text-xs text-stone-500 dark:text-stone-400">
+          <p className="font-medium text-stone-900">{selected.name}</p>
+          <p className="truncate text-xs text-stone-500">
             {selected.industry} · {selected.size} · {selected.location}
           </p>
         </div>
@@ -126,9 +126,9 @@ function CompanyPicker({
 
   if (isAdding) {
     return (
-      <div className="ap-rise rounded-xl border border-teal-200 bg-teal-50/50 p-4 dark:border-teal-800 dark:bg-teal-950/30">
+      <div className="ap-rise rounded-xl border border-teal-200 bg-teal-50/50 p-4">
         <div className="mb-4 flex items-center justify-between">
-          <p className="flex items-center gap-2 text-sm font-semibold text-teal-900 dark:text-teal-100">
+          <p className="flex items-center gap-2 text-sm font-semibold text-teal-900">
             <Building2 className="h-4 w-4" />
             New client company
           </p>
@@ -136,7 +136,7 @@ function CompanyPicker({
             type="button"
             onClick={() => setIsAdding(false)}
             aria-label="Cancel adding company"
-            className="rounded-lg p-1 text-stone-500 hover:bg-white hover:text-stone-900 dark:hover:bg-stone-800 dark:hover:text-white"
+            className="rounded-lg p-1 text-stone-500 hover:bg-white hover:text-stone-900"
           >
             <X className="h-4 w-4" />
           </button>
@@ -191,7 +191,7 @@ function CompanyPicker({
               type="file"
               accept="image/png,image/jpeg,image/svg+xml"
               onChange={(e) => setDraft({ ...draft, logoFile: e.target.files?.[0] })}
-              className="block w-full text-sm text-stone-600 file:mr-3 file:rounded-lg file:border-0 file:bg-white file:px-3 file:py-2 file:text-sm file:font-medium file:text-stone-800 file:shadow-sm file:ring-1 file:ring-stone-300 dark:text-stone-300 dark:file:bg-stone-800 dark:file:text-stone-100 dark:file:ring-stone-700"
+              className="block w-full text-sm text-stone-600 file:mr-3 file:rounded-lg file:border-0 file:bg-white file:px-3 file:py-2 file:text-sm file:font-medium file:text-stone-800 file:shadow-sm file:ring-1 file:ring-stone-300"
             />
           </div>
           <div className="sm:col-span-2">
@@ -232,8 +232,8 @@ function CompanyPicker({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-stone-300 dark:border-stone-700">
-      <div className="relative border-b border-stone-200 dark:border-stone-800">
+    <div className="overflow-hidden rounded-xl border border-stone-300">
+      <div className="relative border-b border-stone-200">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
         <input
           autoFocus={Boolean(selectedId)}
@@ -241,7 +241,7 @@ function CompanyPicker({
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search client companies"
           aria-label="Search client companies"
-          className="w-full bg-transparent py-2.5 pl-9 pr-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none dark:text-white"
+          className="w-full bg-transparent py-2.5 pl-9 pr-3 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
         />
       </div>
       <ul className="max-h-56 overflow-y-auto py-1" role="listbox" aria-label="Client companies">
@@ -256,35 +256,35 @@ function CompanyPicker({
                 setIsSearching(false)
                 setQuery('')
               }}
-              className="flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-stone-50 dark:hover:bg-stone-800"
+              className="flex w-full items-center gap-3 px-3 py-2 text-left hover:bg-stone-50"
             >
               <CompanyLogo company={company} />
               <span className="min-w-0 flex-1">
-                <span className="block truncate text-sm font-medium text-stone-900 dark:text-white">{company.name}</span>
-                <span className="block truncate text-xs text-stone-500 dark:text-stone-400">
+                <span className="block truncate text-sm font-medium text-stone-900">{company.name}</span>
+                <span className="block truncate text-xs text-stone-500">
                   {company.industry} · {company.location}
                 </span>
               </span>
-              {company.id === selectedId && <Check className="h-4 w-4 text-teal-700 dark:text-teal-300" />}
+              {company.id === selectedId && <Check className="h-4 w-4 text-teal-700" />}
             </button>
           </li>
         ))}
-        {matches.length === 0 && <li className="px-3 py-3 text-sm text-stone-500 dark:text-stone-400">No company called "{query}" yet.</li>}
+        {matches.length === 0 && <li className="px-3 py-3 text-sm text-stone-500">No company called "{query}" yet.</li>}
       </ul>
-      <div className="flex items-center justify-between gap-2 border-t border-stone-200 bg-stone-50 px-3 py-2 dark:border-stone-800 dark:bg-stone-900">
+      <div className="flex items-center justify-between gap-2 border-t border-stone-200 bg-stone-50 px-3 py-2">
         <button
           type="button"
           onClick={() => {
             setDraft((current) => ({ ...current, name: query }))
             setIsAdding(true)
           }}
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-800 hover:text-teal-950 dark:text-teal-300 dark:hover:text-teal-200"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-800 hover:text-teal-950"
         >
           <Plus className="h-4 w-4" strokeWidth={2.5} />
           Add new company
         </button>
         {selected && (
-          <button type="button" onClick={() => setIsSearching(false)} className="text-sm text-stone-500 hover:text-stone-800 dark:text-stone-400">
+          <button type="button" onClick={() => setIsSearching(false)} className="text-sm text-stone-500 hover:text-stone-800">
             Cancel
           </button>
         )}
@@ -312,12 +312,12 @@ function QuestionsEditor({
   return (
     <div className="space-y-3">
       {questions.length === 0 && (
-        <p className="rounded-xl border border-dashed border-stone-300 px-4 py-5 text-center text-sm text-stone-500 dark:border-stone-700 dark:text-stone-400">
+        <p className="rounded-xl border border-dashed border-stone-300 px-4 py-5 text-center text-sm text-stone-500">
           No screening questions. Candidates go straight from cover letter to review.
         </p>
       )}
       {questions.map((question, index) => (
-        <div key={question.id} className="rounded-xl border border-stone-200 p-4 dark:border-stone-700">
+        <div key={question.id} className="rounded-xl border border-stone-200 p-4">
           <div className="flex items-start gap-3">
             <span style={MONO} className="mt-2 text-xs font-medium text-stone-400">
               Q{index + 1}
@@ -343,12 +343,12 @@ function QuestionsEditor({
                     </option>
                   ))}
                 </select>
-                <label className="inline-flex items-center gap-2 text-sm text-stone-700 dark:text-stone-200">
+                <label className="inline-flex items-center gap-2 text-sm text-stone-700">
                   <input
                     type="checkbox"
                     checked={question.required}
                     onChange={(e) => update(question.id, { required: e.target.checked })}
-                    className="h-4 w-4 rounded border-stone-300 text-teal-700 focus:ring-teal-600 dark:border-stone-600"
+                    className="h-4 w-4 rounded border-stone-300 text-teal-700 focus:ring-teal-600"
                   />
                   Required
                 </label>
@@ -374,7 +374,7 @@ function QuestionsEditor({
               type="button"
               onClick={() => onChange(questions.filter((item) => item.id !== question.id))}
               aria-label={`Remove question ${index + 1}`}
-              className="rounded-lg p-1.5 text-stone-400 hover:bg-rose-50 hover:text-rose-700 dark:hover:bg-rose-500/10 dark:hover:text-rose-300"
+              className="rounded-lg p-1.5 text-stone-400 hover:bg-rose-50 hover:text-rose-700"
             >
               <Trash2 className="h-4 w-4" />
             </button>
@@ -410,19 +410,19 @@ function SkillsInput({ skills, onChange }: { skills: string[]; onChange: (skills
     setDraft('')
   }
   return (
-    <div className="rounded-lg border border-stone-300 bg-white p-2 shadow-sm focus-within:border-teal-600 focus-within:ring-2 focus-within:ring-teal-600/20 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-lg border border-stone-300 bg-white p-2 shadow-sm focus-within:border-teal-600 focus-within:ring-2 focus-within:ring-teal-600/20">
       <div className="flex flex-wrap gap-1.5">
         {skills.map((skill) => (
           <span
             key={skill}
-            className="inline-flex items-center gap-1 rounded-md bg-teal-50 py-0.5 pl-2 pr-1 text-sm text-teal-900 ring-1 ring-inset ring-teal-200 dark:bg-teal-400/10 dark:text-teal-100 dark:ring-teal-400/25"
+            className="inline-flex items-center gap-1 rounded-md bg-teal-50 py-0.5 pl-2 pr-1 text-sm text-teal-900 ring-1 ring-inset ring-teal-200"
           >
             {skill}
             <button
               type="button"
               onClick={() => onChange(skills.filter((item) => item !== skill))}
               aria-label={`Remove ${skill}`}
-              className="rounded p-0.5 hover:bg-teal-100 dark:hover:bg-teal-400/20"
+              className="rounded p-0.5 hover:bg-teal-100"
             >
               <X className="h-3 w-3" />
             </button>
@@ -442,7 +442,7 @@ function SkillsInput({ skills, onChange }: { skills: string[]; onChange: (skills
           }}
           onBlur={add}
           placeholder={skills.length === 0 ? 'Type a skill and press Enter' : 'Add another'}
-          className="min-w-32 flex-1 bg-transparent px-1 py-0.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none dark:text-white"
+          className="min-w-32 flex-1 bg-transparent px-1 py-0.5 text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none"
         />
       </div>
     </div>
@@ -529,7 +529,7 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
   }
 
   const fieldError = (condition: boolean, message: string) =>
-    showErrors && condition ? <p className="mt-1 text-xs font-medium text-rose-700 dark:text-rose-300">{message}</p> : null
+    showErrors && condition ? <p className="mt-1 text-xs font-medium text-rose-700">{message}</p> : null
 
   const primaryLabel = !isEdit ? 'Publish job' : job?.status === 'draft' ? 'Save and publish' : 'Save changes'
   const primaryPublishes = !isEdit || job?.status === 'draft'
@@ -543,8 +543,8 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
 
       <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-stone-900 dark:text-white">{isEdit ? 'Edit job' : 'New job'}</h1>
-          <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+          <h1 className="text-2xl font-semibold tracking-tight text-stone-900">{isEdit ? 'Edit job' : 'New job'}</h1>
+          <p className="mt-1 text-sm text-stone-500">
             {isEdit
               ? 'Changes to a published job show on the job board as soon as you save.'
               : 'Save as a draft to finish later, or publish to put it on the job board straight away.'}
@@ -682,12 +682,12 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
               </div>
             </div>
             {fieldError(!salaryValid, 'Add a minimum salary (and a maximum that is not lower), or mark it confidential.')}
-            <label className="inline-flex items-center gap-2 text-sm text-stone-700 dark:text-stone-200">
+            <label className="inline-flex items-center gap-2 text-sm text-stone-700">
               <input
                 type="checkbox"
                 checked={isConfidential}
                 onChange={(e) => setIsConfidential(e.target.checked)}
-                className="h-4 w-4 rounded border-stone-300 text-teal-700 focus:ring-teal-600 dark:border-stone-600"
+                className="h-4 w-4 rounded border-stone-300 text-teal-700 focus:ring-teal-600"
               />
               Salary is confidential
             </label>
@@ -762,7 +762,7 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
               </label>
               <SkillsInput skills={skills} onChange={setSkills} />
             </div>
-            <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-amber-200 bg-amber-50/60 p-4 dark:border-amber-400/20 dark:bg-amber-400/5">
+            <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-amber-200 bg-amber-50/60 p-4">
               <input
                 type="checkbox"
                 checked={isGraduateFriendly}
@@ -770,11 +770,11 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
                 className="mt-0.5 h-4 w-4 rounded border-amber-400 text-amber-600 focus:ring-amber-500"
               />
               <span>
-                <span className="flex items-center gap-1.5 text-sm font-semibold text-amber-950 dark:text-amber-100">
+                <span className="flex items-center gap-1.5 text-sm font-semibold text-amber-950">
                   <GraduationCap className="h-4 w-4" />
                   Graduate-friendly
                 </span>
-                <span className="mt-0.5 block text-xs text-amber-900/80 dark:text-amber-200/70">
+                <span className="mt-0.5 block text-xs text-amber-900/80">
                   Shows the Graduate-friendly badge and invites EduBridge graduates to apply.
                 </span>
               </span>
@@ -794,25 +794,25 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
               {checklist.map((item) => (
                 <li key={item.label} className="flex items-center gap-2 text-sm">
                   {item.done ? (
-                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-700 text-white dark:bg-teal-500">
+                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-teal-700 text-white">
                       <Check className="h-3 w-3" strokeWidth={3} />
                     </span>
                   ) : (
-                    <Circle className="h-4 w-4 text-stone-300 dark:text-stone-600" />
+                    <Circle className="h-4 w-4 text-stone-300" />
                   )}
-                  <span className={item.done ? 'text-stone-700 dark:text-stone-200' : 'text-stone-500 dark:text-stone-400'}>{item.label}</span>
+                  <span className={item.done ? 'text-stone-700' : 'text-stone-500'}>{item.label}</span>
                 </li>
               ))}
             </ul>
 
             {(title || companyId) && (
-              <div className="mt-5 rounded-lg bg-stone-50 p-3 dark:bg-stone-800/60">
-                <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">On the job board</p>
-                <p className="mt-1 truncate text-sm font-semibold text-stone-900 dark:text-white">{title || 'Untitled job'}</p>
-                <p className="truncate text-xs text-stone-500 dark:text-stone-400">
+              <div className="mt-5 rounded-lg bg-stone-50 p-3">
+                <p className="text-xs font-semibold text-stone-500">On the job board</p>
+                <p className="mt-1 truncate text-sm font-semibold text-stone-900">{title || 'Untitled job'}</p>
+                <p className="truncate text-xs text-stone-500">
                   {companies.find((c) => c.id === companyId)?.name ?? 'No company yet'}
                 </p>
-                <p style={MONO} className="mt-1 text-xs text-teal-800 dark:text-teal-300">
+                <p style={MONO} className="mt-1 text-xs text-teal-800">
                   {formatSalary({
                     min: minNumber,
                     max: maxNumber,
@@ -840,7 +840,7 @@ export function JobForm({ job, companies, formOptions, onCancel, onSubmit, onAdd
               </button>
             </div>
             {showErrors && !readyToPublish && (
-              <p className="mt-3 text-xs font-medium text-rose-700 dark:text-rose-300">Some details are missing. Check the highlighted fields.</p>
+              <p className="mt-3 text-xs font-medium text-rose-700">Some details are missing. Check the highlighted fields.</p>
             )}
           </div>
         </aside>

@@ -1,5 +1,5 @@
 // Shared animation and pattern styles for Job Board screens.
-// Typography: Poppins (headings and body) and IBM Plex Mono (salaries, counts), applied by the app shell.
+// Typography: Poppins for everything, with tabular figures for salaries and counts, applied by the app shell.
 
 const ADIRE_TILE = encodeURIComponent(
   `<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='#fbbf24' stroke-width='1.2'><circle cx='28' cy='28' r='9'/><circle cx='28' cy='28' r='3'/><path d='M0 0l10 10M56 0L46 10M0 56l10-10M56 56L46 46'/><path d='M28 0v8M28 48v8M0 28h8M48 28h8'/></g></svg>`,

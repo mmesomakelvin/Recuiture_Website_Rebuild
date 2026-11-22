@@ -40,13 +40,13 @@ interface ApplicationsViewProps {
 function NextStep({ app, today }: { app: Application; today: string }) {
   if (awaitsFirstReview(app)) return <DueTag date={app.firstReviewDueDate} today={today} prefix="Review" />
   if (app.stage === 'interview') {
-    if (app.interviewCompletedAt === null) return <span className="text-xs text-stone-500 dark:text-stone-400">Interview scheduled</span>
+    if (app.interviewCompletedAt === null) return <span className="text-xs text-stone-500">Interview scheduled</span>
     if (app.nextUpdateDueDate) return <DueTag date={app.nextUpdateDueDate} today={today} prefix="Update" />
-    return <span className="text-xs font-medium text-amber-700 dark:text-amber-300">Set next update date</span>
+    return <span className="text-xs font-medium text-amber-700">Set next update date</span>
   }
-  if (app.stage === 'screening') return <span className="text-xs text-stone-500 dark:text-stone-400">Decide on interview</span>
-  if (app.stage === 'offer') return <span className="text-xs text-stone-500 dark:text-stone-400">Awaiting acceptance</span>
-  return <span className="text-xs text-stone-400 dark:text-stone-500">None</span>
+  if (app.stage === 'screening') return <span className="text-xs text-stone-500">Decide on interview</span>
+  if (app.stage === 'offer') return <span className="text-xs text-stone-500">Awaiting acceptance</span>
+  return <span className="text-xs text-stone-400">None</span>
 }
 
 export function ApplicationsView({
@@ -153,7 +153,7 @@ export function ApplicationsView({
           <>
             <table className="hidden w-full text-left md:table">
               <thead>
-                <tr className="border-b border-stone-200 bg-stone-50 text-xs font-semibold text-stone-500 dark:border-stone-800 dark:bg-stone-800/40 dark:text-stone-400">
+                <tr className="border-b border-stone-200 bg-stone-50 text-xs font-semibold text-stone-500">
                   <th className="px-5 py-3 font-semibold">Candidate</th>
                   {!filteredJob && <th className="px-3 py-3 font-semibold">Job</th>}
                   <th className="px-3 py-3 font-semibold">Stage</th>
@@ -161,7 +161,7 @@ export function ApplicationsView({
                   <th className="px-3 py-3 font-semibold">Next step</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+              <tbody className="divide-y divide-stone-100">
                 {visible.map((app, index) => {
                   const job = jobsById.get(app.jobId)
                   const isSelected = app.id === selectedId
@@ -172,8 +172,8 @@ export function ApplicationsView({
                       style={{ animationDelay: `${index * 25}ms` }}
                       className={`ap-rise group cursor-pointer transition ${
                         isSelected
-                          ? 'bg-teal-50/80 shadow-[inset_3px_0_0_0] shadow-teal-700 dark:bg-teal-400/5 dark:shadow-teal-400'
-                          : 'hover:bg-stone-50 dark:hover:bg-stone-800/40'
+                          ? 'bg-teal-50/80 shadow-[inset_3px_0_0_0] shadow-teal-700'
+                          : 'hover:bg-stone-50'
                       }`}
                     >
                       <td className="px-5 py-3">
@@ -181,7 +181,7 @@ export function ApplicationsView({
                           <Avatar id={app.candidate.id} name={app.candidate.name} size="sm" />
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                              <span className="truncate font-medium text-stone-900 group-hover:text-teal-800 dark:text-white dark:group-hover:text-teal-300">
+                              <span className="truncate font-medium text-stone-900 group-hover:text-teal-800">
                                 {app.candidate.name}
                               </span>
                               {app.candidate.isVerifiedGraduate && <GraduateMarker program={app.candidate.graduateProgram} />}
@@ -194,8 +194,8 @@ export function ApplicationsView({
                       </td>
                       {!filteredJob && (
                         <td className="max-w-56 px-3 py-3">
-                          <p className="truncate text-sm text-stone-800 dark:text-stone-200">{job?.title}</p>
-                          <p className="truncate text-xs text-stone-500 dark:text-stone-400">
+                          <p className="truncate text-sm text-stone-800">{job?.title}</p>
+                          <p className="truncate text-xs text-stone-500">
                             {job ? companiesById.get(job.companyId)?.name : ''}
                           </p>
                         </td>
@@ -203,7 +203,7 @@ export function ApplicationsView({
                       <td className="px-3 py-3">
                         <StageBadge stage={app.stage} />
                       </td>
-                      <td className="hidden px-3 py-3 text-sm text-stone-500 lg:table-cell dark:text-stone-400">
+                      <td className="hidden px-3 py-3 text-sm text-stone-500 lg:table-cell">
                         {relativeDay(app.submittedAt, today)}
                       </td>
                       <td className="px-3 py-3">
@@ -215,7 +215,7 @@ export function ApplicationsView({
               </tbody>
             </table>
 
-            <ul className="divide-y divide-stone-100 md:hidden dark:divide-stone-800">
+            <ul className="divide-y divide-stone-100 md:hidden">
               {visible.map((app) => {
                 const job = jobsById.get(app.jobId)
                 return (
@@ -223,15 +223,15 @@ export function ApplicationsView({
                     <button
                       type="button"
                       onClick={() => onSelect(app.id)}
-                      className="flex w-full gap-3 p-4 text-left hover:bg-stone-50 dark:hover:bg-stone-800/40"
+                      className="flex w-full gap-3 p-4 text-left hover:bg-stone-50"
                     >
                       <Avatar id={app.candidate.id} name={app.candidate.name} size="sm" />
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-2">
-                          <p className="font-medium text-stone-900 dark:text-white">{app.candidate.name}</p>
+                          <p className="font-medium text-stone-900">{app.candidate.name}</p>
                           <StageBadge stage={app.stage} />
                         </div>
-                        <p className="truncate text-xs text-stone-500 dark:text-stone-400">
+                        <p className="truncate text-xs text-stone-500">
                           {job?.title} · {relativeDay(app.submittedAt, today)}
                         </p>
                         {app.candidate.isVerifiedGraduate && (

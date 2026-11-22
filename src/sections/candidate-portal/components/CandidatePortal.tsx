@@ -82,10 +82,10 @@ export function CandidatePortal({
       <style>{PORTAL_STYLES}</style>
 
       {/* Portal header */}
-      <div className="border-b border-stone-200 bg-white dark:border-stone-800 dark:bg-stone-900">
+      <div className="border-b border-stone-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8">
-          <p className="text-sm text-stone-500 dark:text-stone-400">My Recruiture</p>
-          <h1 className="text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl dark:text-white">Hello, {firstName}</h1>
+          <p className="text-sm text-stone-500">My Recruiture</p>
+          <h1 className="text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">Hello, {firstName}</h1>
           <nav aria-label="Portal" className="-mb-px mt-5 flex gap-6">
             {TABS.map(({ value, label, icon: Icon }) => {
               const isCurrent = value === tab
@@ -97,11 +97,11 @@ export function CandidatePortal({
                   aria-current={isCurrent ? 'page' : undefined}
                   className={`inline-flex items-center gap-2 border-b-2 pb-3 text-sm font-semibold transition ${
                     isCurrent
-                      ? 'border-amber-400 text-teal-900 dark:text-white'
-                      : 'border-transparent text-stone-500 hover:border-stone-300 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white'
+                      ? 'border-amber-400 text-teal-900'
+                      : 'border-transparent text-stone-500 hover:border-stone-300 hover:text-stone-900'
                   }`}
                 >
-                  <Icon className={`h-4 w-4 ${isCurrent ? 'text-teal-700 dark:text-teal-300' : ''}`} />
+                  <Icon className={`h-4 w-4 ${isCurrent ? 'text-teal-700' : ''}`} />
                   {label}
                 </button>
               )

@@ -103,10 +103,10 @@ export function companyInitials(name: string) {
 }
 
 const LOGO_TONES = [
-  'bg-teal-100 text-teal-900 dark:bg-teal-900/60 dark:text-teal-100',
-  'bg-amber-100 text-amber-900 dark:bg-amber-500/20 dark:text-amber-200',
-  'bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-stone-100',
-  'bg-teal-900 text-amber-200 dark:bg-teal-700 dark:text-amber-100',
+  'bg-teal-100 text-teal-900',
+  'bg-amber-100 text-amber-900',
+  'bg-stone-200 text-stone-800',
+  'bg-teal-900 text-amber-200',
 ]
 
 /** A stable colour pairing per company for initials logos */
