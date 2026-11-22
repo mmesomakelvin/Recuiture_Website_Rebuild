@@ -31,6 +31,24 @@
   --color-input: #d6d3d1;
   --color-ring: #0d9488;
   --radius: 0.75rem;
+
+  /* Landing page motion (all switched off for visitors who prefer reduced motion) */
+  --animate-marquee: marquee 45s linear infinite;
+  --animate-rise: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes rise {
+    from { transform: translateY(105%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+  }
 }
 
 @layer base {
