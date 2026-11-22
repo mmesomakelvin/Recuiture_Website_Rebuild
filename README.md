@@ -1,54 +1,51 @@
-<img width="1280" height="640" alt="Design OS" src="https://github.com/user-attachments/assets/a9c04258-7b9a-45b6-8475-3431cdf5dbe9" />
+# Recruiture by EduBridge Academy
 
-## The missing design process between your idea and your codebase.
+Recruiture is a Nigerian job platform run by EduBridge Academy. Job seekers find live roles and apply, the EduBridge team posts and manages every job for its client companies, and verified EduBridge graduates carry a badge that helps them stand out.
 
-[Design OS](https://buildermethods.com/design-os) is a product planning and design tool that helps you define your product vision, sketch out your data shape, design your UI, and export production-ready components for implementation. Rather than jumping straight into code, you work through a guided process that captures what you're building and why—then hands off everything your coding agent needs to build it right.
+## What is in this repository
 
-## The Problem
+This repository holds two things side by side:
 
-AI coding tools are incredible at building fast. But the results often miss the mark. You describe what you want, the agent builds *something*, but it's not what you envisioned. The UI looks generic. Features get half-implemented. You spend as much time fixing and redirecting as you would have spent building.
+| Folder | What it is | How to run it |
+| --- | --- | --- |
+| Root (`src/`, `product/`) | **Design OS**, the planning and design tool. It holds the product plan, sample data and clickable screen designs. | `npm install` then `npm run dev`, open http://localhost:3001 |
+| `web/` | **The real website**, built with Next.js 16, React 19, Tailwind CSS v4, Prisma 7 and Supabase. | `cd web`, `npm install`, then `npm run dev` |
 
-**The core issue:** we're asking coding agents to figure out what to build *and* build it simultaneously. Design decisions get made on the fly, buried in code, impossible to adjust without starting over. There's no spec. No shared understanding. No source of truth for what "done" looks like.
+Website code only ever goes in `web/`. The root `src/` folder belongs to Design OS.
 
-## The Design OS Process
+## Where to find things
 
-Design OS powers a guided design and architecture process. You + AI, working together through structured steps:
+- `product/`: the official blueprint. Product overview, roadmap, design tokens, and a spec, sample data and types for each section.
+- `src/sections/`: the screen designs you can click through in Design OS.
+- `docs/brainstorms/`: notes from brainstorming sessions, recording what we decided to build and why.
+- `docs/planning/`: architecture notes and implementation plans for the website.
 
-1. **Product Planning** — Define your vision, break down your roadmap, and model your data
-2. **Design System** — Choose colors, typography, and design your application shell
-3. **Section Design** — For each feature area: specify requirements, generate sample data, and design the screens
-4. **Export** — Generate a complete handoff package for implementation
+## Roadmap and progress
 
-Each step is a conversation. The AI asks questions, you provide direction, and together you shape a product that matches your vision—before any implementation begins.
+| Section | What it covers | Status |
+| --- | --- | --- |
+| Job Board | Public job listings, search, filters, job pages and the apply flow | Designed |
+| Candidate Portal | Sign up, sign in, a basic profile with CV, and an application tracker | Being designed |
+| Admin Portal | Internal staff area for jobs, applications, hiring stages and enquiries | Designed |
+| Info Pages | For Employers, Contact and FAQ pages | Not started |
+
+On the live website (`web/`), the home, jobs and About us pages are built. Candidate accounts, the apply flow and the admin portal come next. They will follow an updated implementation plan, because the October plans assumed employers would post their own jobs. For now, EduBridge staff post every job.
+
+## Key decisions (November 2026)
+
+- The admin portal lives at `/admin` inside the same website, with one staff role.
+- Staff post all jobs. There are no employer accounts in the first version.
+- Candidates must sign in to apply. They hear about each stage change by email and see it in their portal.
+- First reviews are due within 7 days of an application. After an interview, the next update is due within 5 business days.
+
+See `docs/brainstorms/2026-11-22-website-additions-and-admin-portal-brainstorm.md` for the full reasoning and the questions still open.
+
+## Brand
+
+- Colours: EduBridge teal `#154b54` and gold `#f2c94c`, with warm stone neutrals.
+- Font: Poppins.
+- Copy rules: no em dashes and no emojis anywhere in website copy or design files.
 
 ---
 
-## Documentation & Installation
-
-Docs, installation, usage, & best practices 👉 [It's all here](https://buildermethods.com/design-os)
-
----
-
-## Support, Training & Community
-
-For official support, training, and community as you use Design OS—for yourself or with your team, consider joining _Builder Methods Pro_. You'll get access to Brian Casel (the creator) for questions, a community of builders using Design OS, plus all Builder Methods workshops and training on AI-first development.
-
-👉 [Join Builder Methods Pro](https://buildermethods.com/pro)
-
----
-
-## Follow updates & releases
-
-Read the [changelog](CHANGELOG.md)
-
-[Subscribe to be notified of major new releases of Design OS](https://buildermethods.com/design-os)
-
----
-
-## Created by Brian Casel @ Builder Methods
-
-Created by Brian Casel, the creator of [Builder Methods](https://buildermethods.com), where Brian helps professional software developers and teams build with AI.
-
-Get Brian's free resources on building with AI:
-- [Builder Briefing newsletter](https://buildermethods.com)
-- [YouTube](https://youtube.com/@briancasel)
+Planning and screen designs are made with [Design OS](https://buildermethods.com/design-os) by Brian Casel at Builder Methods. See the [changelog](CHANGELOG.md) for Design OS releases.

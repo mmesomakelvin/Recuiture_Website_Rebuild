@@ -1,0 +1,1254 @@
+{
+  "_meta": {
+    "models": {
+      "currentStaff": "The signed-in EduBridge staff member using the portal. Every staff member has the same access.",
+      "today": "The current date in Africa/Lagos, used to work out due, overdue and closing-soon items.",
+      "companies": "Client companies that EduBridge recruits for. Staff pick one when creating a job, or add a new one inline.",
+      "jobs": "Every job staff have created, in any status: draft, published, paused or closed. Closed jobs record whether the role was filled or cancelled.",
+      "applications": "A candidate's application to a job, with their CV, cover letter, screening answers, current stage, review targets and a dated history of every stage change.",
+      "enquiries": "Messages sent through the public Contact and For Employers forms, with a follow-up status and internal staff notes.",
+      "stageEmailTemplates": "The candidate email sent for each stage staff can set, shown as a preview in the stage change dialog. Placeholders in curly braces are filled in per candidate.",
+      "formOptions": "Choices for the job form, company form and filters.",
+      "weeklyActivity": "Applications received and candidates moved to interview in each of the last eight weeks (week starting Monday), for the Overview chart."
+    },
+    "relationships": [
+      "Each job belongs to one company (companyId); a company can have many jobs or none",
+      "Each application belongs to one job (jobId); applicant counts per job are worked out from applications",
+      "Each application's answers refer to the screening questions on its job",
+      "Each application has a history of stage changes, newest last",
+      "Enquiries stand alone; For Employers enquiries carry extra employer details"
+    ]
+  },
+  "currentStaff": {
+    "id": "staff-01",
+    "name": "Adaeze Okonkwo",
+    "email": "adaeze.okonkwo@edubridgeacademy.ng"
+  },
+  "today": "2026-11-22",
+  "companies": [
+    {
+      "id": "co-paystream",
+      "name": "Paystream Technologies",
+      "logoUrl": null,
+      "industry": "Fintech",
+      "size": "51 to 200 employees",
+      "location": "Lekki, Lagos",
+      "about": "Paystream builds payment tools that help Nigerian small businesses accept card, transfer and USSD payments in one place."
+    },
+    {
+      "id": "co-kora",
+      "name": "Kora Logistics",
+      "logoUrl": null,
+      "industry": "Logistics",
+      "size": "201 to 500 employees",
+      "location": "Wuse II, Abuja",
+      "about": "Kora Logistics moves parcels and freight for online sellers across 18 states, with same-day delivery in Abuja and Lagos."
+    },
+    {
+      "id": "co-brightleaf",
+      "name": "Brightleaf Health",
+      "logoUrl": null,
+      "industry": "Healthtech",
+      "size": "11 to 50 employees",
+      "location": "Remote, Nigeria",
+      "about": "Brightleaf Health runs a telemedicine app that connects patients with licensed doctors and pharmacies in minutes."
+    },
+    {
+      "id": "co-harbourpoint",
+      "name": "Harbour Point Foods",
+      "logoUrl": null,
+      "industry": "FMCG",
+      "size": "501 to 1,000 employees",
+      "location": "Trans Amadi, Port Harcourt",
+      "about": "Harbour Point Foods produces packaged snacks and beverages sold in supermarkets and open markets across the South South."
+    },
+    {
+      "id": "co-northgate",
+      "name": "Northgate Microfinance Bank",
+      "logoUrl": null,
+      "industry": "Banking",
+      "size": "51 to 200 employees",
+      "location": "Independence Layout, Enugu",
+      "about": "Northgate offers savings accounts and small business loans to traders and farmers in the South East."
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-a01",
+      "slug": "data-analyst-paystream",
+      "title": "Data Analyst",
+      "companyId": "co-paystream",
+      "status": "published",
+      "closedReason": null,
+      "location": {
+        "city": "Lekki",
+        "state": "Lagos"
+      },
+      "workMode": "hybrid",
+      "jobType": "full-time",
+      "experienceLevel": "mid",
+      "salary": {
+        "min": 450000,
+        "max": 650000,
+        "isConfidential": false
+      },
+      "createdAt": "2026-11-03T10:15:00+01:00",
+      "updatedAt": "2026-11-04T09:00:00+01:00",
+      "postedAt": "2026-11-04T09:00:00+01:00",
+      "deadline": "2026-12-05",
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "Turn payments data into clear weekly insights for the product and sales teams.",
+      "description": "You will own Paystream's weekly business reporting, build dashboards that product and sales teams use every day, and dig into questions like why merchants churn or which onboarding steps slow sign-ups. You will work closely with one senior analyst and the head of product.",
+      "responsibilities": [
+        "Build and maintain dashboards in Metabase",
+        "Write SQL to answer product and sales questions",
+        "Present a short weekly insights report to leadership"
+      ],
+      "requirements": [
+        "2 or more years in a data or analytics role",
+        "Strong SQL and spreadsheet skills",
+        "Clear written and spoken communication"
+      ],
+      "benefits": [
+        "HMO for you and one dependant",
+        "Monthly data allowance",
+        "Two remote days per week"
+      ],
+      "skills": [
+        "SQL",
+        "Metabase",
+        "Excel",
+        "Python"
+      ],
+      "screeningQuestions": [
+        {
+          "id": "q-a01-1",
+          "question": "How many years have you worked with SQL?",
+          "type": "number",
+          "required": true,
+          "options": []
+        },
+        {
+          "id": "q-a01-2",
+          "question": "Can you work from our Lekki office three days a week?",
+          "type": "yes-no",
+          "required": true,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-a02",
+      "slug": "customer-success-associate-kora",
+      "title": "Customer Success Associate",
+      "companyId": "co-kora",
+      "status": "published",
+      "closedReason": null,
+      "location": {
+        "city": "Wuse II",
+        "state": "Abuja (FCT)"
+      },
+      "workMode": "on-site",
+      "jobType": "full-time",
+      "experienceLevel": "entry",
+      "salary": {
+        "min": 180000,
+        "max": 250000,
+        "isConfidential": false
+      },
+      "createdAt": "2026-11-11T14:40:00+01:00",
+      "updatedAt": "2026-11-12T08:30:00+01:00",
+      "postedAt": "2026-11-12T08:30:00+01:00",
+      "deadline": "2026-11-28",
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "Help online sellers get their deliveries sorted quickly and keep them coming back.",
+      "description": "Answer seller questions by phone, WhatsApp and email, resolve delivery issues with the dispatch team and follow up so every seller feels looked after.",
+      "responsibilities": [
+        "Respond to seller enquiries within agreed times",
+        "Track and resolve delayed or failed deliveries",
+        "Log feedback for the operations team"
+      ],
+      "requirements": [
+        "OND, HND or BSc in any field",
+        "Calm, friendly communication style",
+        "Comfortable with shift work, including some Saturdays"
+      ],
+      "benefits": [
+        "Transport allowance",
+        "HMO",
+        "Performance bonus every quarter"
+      ],
+      "skills": [
+        "Customer service",
+        "Zendesk",
+        "Communication"
+      ],
+      "screeningQuestions": [
+        {
+          "id": "q-a02-1",
+          "question": "Which shift pattern suits you best?",
+          "type": "multiple-choice",
+          "required": true,
+          "options": [
+            "Morning (7am to 3pm)",
+            "Afternoon (12pm to 8pm)",
+            "Either"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "job-a03",
+      "slug": "frontend-developer-react-brightleaf",
+      "title": "Frontend Developer (React)",
+      "companyId": "co-brightleaf",
+      "status": "published",
+      "closedReason": null,
+      "location": {
+        "city": "Remote",
+        "state": "Nigeria (Remote)"
+      },
+      "workMode": "remote",
+      "jobType": "full-time",
+      "experienceLevel": "mid",
+      "salary": {
+        "min": null,
+        "max": null,
+        "isConfidential": true
+      },
+      "createdAt": "2026-10-29T11:00:00+01:00",
+      "updatedAt": "2026-11-15T16:20:00+01:00",
+      "postedAt": "2026-10-30T09:00:00+01:00",
+      "deadline": "2026-12-15",
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": true,
+      "summary": "Build the patient booking and consultation screens of a fast-growing telemedicine app.",
+      "description": "Join a small product team shipping weekly. You will build accessible, fast React screens for booking, video consultation and prescription flows, and help shape the design system.",
+      "responsibilities": [
+        "Build new features in React and TypeScript",
+        "Review pull requests and improve test coverage",
+        "Work with the designer to refine the design system"
+      ],
+      "requirements": [
+        "3 or more years building production React apps",
+        "Strong TypeScript and CSS",
+        "Experience with automated testing"
+      ],
+      "benefits": [
+        "Fully remote",
+        "Laptop provided",
+        "Learning budget of 300,000 naira per year"
+      ],
+      "skills": [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Testing Library"
+      ],
+      "screeningQuestions": [
+        {
+          "id": "q-a03-1",
+          "question": "Link to a project or portfolio you are proud of",
+          "type": "short-text",
+          "required": true,
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "job-a04",
+      "slug": "junior-accountant-harbour-point",
+      "title": "Junior Accountant",
+      "companyId": "co-harbourpoint",
+      "status": "paused",
+      "closedReason": null,
+      "location": {
+        "city": "Trans Amadi",
+        "state": "Rivers"
+      },
+      "workMode": "on-site",
+      "jobType": "full-time",
+      "experienceLevel": "entry",
+      "salary": {
+        "min": 200000,
+        "max": 280000,
+        "isConfidential": false
+      },
+      "createdAt": "2026-10-19T09:30:00+01:00",
+      "updatedAt": "2026-11-18T12:05:00+01:00",
+      "postedAt": "2026-10-20T08:00:00+01:00",
+      "deadline": "2026-12-01",
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "Support month-end close and supplier payments for a large food manufacturer.",
+      "description": "Prepare journals, reconcile bank statements and supplier accounts, and support the finance manager during month-end close and audits.",
+      "responsibilities": [
+        "Reconcile bank and supplier accounts",
+        "Prepare journals and schedules for month-end",
+        "Support external audit requests"
+      ],
+      "requirements": [
+        "BSc or HND in Accounting",
+        "ICAN in progress is an advantage",
+        "Good Excel skills"
+      ],
+      "benefits": [
+        "Staff bus",
+        "Lunch on site",
+        "HMO"
+      ],
+      "skills": [
+        "Excel",
+        "Sage",
+        "Reconciliation"
+      ],
+      "screeningQuestions": []
+    },
+    {
+      "id": "job-a05",
+      "slug": "product-design-intern-paystream",
+      "title": "Product Design Intern",
+      "companyId": "co-paystream",
+      "status": "draft",
+      "closedReason": null,
+      "location": {
+        "city": "Lekki",
+        "state": "Lagos"
+      },
+      "workMode": "hybrid",
+      "jobType": "internship",
+      "experienceLevel": "entry",
+      "salary": {
+        "min": 120000,
+        "max": 150000,
+        "isConfidential": false
+      },
+      "createdAt": "2026-11-20T15:10:00+01:00",
+      "updatedAt": "2026-11-21T10:45:00+01:00",
+      "postedAt": null,
+      "deadline": "2026-12-20",
+      "isGraduateFriendly": true,
+      "isManagedByEduBridge": true,
+      "summary": "A six-month internship designing merchant dashboard screens alongside a senior designer.",
+      "description": "Draft in progress. Waiting for Paystream to confirm the start date and internship length.",
+      "responsibilities": [
+        "Design screens in Figma",
+        "Join user interviews with merchants"
+      ],
+      "requirements": [
+        "A portfolio with at least two case studies"
+      ],
+      "benefits": [],
+      "skills": [
+        "Figma",
+        "UI design"
+      ],
+      "screeningQuestions": []
+    },
+    {
+      "id": "job-a06",
+      "slug": "hr-officer-kora",
+      "title": "HR Officer",
+      "companyId": "co-kora",
+      "status": "closed",
+      "closedReason": "filled",
+      "location": {
+        "city": "Wuse II",
+        "state": "Abuja (FCT)"
+      },
+      "workMode": "on-site",
+      "jobType": "full-time",
+      "experienceLevel": "mid",
+      "salary": {
+        "min": 300000,
+        "max": 400000,
+        "isConfidential": false
+      },
+      "createdAt": "2026-09-12T10:00:00+01:00",
+      "updatedAt": "2026-10-28T17:30:00+01:00",
+      "postedAt": "2026-09-15T09:00:00+01:00",
+      "deadline": "2026-10-15",
+      "isGraduateFriendly": false,
+      "isManagedByEduBridge": true,
+      "summary": "Run recruitment, onboarding and staff records for a 300-person logistics team.",
+      "description": "Own the full employee lifecycle for drivers, dispatch riders and office staff, from hiring to exit.",
+      "responsibilities": [
+        "Coordinate hiring for operations roles",
+        "Run onboarding",
+        "Keep staff records accurate"
+      ],
+      "requirements": [
+        "3 or more years in HR",
+        "CIPM membership"
+      ],
+      "benefits": [
+        "HMO",
+        "Pension",
+        "Annual bonus"
+      ],
+      "skills": [
+        "Recruitment",
+        "Onboarding",
+        "HR records"
+      ],
+      "screeningQuestions": []
+    }
+  ],
+  "applications": [
+    {
+      "id": "app-01",
+      "reference": "RC-24081",
+      "jobId": "job-a01",
+      "candidate": {
+        "id": "cand-01",
+        "name": "Chiamaka Eze",
+        "email": "chiamaka.eze@gmail.com",
+        "phone": "+234 803 412 7765",
+        "location": "Yaba, Lagos",
+        "isVerifiedGraduate": true,
+        "graduateProgram": "Data Analytics Bootcamp"
+      },
+      "cv": {
+        "fileName": "Chiamaka_Eze_CV.pdf",
+        "fileSizeKb": 214
+      },
+      "coverLetter": "I completed the EduBridge Data Analytics Bootcamp in August and have since built a merchant churn dashboard as a freelance project. I would love to bring that experience to Paystream.",
+      "answers": [
+        {
+          "questionId": "q-a01-1",
+          "question": "How many years have you worked with SQL?",
+          "answer": "2"
+        },
+        {
+          "questionId": "q-a01-2",
+          "question": "Can you work from our Lekki office three days a week?",
+          "answer": "Yes"
+        }
+      ],
+      "stage": "applied",
+      "submittedAt": "2026-11-20T18:42:00+01:00",
+      "firstReviewDueDate": "2026-11-27",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-01-1",
+          "stage": "applied",
+          "at": "2026-11-20T18:42:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Chiamaka Eze",
+          "note": null,
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-02",
+      "reference": "RC-23950",
+      "jobId": "job-a01",
+      "candidate": {
+        "id": "cand-02",
+        "name": "Tunde Bakare",
+        "email": "tunde.bakare@yahoo.com",
+        "phone": "+234 812 990 3301",
+        "location": "Ikeja, Lagos",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "TundeBakare_Resume_2026.docx",
+        "fileSizeKb": 88
+      },
+      "coverLetter": "",
+      "answers": [
+        {
+          "questionId": "q-a01-1",
+          "question": "How many years have you worked with SQL?",
+          "answer": "4"
+        },
+        {
+          "questionId": "q-a01-2",
+          "question": "Can you work from our Lekki office three days a week?",
+          "answer": "No"
+        }
+      ],
+      "stage": "applied",
+      "submittedAt": "2026-11-10T09:15:00+01:00",
+      "firstReviewDueDate": "2026-11-17",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-02-1",
+          "stage": "applied",
+          "at": "2026-11-10T09:15:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Tunde Bakare",
+          "note": null,
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-03",
+      "reference": "RC-23874",
+      "jobId": "job-a01",
+      "candidate": {
+        "id": "cand-03",
+        "name": "Aisha Bello",
+        "email": "aisha.bello@outlook.com",
+        "phone": "+234 706 221 5480",
+        "location": "Surulere, Lagos",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "Aisha_Bello_Data_Analyst.pdf",
+        "fileSizeKb": 342
+      },
+      "coverLetter": "I have spent three years as a reporting analyst at a retail bank, where I automated the branch performance report and cut its preparation time from two days to two hours.",
+      "answers": [
+        {
+          "questionId": "q-a01-1",
+          "question": "How many years have you worked with SQL?",
+          "answer": "3"
+        },
+        {
+          "questionId": "q-a01-2",
+          "question": "Can you work from our Lekki office three days a week?",
+          "answer": "Yes"
+        }
+      ],
+      "stage": "screening",
+      "submittedAt": "2026-11-06T13:05:00+01:00",
+      "firstReviewDueDate": "2026-11-13",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-03-1",
+          "stage": "applied",
+          "at": "2026-11-06T13:05:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Aisha Bello",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-03-2",
+          "stage": "screening",
+          "at": "2026-11-09T11:20:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": null,
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-04",
+      "reference": "RC-23861",
+      "jobId": "job-a01",
+      "candidate": {
+        "id": "cand-04",
+        "name": "Emeka Nwosu",
+        "email": "emeka.nwosu@gmail.com",
+        "phone": "+234 809 555 1022",
+        "location": "Ajah, Lagos",
+        "isVerifiedGraduate": true,
+        "graduateProgram": "Data Analytics Bootcamp"
+      },
+      "cv": {
+        "fileName": "Emeka_Nwosu_CV.pdf",
+        "fileSizeKb": 198
+      },
+      "coverLetter": "Paystream's mission to simplify payments for small businesses matters to me because my family runs a provisions store. I have used SQL and Python daily for two years.",
+      "answers": [
+        {
+          "questionId": "q-a01-1",
+          "question": "How many years have you worked with SQL?",
+          "answer": "2"
+        },
+        {
+          "questionId": "q-a01-2",
+          "question": "Can you work from our Lekki office three days a week?",
+          "answer": "Yes"
+        }
+      ],
+      "stage": "interview",
+      "submittedAt": "2026-11-05T08:50:00+01:00",
+      "firstReviewDueDate": "2026-11-12",
+      "interviewCompletedAt": "2026-11-14T15:00:00+01:00",
+      "nextUpdateDueDate": "2026-11-21",
+      "history": [
+        {
+          "id": "h-04-1",
+          "stage": "applied",
+          "at": "2026-11-05T08:50:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Emeka Nwosu",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-04-2",
+          "stage": "screening",
+          "at": "2026-11-07T10:00:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-04-3",
+          "stage": "interview",
+          "at": "2026-11-10T14:30:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": "Interview with the head of product on Friday 14 November at 2pm, at the Lekki office.",
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-05",
+      "reference": "RC-24102",
+      "jobId": "job-a02",
+      "candidate": {
+        "id": "cand-05",
+        "name": "Blessing Okafor",
+        "email": "blessing.okafor@gmail.com",
+        "phone": "+234 815 300 7741",
+        "location": "Gwarinpa, Abuja",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "Blessing_Okafor_CV.pdf",
+        "fileSizeKb": 156
+      },
+      "coverLetter": "I worked as a front desk officer at a hotel in Abuja for 18 months and enjoy solving problems for customers.",
+      "answers": [
+        {
+          "questionId": "q-a02-1",
+          "question": "Which shift pattern suits you best?",
+          "answer": "Either"
+        }
+      ],
+      "stage": "applied",
+      "submittedAt": "2026-11-21T20:10:00+01:00",
+      "firstReviewDueDate": "2026-11-28",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-05-1",
+          "stage": "applied",
+          "at": "2026-11-21T20:10:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Blessing Okafor",
+          "note": null,
+          "emailStatus": "queued"
+        }
+      ]
+    },
+    {
+      "id": "app-06",
+      "reference": "RC-23990",
+      "jobId": "job-a02",
+      "candidate": {
+        "id": "cand-06",
+        "name": "Ibrahim Musa",
+        "email": "ibrahim.musa@gmail.com",
+        "phone": "+234 703 118 4492",
+        "location": "Kubwa, Abuja",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "Ibrahim_Musa_CV.pdf",
+        "fileSizeKb": 121
+      },
+      "coverLetter": "I am interested in customer success and have two years of call centre experience.",
+      "answers": [
+        {
+          "questionId": "q-a02-1",
+          "question": "Which shift pattern suits you best?",
+          "answer": "Morning (7am to 3pm)"
+        }
+      ],
+      "stage": "withdrawn",
+      "submittedAt": "2026-11-13T07:55:00+01:00",
+      "firstReviewDueDate": "2026-11-20",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-06-1",
+          "stage": "applied",
+          "at": "2026-11-13T07:55:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Ibrahim Musa",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-06-2",
+          "stage": "withdrawn",
+          "at": "2026-11-16T19:30:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Ibrahim Musa",
+          "note": null,
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-07",
+      "reference": "RC-23702",
+      "jobId": "job-a03",
+      "candidate": {
+        "id": "cand-07",
+        "name": "Funke Adeyemi",
+        "email": "funke.adeyemi@protonmail.com",
+        "phone": "+234 802 774 0938",
+        "location": "Ibadan, Oyo",
+        "isVerifiedGraduate": true,
+        "graduateProgram": "Frontend Engineering Program"
+      },
+      "cv": {
+        "fileName": "Funke_Adeyemi_Frontend_CV.pdf",
+        "fileSizeKb": 276
+      },
+      "coverLetter": "For the last four years I have built React applications for two Lagos startups, most recently a pharmacy inventory product used by over 400 pharmacies. I led our move from JavaScript to TypeScript, set up component testing with Testing Library and worked closely with our designer to build an accessible component library. Telemedicine is personal for me: my mother lives in a town without a specialist hospital and relies on video consultations. I would be proud to help make Brightleaf's booking and consultation experience faster and easier for patients like her, and I am comfortable working fully remotely with a small team that ships weekly.",
+      "answers": [
+        {
+          "questionId": "q-a03-1",
+          "question": "Link to a project or portfolio you are proud of",
+          "answer": "https://funkeadeyemi.dev/pharmastock"
+        }
+      ],
+      "stage": "offer",
+      "submittedAt": "2026-10-31T10:30:00+01:00",
+      "firstReviewDueDate": "2026-11-07",
+      "interviewCompletedAt": "2026-11-12T11:00:00+01:00",
+      "nextUpdateDueDate": "2026-11-19",
+      "history": [
+        {
+          "id": "h-07-1",
+          "stage": "applied",
+          "at": "2026-10-31T10:30:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Funke Adeyemi",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-07-2",
+          "stage": "screening",
+          "at": "2026-11-03T09:45:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-07-3",
+          "stage": "interview",
+          "at": "2026-11-05T16:00:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": "Technical interview by video call with the Brightleaf CTO on 12 November.",
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-07-4",
+          "stage": "offer",
+          "at": "2026-11-17T12:10:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": "Brightleaf will send the written offer by email this week.",
+          "emailStatus": "failed"
+        }
+      ]
+    },
+    {
+      "id": "app-08",
+      "reference": "RC-23715",
+      "jobId": "job-a03",
+      "candidate": {
+        "id": "cand-08",
+        "name": "Daniel Okon",
+        "email": "daniel.okon@gmail.com",
+        "phone": "+234 818 446 2019",
+        "location": "Uyo, Akwa Ibom",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "Daniel_Okon_CV.pdf",
+        "fileSizeKb": 190
+      },
+      "coverLetter": "I am a self-taught developer with one year of React experience building websites for local businesses.",
+      "answers": [
+        {
+          "questionId": "q-a03-1",
+          "question": "Link to a project or portfolio you are proud of",
+          "answer": "https://github.com/danielokon"
+        }
+      ],
+      "stage": "not-selected",
+      "submittedAt": "2026-11-01T14:20:00+01:00",
+      "firstReviewDueDate": "2026-11-08",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-08-1",
+          "stage": "applied",
+          "at": "2026-11-01T14:20:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Daniel Okon",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-08-2",
+          "stage": "not-selected",
+          "at": "2026-11-06T10:05:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": "This role needs three years of production experience. Your portfolio shows real promise, so please apply for our junior roles.",
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-09",
+      "reference": "RC-22841",
+      "jobId": "job-a06",
+      "candidate": {
+        "id": "cand-09",
+        "name": "Grace Udo",
+        "email": "grace.udo@gmail.com",
+        "phone": "+234 806 921 3374",
+        "location": "Garki, Abuja",
+        "isVerifiedGraduate": false,
+        "graduateProgram": null
+      },
+      "cv": {
+        "fileName": "Grace_Udo_HR_CV.pdf",
+        "fileSizeKb": 231
+      },
+      "coverLetter": "I have four years of HR generalist experience in logistics and hold CIPM membership.",
+      "answers": [],
+      "stage": "hired",
+      "submittedAt": "2026-09-18T11:00:00+01:00",
+      "firstReviewDueDate": "2026-09-25",
+      "interviewCompletedAt": "2026-10-08T10:00:00+01:00",
+      "nextUpdateDueDate": "2026-10-15",
+      "history": [
+        {
+          "id": "h-09-1",
+          "stage": "applied",
+          "at": "2026-09-18T11:00:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Grace Udo",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-09-2",
+          "stage": "screening",
+          "at": "2026-09-22T09:30:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-09-3",
+          "stage": "interview",
+          "at": "2026-10-01T13:00:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-09-4",
+          "stage": "offer",
+          "at": "2026-10-13T15:45:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-09-5",
+          "stage": "hired",
+          "at": "2026-10-28T17:20:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Adaeze Okonkwo",
+          "note": "Start date confirmed for Monday 3 November. Congratulations, Grace.",
+          "emailStatus": "sent"
+        }
+      ]
+    },
+    {
+      "id": "app-10",
+      "reference": "RC-23410",
+      "jobId": "job-a04",
+      "candidate": {
+        "id": "cand-10",
+        "name": "Samuel Adewale",
+        "email": "samuel.adewale@gmail.com",
+        "phone": "+234 810 663 2257",
+        "location": "Rumuokoro, Port Harcourt",
+        "isVerifiedGraduate": true,
+        "graduateProgram": "Accounting Essentials Course"
+      },
+      "cv": {
+        "fileName": "Samuel_Adewale_CV.pdf",
+        "fileSizeKb": 167
+      },
+      "coverLetter": "I graduated in Accounting from UNIPORT and completed the EduBridge Accounting Essentials Course. I am working towards ICAN.",
+      "answers": [],
+      "stage": "interview",
+      "submittedAt": "2026-10-22T09:40:00+01:00",
+      "firstReviewDueDate": "2026-10-29",
+      "interviewCompletedAt": null,
+      "nextUpdateDueDate": null,
+      "history": [
+        {
+          "id": "h-10-1",
+          "stage": "applied",
+          "at": "2026-10-22T09:40:00+01:00",
+          "actorKind": "candidate",
+          "actorName": "Samuel Adewale",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-10-2",
+          "stage": "screening",
+          "at": "2026-10-27T10:15:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": null,
+          "emailStatus": "sent"
+        },
+        {
+          "id": "h-10-3",
+          "stage": "interview",
+          "at": "2026-11-17T09:00:00+01:00",
+          "actorKind": "staff",
+          "actorName": "Bayo Lawal",
+          "note": "Interview at the Trans Amadi office on Wednesday 26 November at 10am. The role is paused for new applicants while interviews take place.",
+          "emailStatus": "sent"
+        }
+      ]
+    }
+  ],
+  "enquiries": [
+    {
+      "id": "enq-01",
+      "reference": "EQ-1042",
+      "source": "for-employers",
+      "status": "new",
+      "name": "Ngozi Ibe",
+      "email": "ngozi.ibe@northgatemfb.ng",
+      "phone": "+234 803 220 9184",
+      "subject": "Hiring three loan officers in Enugu",
+      "message": "We are opening a new branch in Ogui Road and need three loan officers by January. We would like EduBridge to handle the recruitment for us. Please let me know your process and fees.",
+      "receivedAt": "2026-11-21T16:05:00+01:00",
+      "employerDetails": {
+        "companyName": "Northgate Microfinance Bank",
+        "contactRole": "HR Manager",
+        "rolesToFill": 3,
+        "hiringTimeline": "Within 1 to 3 months"
+      },
+      "notes": []
+    },
+    {
+      "id": "enq-02",
+      "reference": "EQ-1043",
+      "source": "contact",
+      "status": "new",
+      "name": "Uche Obi",
+      "email": "uche.obi@gmail.com",
+      "phone": null,
+      "subject": "My CV will not upload",
+      "message": "I tried to apply for the Customer Success role but my CV keeps failing to upload. It is a Word document of about 6 MB.",
+      "receivedAt": "2026-11-22T08:12:00+01:00",
+      "employerDetails": null,
+      "notes": []
+    },
+    {
+      "id": "enq-03",
+      "reference": "EQ-1037",
+      "source": "for-employers",
+      "status": "in-progress",
+      "name": "Kunle Ajayi",
+      "email": "kunle@brightleafhealth.com",
+      "phone": "+234 909 118 6620",
+      "subject": "Two more developers for Q1",
+      "message": "The frontend hire is going well. We would like to open two more roles in January: a backend developer and a QA engineer. Can we schedule a call to brief your team?",
+      "receivedAt": "2026-11-18T11:30:00+01:00",
+      "employerDetails": {
+        "companyName": "Brightleaf Health",
+        "contactRole": "CTO",
+        "rolesToFill": 2,
+        "hiringTimeline": "Within 1 to 3 months"
+      },
+      "notes": [
+        {
+          "id": "n-03-1",
+          "authorName": "Bayo Lawal",
+          "body": "Called Kunle. Briefing call booked for Tuesday 25 November at 11am.",
+          "at": "2026-11-18T15:10:00+01:00"
+        },
+        {
+          "id": "n-03-2",
+          "authorName": "Adaeze Okonkwo",
+          "body": "Sent our job description template ahead of the call.",
+          "at": "2026-11-19T09:25:00+01:00"
+        }
+      ]
+    },
+    {
+      "id": "enq-04",
+      "reference": "EQ-1039",
+      "source": "contact",
+      "status": "in-progress",
+      "name": "Zainab Lawal",
+      "email": "zainab.lawal@gmail.com",
+      "phone": "+234 802 664 1107",
+      "subject": "Graduate badge not showing",
+      "message": "I finished the Data Analytics Bootcamp in September but I do not see the graduate badge on my profile.",
+      "receivedAt": "2026-11-19T13:48:00+01:00",
+      "employerDetails": null,
+      "notes": [
+        {
+          "id": "n-04-1",
+          "authorName": "Adaeze Okonkwo",
+          "body": "Checking her completion record with the Academy team.",
+          "at": "2026-11-20T10:00:00+01:00"
+        }
+      ]
+    },
+    {
+      "id": "enq-05",
+      "reference": "EQ-1021",
+      "source": "contact",
+      "status": "closed",
+      "name": "Mrs. Folake Ogunleye",
+      "email": "principal@greenfieldcollege.edu.ng",
+      "phone": "+234 805 337 9021",
+      "subject": "Career talk for our final-year students",
+      "message": "Could someone from Recruiture speak to our final-year students about finding their first job?",
+      "receivedAt": "2026-11-04T10:20:00+01:00",
+      "employerDetails": null,
+      "notes": [
+        {
+          "id": "n-05-1",
+          "authorName": "Bayo Lawal",
+          "body": "Passed to the EduBridge outreach team, who confirmed a visit on 2 December.",
+          "at": "2026-11-06T14:00:00+01:00"
+        }
+      ]
+    },
+    {
+      "id": "enq-06",
+      "reference": "EQ-1015",
+      "source": "for-employers",
+      "status": "closed",
+      "name": "Chinedu Okeke",
+      "email": "chinedu.okeke@harbourpointfoods.com",
+      "phone": "+234 807 445 2210",
+      "subject": "Accounting graduate for our finance team",
+      "message": "Our finance manager is stretched during month-end and audits. We want a junior accountant who is comfortable with Excel and reconciliations, ideally someone who already lives in Port Harcourt because the role is fully on site in Trans Amadi. We can offer HMO, lunch and the staff bus. We are happy to consider recent graduates and anyone working towards ICAN, and we would like to interview within three weeks of the role going live. Please also advise whether we should include a salary range on the advert, as we have had mixed results in the past.",
+      "receivedAt": "2026-10-14T09:05:00+01:00",
+      "employerDetails": {
+        "companyName": "Harbour Point Foods",
+        "contactRole": "Finance Director",
+        "rolesToFill": 1,
+        "hiringTimeline": "As soon as possible"
+      },
+      "notes": []
+    }
+  ],
+  "weeklyActivity": [
+    {
+      "weekStart": "2026-09-28",
+      "applications": 14,
+      "interviews": 3
+    },
+    {
+      "weekStart": "2026-10-05",
+      "applications": 22,
+      "interviews": 5
+    },
+    {
+      "weekStart": "2026-10-12",
+      "applications": 18,
+      "interviews": 6
+    },
+    {
+      "weekStart": "2026-10-19",
+      "applications": 31,
+      "interviews": 4
+    },
+    {
+      "weekStart": "2026-10-26",
+      "applications": 27,
+      "interviews": 9
+    },
+    {
+      "weekStart": "2026-11-02",
+      "applications": 36,
+      "interviews": 7
+    },
+    {
+      "weekStart": "2026-11-09",
+      "applications": 29,
+      "interviews": 11
+    },
+    {
+      "weekStart": "2026-11-16",
+      "applications": 41,
+      "interviews": 8
+    }
+  ],
+  "stageEmailTemplates": [
+    {
+      "stage": "screening",
+      "subject": "Your application for {jobTitle} is being reviewed",
+      "body": "Hi {candidateName},\n\nGood news: the hiring team is now reviewing your application for {jobTitle} at {companyName}. We will let you know as soon as there is a next step.\n\nYou can follow your application at any time from your Recruiture dashboard."
+    },
+    {
+      "stage": "interview",
+      "subject": "Interview invitation: {jobTitle} at {companyName}",
+      "body": "Hi {candidateName},\n\nThe hiring team would like to interview you for {jobTitle} at {companyName}. The details are below.\n\nYou can follow your application at any time from your Recruiture dashboard."
+    },
+    {
+      "stage": "offer",
+      "subject": "An offer for {jobTitle} at {companyName}",
+      "body": "Hi {candidateName},\n\nCongratulations. {companyName} would like to offer you the {jobTitle} role. The next steps are below.\n\nYou can follow your application at any time from your Recruiture dashboard."
+    },
+    {
+      "stage": "hired",
+      "subject": "Welcome to {companyName}",
+      "body": "Hi {candidateName},\n\nYour hire for {jobTitle} at {companyName} is confirmed. Everyone at Recruiture and EduBridge Academy wishes you the very best in your new role."
+    },
+    {
+      "stage": "not-selected",
+      "subject": "An update on your application for {jobTitle}",
+      "body": "Hi {candidateName},\n\nThank you for applying for {jobTitle} at {companyName}. After careful review, the hiring team has decided not to move forward with your application this time.\n\nWe know this is not the news you hoped for. New roles are added to Recruiture every week, and we would be glad to see your next application."
+    }
+  ],
+  "formOptions": {
+    "jobTypes": [
+      {
+        "value": "full-time",
+        "label": "Full-time"
+      },
+      {
+        "value": "part-time",
+        "label": "Part-time"
+      },
+      {
+        "value": "contract",
+        "label": "Contract"
+      },
+      {
+        "value": "internship",
+        "label": "Internship"
+      }
+    ],
+    "workModes": [
+      {
+        "value": "on-site",
+        "label": "On-site"
+      },
+      {
+        "value": "hybrid",
+        "label": "Hybrid"
+      },
+      {
+        "value": "remote",
+        "label": "Remote"
+      }
+    ],
+    "experienceLevels": [
+      {
+        "value": "entry",
+        "label": "Entry level"
+      },
+      {
+        "value": "mid",
+        "label": "Mid level"
+      },
+      {
+        "value": "senior",
+        "label": "Senior"
+      }
+    ],
+    "states": [
+      "Abia",
+      "Abuja (FCT)",
+      "Akwa Ibom",
+      "Anambra",
+      "Delta",
+      "Edo",
+      "Enugu",
+      "Kaduna",
+      "Kano",
+      "Lagos",
+      "Ogun",
+      "Oyo",
+      "Rivers",
+      "Nigeria (Remote)"
+    ],
+    "industries": [
+      "Banking",
+      "Education",
+      "FMCG",
+      "Fintech",
+      "Healthtech",
+      "Logistics",
+      "Manufacturing",
+      "Oil and Gas",
+      "Retail",
+      "Telecoms"
+    ],
+    "companySizes": [
+      "1 to 10 employees",
+      "11 to 50 employees",
+      "51 to 200 employees",
+      "201 to 500 employees",
+      "501 to 1,000 employees",
+      "More than 1,000 employees"
+    ],
+    "screeningQuestionTypes": [
+      {
+        "value": "short-text",
+        "label": "Short answer"
+      },
+      {
+        "value": "number",
+        "label": "Number"
+      },
+      {
+        "value": "yes-no",
+        "label": "Yes or no"
+      },
+      {
+        "value": "multiple-choice",
+        "label": "Multiple choice"
+      }
+    ]
+  }
+}
