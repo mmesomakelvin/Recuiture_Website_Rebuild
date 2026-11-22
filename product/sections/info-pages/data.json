@@ -1,0 +1,394 @@
+{
+  "_meta": {
+    "models": {
+      "contactDetails": "How to reach the EduBridge team: email, phone, WhatsApp, office address, opening hours and typical reply time. These are sample placeholders until EduBridge supplies the real details.",
+      "forEmployers": "Content for the For Employers page: the hero, the four hiring steps, why EduBridge talent helps, the pricing note and which FAQs to show there.",
+      "faqGroups": "The three FAQ groups, by who is asking.",
+      "faqs": "Questions and answers shown on the FAQ page, each in one group.",
+      "formOptions": "Choices for the dropdowns on the hiring enquiry and contact forms."
+    },
+    "relationships": [
+      "Each FAQ belongs to one FAQ group",
+      "The For Employers page shows a few FAQs, picked by id from the full list",
+      "A hiring enquiry becomes a For Employers enquiry in the Admin Portal inbox; a contact message becomes a Contact enquiry"
+    ]
+  },
+  "contactDetails": {
+    "email": "hello@recruiture.example",
+    "phone": "+234 800 000 0000",
+    "whatsappNumber": "2348000000000",
+    "addressLines": [
+      "Sample office address",
+      "12 Example Street, Victoria Island"
+    ],
+    "city": "Lagos",
+    "state": "Lagos",
+    "openingHours": [
+      {
+        "days": "Monday to Friday",
+        "hours": "9:00 am to 5:00 pm"
+      },
+      {
+        "days": "Saturday",
+        "hours": "10:00 am to 2:00 pm"
+      },
+      {
+        "days": "Sunday and public holidays",
+        "hours": "Closed"
+      }
+    ],
+    "mapUrl": "https://maps.google.com/?q=Victoria+Island+Lagos",
+    "replyTime": "We reply within one working day.",
+    "isPlaceholder": true
+  },
+  "forEmployers": {
+    "heroTitle": "Tell us who you need. We find them.",
+    "heroText": "The EduBridge recruiting team posts your roles on Recruiture, reviews every applicant and brings you a shortlist of people ready to contribute, with every candidate kept informed along the way.",
+    "steps": [
+      {
+        "title": "Tell us who you need",
+        "text": "Send a hiring enquiry with the roles, timing and budget. We call you to agree the details."
+      },
+      {
+        "title": "We post and screen",
+        "text": "We publish the role on Recruiture and review every applicant within 7 days."
+      },
+      {
+        "title": "Meet your shortlist",
+        "text": "You interview the strongest candidates. We handle scheduling and keep everyone updated."
+      },
+      {
+        "title": "Make the hire",
+        "text": "You choose. We send the offer, close the role and let every other candidate know the outcome."
+      }
+    ],
+    "talentPoints": [
+      {
+        "title": "Trained on real work",
+        "text": "EduBridge Academy programmes teach practical skills through projects, so graduates arrive ready to contribute."
+      },
+      {
+        "title": "Screened before you meet them",
+        "text": "Our team reviews every application against your brief, so your time goes on the right people."
+      },
+      {
+        "title": "A good name for your company",
+        "text": "Every candidate hears back at each stage, so even the people you do not hire leave with a good impression."
+      }
+    ],
+    "pricingNote": "Pricing depends on the number and level of the roles you need to fill. After a short call we share a clear quote, before any work starts.",
+    "faqIds": [
+      "faq-07",
+      "faq-08",
+      "faq-09",
+      "faq-10"
+    ]
+  },
+  "faqGroups": [
+    {
+      "id": "job-seekers",
+      "label": "Job seekers",
+      "description": "Finding roles, applying and hearing back."
+    },
+    {
+      "id": "employers",
+      "label": "Employers",
+      "description": "Hiring through the EduBridge team."
+    },
+    {
+      "id": "accounts-and-privacy",
+      "label": "Accounts and privacy",
+      "description": "Your account, your CV and your data."
+    }
+  ],
+  "faqs": [
+    {
+      "id": "faq-01",
+      "group": "job-seekers",
+      "question": "Do I need an account to apply?",
+      "answer": "Yes. You can browse every job without signing in, but you need a free account to apply. It keeps your CV in one place and lets you track each application."
+    },
+    {
+      "id": "faq-02",
+      "group": "job-seekers",
+      "question": "How soon will I hear back after applying?",
+      "answer": "We aim to give every application a first review within 7 days. You get an email when your application moves to a new stage, and the date of each change appears in your tracker."
+    },
+    {
+      "id": "faq-03",
+      "group": "job-seekers",
+      "question": "What happens after an interview?",
+      "answer": "Once the hiring team marks your interview as done, your tracker shows when to expect your next update. That is never more than 5 business days later."
+    },
+    {
+      "id": "faq-04",
+      "group": "job-seekers",
+      "question": "Can I apply for more than one job?",
+      "answer": "Yes, you can apply for as many roles as suit you. You can apply to each job once, and every application is tracked separately."
+    },
+    {
+      "id": "faq-05",
+      "group": "job-seekers",
+      "question": "Can I withdraw an application?",
+      "answer": "Yes. Open the application in your tracker and choose Withdraw while it is at Applied, Screening or Interview. The hiring team stops considering you, and this cannot be undone."
+    },
+    {
+      "id": "faq-06",
+      "group": "job-seekers",
+      "question": "What file types can I upload for my CV?",
+      "answer": "PDF or Word files up to 5 MB. A PDF keeps your layout exactly as you designed it."
+    },
+    {
+      "id": "faq-07",
+      "group": "employers",
+      "question": "Can I post jobs myself?",
+      "answer": "Not yet. For now the EduBridge recruiting team posts and manages every role for you, so each listing is checked and every applicant gets a timely answer. Send a hiring enquiry and we take it from there."
+    },
+    {
+      "id": "faq-08",
+      "group": "employers",
+      "question": "How quickly can you send a shortlist?",
+      "answer": "It depends on the role and how many people you need. We agree a timeline with you on our first call, and keep you updated as candidates move through screening and interviews."
+    },
+    {
+      "id": "faq-09",
+      "group": "employers",
+      "question": "How much does it cost?",
+      "answer": "Pricing depends on the number and level of the roles you need to fill. We share a clear quote after a short call, before any work starts."
+    },
+    {
+      "id": "faq-10",
+      "group": "employers",
+      "question": "Do you only send EduBridge Academy graduates?",
+      "answer": "No. Every role is open to all suitable candidates. EduBridge Academy graduates often bring practical training that matches what employers ask for, and we tell you when a candidate completed one of our programmes."
+    },
+    {
+      "id": "faq-11",
+      "group": "employers",
+      "question": "Which locations do you hire for?",
+      "answer": "Roles anywhere in Nigeria, on-site, hybrid or remote. Tell us the state and work arrangement in your enquiry."
+    },
+    {
+      "id": "faq-12",
+      "group": "accounts-and-privacy",
+      "question": "I forgot my password. What do I do?",
+      "answer": "Choose Forgot password on the sign-in page and enter your email. If an account uses that address, we send a link to set a new password."
+    },
+    {
+      "id": "faq-13",
+      "group": "accounts-and-privacy",
+      "question": "Who can see my CV?",
+      "answer": "Only the EduBridge hiring team, and the employers for the jobs you apply to. Your CV is never shown publicly on the job board."
+    },
+    {
+      "id": "faq-14",
+      "group": "accounts-and-privacy",
+      "question": "Can I change the email on my account?",
+      "answer": "Your email is how you sign in, so it cannot be changed from your profile. Send us a message from the Contact page and we will help."
+    }
+  ],
+  "formOptions": {
+    "locations": [
+      {
+        "value": "Abia",
+        "label": "Abia"
+      },
+      {
+        "value": "Abuja (FCT)",
+        "label": "Abuja (FCT)"
+      },
+      {
+        "value": "Akwa Ibom",
+        "label": "Akwa Ibom"
+      },
+      {
+        "value": "Anambra",
+        "label": "Anambra"
+      },
+      {
+        "value": "Delta",
+        "label": "Delta"
+      },
+      {
+        "value": "Edo",
+        "label": "Edo"
+      },
+      {
+        "value": "Enugu",
+        "label": "Enugu"
+      },
+      {
+        "value": "Imo",
+        "label": "Imo"
+      },
+      {
+        "value": "Kaduna",
+        "label": "Kaduna"
+      },
+      {
+        "value": "Kano",
+        "label": "Kano"
+      },
+      {
+        "value": "Kwara",
+        "label": "Kwara"
+      },
+      {
+        "value": "Lagos",
+        "label": "Lagos"
+      },
+      {
+        "value": "Ogun",
+        "label": "Ogun"
+      },
+      {
+        "value": "Ondo",
+        "label": "Ondo"
+      },
+      {
+        "value": "Osun",
+        "label": "Osun"
+      },
+      {
+        "value": "Oyo",
+        "label": "Oyo"
+      },
+      {
+        "value": "Plateau",
+        "label": "Plateau"
+      },
+      {
+        "value": "Rivers",
+        "label": "Rivers"
+      },
+      {
+        "value": "Remote",
+        "label": "Remote (anywhere in Nigeria)"
+      }
+    ],
+    "companySizes": [
+      {
+        "value": "1 to 10 employees",
+        "label": "1 to 10 employees"
+      },
+      {
+        "value": "11 to 50 employees",
+        "label": "11 to 50 employees"
+      },
+      {
+        "value": "51 to 200 employees",
+        "label": "51 to 200 employees"
+      },
+      {
+        "value": "201 to 1,000 employees",
+        "label": "201 to 1,000 employees"
+      },
+      {
+        "value": "More than 1,000 employees",
+        "label": "More than 1,000 employees"
+      }
+    ],
+    "industries": [
+      {
+        "value": "Banking and finance",
+        "label": "Banking and finance"
+      },
+      {
+        "value": "Education",
+        "label": "Education"
+      },
+      {
+        "value": "FMCG",
+        "label": "FMCG"
+      },
+      {
+        "value": "Fintech",
+        "label": "Fintech"
+      },
+      {
+        "value": "Health",
+        "label": "Health"
+      },
+      {
+        "value": "Logistics",
+        "label": "Logistics"
+      },
+      {
+        "value": "Manufacturing",
+        "label": "Manufacturing"
+      },
+      {
+        "value": "Media",
+        "label": "Media"
+      },
+      {
+        "value": "Oil and gas",
+        "label": "Oil and gas"
+      },
+      {
+        "value": "Retail",
+        "label": "Retail"
+      },
+      {
+        "value": "Technology",
+        "label": "Technology"
+      },
+      {
+        "value": "Other",
+        "label": "Other"
+      }
+    ],
+    "heardAbout": [
+      {
+        "value": "EduBridge Academy",
+        "label": "EduBridge Academy"
+      },
+      {
+        "value": "A friend or colleague",
+        "label": "A friend or colleague"
+      },
+      {
+        "value": "LinkedIn",
+        "label": "LinkedIn"
+      },
+      {
+        "value": "Instagram",
+        "label": "Instagram"
+      },
+      {
+        "value": "Google search",
+        "label": "Google search"
+      },
+      {
+        "value": "Event or workshop",
+        "label": "Event or workshop"
+      },
+      {
+        "value": "Other",
+        "label": "Other"
+      }
+    ],
+    "contactTopics": [
+      {
+        "value": "my-application",
+        "label": "My application"
+      },
+      {
+        "value": "my-account",
+        "label": "My account"
+      },
+      {
+        "value": "hiring",
+        "label": "Hiring"
+      },
+      {
+        "value": "partnerships",
+        "label": "Partnerships"
+      },
+      {
+        "value": "something-else",
+        "label": "Something else"
+      }
+    ]
+  }
+}
