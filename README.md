@@ -25,7 +25,7 @@ Website code only ever goes in `web/`. The root `src/` folder belongs to Design 
 | Section | What it covers | Status |
 | --- | --- | --- |
 | Job Board | Public job listings, search, filters, job pages and the apply flow | Designed |
-| Candidate Portal | Sign up, sign in, a basic profile with CV, and an application tracker | Being designed |
+| Candidate Portal | Sign up, sign in, a basic profile with CV, and an application tracker | Designed |
 | Admin Portal | Internal staff area for jobs, applications, hiring stages and enquiries | Designed |
 | Info Pages | For Employers, Contact and FAQ pages | Not started |
 
